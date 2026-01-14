@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>kinhTrungBo102-01</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      .floating-checkbox {
+         position: fixed; /* Keeps it fixed to the viewport */
+         top: 20px; /* Distance from the top of the viewport */
+         right: 20px; /* Distance from the right of the viewport */
+         z-index: 1000; /* Ensures it stays above other elements */
+      }
+   </style>
+   <body>
+      <div>
+         <a href="./kinhTrungBo1.html">Kinh Trung Bo 1</a><br>
+         <a href="./kinhTrungBo2.html">Kinh Trung Bo 2</a><br>
+         <a href="./kinhTrungBo3.html">Kinh Trung Bo 3</a><br>
+         <a href="./kinhTrungBo101.html">Kinh Trung Bo 101</a><br>
+         <a href="./kinhTrungBo102.html">Kinh Trung Bo 102</a><br>
+         <a href="./kinhTrungBo103.html">Kinh Trung Bo 103</a><br>
+         <a href="./kinhTrungBo104.html">Kinh Trung Bo 104</a><br>
+      </div>
+
+      </div>
+      <script>
+         const showeng = document.querySelector("#showeng")
+         const eng = document.querySelectorAll(".eng")
+         showeng.checked = true
+         showeng.addEventListener("change", () => {
+            if (showeng.checked) {
+               eng.forEach(v => v.style.display = "inline")
+            } else {
+               eng.forEach(v => v.style.display = "none")
+            }
+         })
+         const allEnglishElement = document.querySelectorAll(".eng");
+         const allVietElement = document.querySelectorAll(".viet");
+
+         allEnglishElement.forEach((item, index) => {
+            item.addEventListener("click", (event) => handleClick(event))
+         })
+
+         function handleClick(event) {
+            const index = Number(event.target.classList[1])
+            allVietElement.forEach(e => {
+               if (e.classList[1] === event.target.classList[1]) {
+                     e.classList.contains("hide")
+                        ? e.classList.remove("hide")
+                        : e.classList.add("hide")
+               }
+            })
+         }
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         function speakMinutes(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                     console.error('Speech synthesis error: ' + event.error);
+               };
+               if (minutesArray.length % 2 === 0) {
+                     utterance.lang = 'en-US'
+               } else {
+                     utterance.lang = 'vi-VN'
+                  let txt1 = minutesArray[0]
+                     document.querySelector(".vietEng").innerHTML = document.querySelector(".vietEng").innerHTML.replace(txt, "")
+                     document.querySelector(".vietEng").innerHTML = document.querySelector(".vietEng").innerHTML.replace(txt1, "")
+                     document.querySelector(".read").innerHTML = "<span class='viet'>"+txt+"</span><br>"+txt1
+
+               }
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let arr_len = document.getElementsByClassName('eng').length;
+               let eng_txt1 = '';
+               let viet_txt1 = '';
+               let eng_arr = []
+               let viet_arr = []
+               for (let i = 0; i < arr_len; i++) {
+                  let eng_txt = document.getElementsByClassName('eng')[i].textContent;
+                  let viet_txt = document.getElementsByClassName('viet')[i].textContent;
+                  // remove vscode format
+                  // split eng_txt by "\n"
+                  eng_txt_arr = eng_txt.split("\n")
+                  viet_txt_arr = viet_txt.split("\n")
+                  // remove extra spaces
+                  eng_txt_arr = eng_txt_arr.map(e => e.trim())
+                  viet_txt_arr = viet_txt_arr.map(e => e.trim())
+                  // convert array back into text
+                  eng_txt = eng_txt_arr.join(" ")
+                  viet_txt = viet_txt_arr.join(" ")
+                  eng_arr.push(viet_txt)
+                  eng_arr.push(eng_txt)
+               }
+               console.log(eng_arr)
+               speakMinutes(eng_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
