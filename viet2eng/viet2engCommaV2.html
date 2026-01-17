@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommaV2</title>
+    <style>
+        .eng {
+            color: red;
+        }
+        .viettxtarea,
+        .engtxtarea {
+            width: 95%;
+            height: 300px;
+        }
+        .combinetxtarea {
+            width: 95%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <a name="viettextarea"></a>
+    Text Area: Vietnamese
+    <button type="button" onclick="saveViet()">Save content</button>
+    <button type="button" onclick="getViet()">Retrieve saved content</button><br>
+    <textarea class="viettxtarea"></textarea>
+    <br>Text Area: English
+    <button type="button" onclick="saveEng()">Save content</button>
+    <button type="button" onclick="getEng()">Retrieve saved content</button>
+    <a href="#status">status</a>
+    <br>
+    <textarea class="engtxtarea"></textarea>
+    <br> <button type="button" onclick="combine()">Combine</button>
+    <button type="button" onclick="setFocusViet()">Vietnamese focus</button>
+    <a name="status"></a>
+    <a href="#viettextarea">Vietnamese text area</a>
+    <br> <div class="statusdiv">Nothing in status text</div>
+    <button type="button" onclick="handleCopyTextAreaHTMLContent()">Copy content of textarea below to clipboard</button>
+
+    Text Area: Combine<br>
+    <textarea class="combinetxtarea"></textarea>
+    <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+    <div class="showndiv vietEng"></div>
+    <script src="./viet2engCommaV2.js">
+
+    </script>
+</body>
+
+</html>

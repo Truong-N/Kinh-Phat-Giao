@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./dom2.html">Prev</a>
+         <a href="./index.html">Index</a>
+         <a href="./dom4.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div id="test"></div>
+      <div class="vietEng">
+      <p><span class="eng"> What Is the querySelectorAll() Method, and When Should You Use It? </span><span class="viet"> Phương thức `querySelectorAll()` là gì và khi nào nên sử dụng nó? </span></p>
+<p><span class="eng"> Let's learn about the querySelectorAll() method. </span><span class="viet"> Hãy cùng tìm hiểu về phương thức `querySelectorAll()`. </span><span class="eng"> You can use this method to get a list of all the DOM elements that match a specific CSS selector. </span><span class="viet"> Bạn có thể sử dụng phương thức này để lấy danh sách tất cả các phần tử DOM khớp với một bộ chọn CSS cụ thể. </span></p>
+<p><span class="eng"> This is how you can call the querySelectorAll() method: </span><span class="viet"> Đây là cách bạn có thể gọi phương thức `querySelectorAll()`: </span></p>
+<p><span class="eng"> document.querySelectorAll(selectors); </span><span class="viet"> // </span></p>
+<p><span class="eng"> Call it on the document object and pass a string with the CSS selectors as an argument. </span><span class="viet"> Gọi phương thức này trên đối tượng `document` và truyền một chuỗi chứa các bộ chọn CSS làm đối số. </span><span class="eng"> The argument must be a valid CSS selector string. </span><span class="viet"> Đối số phải là một chuỗi bộ chọn CSS hợp lệ. </span><span class="eng"> Otherwise, a SyntaxError exception will be thrown. </span><span class="viet"> Nếu không, một ngoại lệ `SyntaxError` sẽ được ném ra. </span></p>
+<p><span class="eng"> querySelectorAll() returns a NodeList object, a collection of nodes that match the specified CSS selector. </span><span class="viet"> `querySelectorAll()` trả về một đối tượng `NodeList`, một tập hợp các nút khớp với bộ chọn CSS được chỉ định. </span></p>
+<p><span class="eng"> The list will contain one Element object for each element that matches the CSS selectors. </span><span class="viet"> Danh sách sẽ chứa một đối tượng `Element` cho mỗi phần tử khớp với các bộ chọn CSS. </span><span class="eng"> If no matches are found, the list will be empty. </span><span class="viet"> Nếu không tìm thấy kết quả khớp nào, danh sách sẽ trống. </span></p>
+<p><span class="eng"> The elements will be in the order in which they appear in the HTML document. </span><span class="viet"> Các phần tử sẽ được sắp xếp theo thứ tự xuất hiện trong tài liệu HTML. </span><span class="eng"> For example, you can match all elements of a specific type: </span><span class="viet"> Ví dụ, bạn có thể khớp tất cả các phần tử thuộc một loại cụ thể: </span></p>
+<p><span class="eng"> document.querySelectorAll("div"); </span><span class="viet"> // </span></p>
+<p><span class="eng"> All elements with a specific class: </span><span class="viet"> Tất cả các phần tử có một lớp cụ thể: </span></p>
+<p><span class="eng"> document.querySelectorAll(".rounded"); </span><span class="viet"> // </span></p>
+<p><span class="eng"> All elements with a specific ID: </span><span class="viet"> Tất cả các phần tử có một ID cụ thể: </span></p>
+<p><span class="eng"> document.querySelectorAll("#logo"); </span><span class="viet"> // </span></p>
+<p><span class="eng"> Or all elements with a specific attribute, like all links that take users to a specific URL: </span><span class="viet"> Hoặc tất cả các phần tử có một thuộc tính cụ thể, chẳng hạn như tất cả các liên kết đưa người dùng đến một URL cụ thể: </span></p>
+<p><span class="eng"> document.querySelectorAll("a[href='https://www.freecodecamp.org/']"); </span><span class="viet"> // </span></p>
+<p><span class="eng"> You can also use more complex CSS selectors, like this one, which matches all list items within an unordered list element with the class ingredients: </span><span class="viet"> Bạn cũng có thể sử dụng các bộ chọn CSS phức tạp hơn, như bộ chọn này, khớp với tất cả các mục trong danh sách không thứ tự có lớp ingredients: </span></p>
+<p><span class="eng"> document.querySelectorAll("ul.ingredients li"); </span><span class="viet"> // </span></p>
+<p><span class="eng"> Since the method will return a collection of nodes, you can assign this collection to a variable and use it in your programs to work with the individual elements, like you can see in this example with the general syntax: </span><span class="viet"> Vì phương thức này sẽ trả về một tập hợp các nút, bạn có thể gán tập hợp này cho một biến và sử dụng nó trong chương trình của mình để làm việc với các phần tử riêng lẻ, như bạn có thể thấy trong ví dụ này với cú pháp chung: </span></p>
+<p><span class="eng"> const matches = document.querySelectorAll(selectors); </span><span class="viet"> // </span></p>
+<p><span class="eng"> For example, if you have this unordered list with three list items: </span><span class="viet"> Ví dụ, nếu bạn có danh sách không thứ tự này với ba mục: </span></p>
+<p><span class="eng"> &lt;ul class="ingredients"&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng">   &lt;li&gt;Flour&lt;/li&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng">   &lt;li&gt;Cheese&lt;/li&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng">   &lt;li&gt;Water&lt;/li&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng"> &lt;/ul&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng"> You can call the querySelectorAll() method to match all list items within the unordered list with the class ingredients and assign the return value to the matches constant: </span><span class="viet"> Bạn có thể gọi phương thức querySelectorAll() để khớp tất cả các mục trong danh sách không thứ tự có lớp ingredients và gán giá trị trả về cho hằng số matches: </span></p>
+<p><span class="eng"> const matches = document.querySelectorAll("ul.ingredients li"); </span><span class="viet"> // </span></p>
+<p><span class="eng"> This will return a collection of three nodes. </span><span class="viet"> Điều này sẽ trả về một tập hợp gồm ba nút. </span><span class="eng"> Each node represents a list item element: </span><span class="viet"> Mỗi nút đại diện cho một phần tử mục trong danh sách: </span></p>
+<p><span class="eng"> // NodeList(3) </span><span class="viet"> // </span></p>
+<p><span class="eng">   0:`&lt;li&gt;Flour&lt;/li&gt;`, </span><span class="viet"> // </span></p>
+<p><span class="eng">   1:`&lt;li&gt;Cheese&lt;/li&gt;`, </span><span class="viet"> // </span></p>
+<p><span class="eng">   2:`&lt;li&gt;Water&lt;/li&gt;`, </span><span class="viet"> // </span></p>
+<p><span class="eng">   length:3, </span><span class="viet"> độ dài:3, </span></p>
+<p><span class="eng"> You can work with this collection exactly like you would work with any other JavaScript array. </span><span class="viet"> Bạn có thể làm việc với tập hợp này giống như cách bạn làm việc với bất kỳ mảng JavaScript nào khác. </span></p>
+<p><span class="eng"> For example, you can show it in the console with console.log(): </span><span class="viet"> Ví dụ, bạn có thể hiển thị nó trong bảng điều khiển bằng cách sử dụng console.log(): </span></p>
+<p><span class="eng"> console.log(matches); </span><span class="viet"> // </span></p>
+<p><span class="eng"> You can also check the length of the collection with the length property: </span><span class="viet"> Bạn cũng có thể kiểm tra độ dài của tập hợp bằng thuộc tính length: </span></p>
+<p><span class="eng"> console.log(matches.length); </span><span class="viet"> // </span></p>
+<p><span class="eng"> The output will be an integer representing the number of nodes in the collection:3 </span><span class="viet"> Kết quả sẽ là một số nguyên biểu thị số lượng nút trong tập hợp:3 </span></p>
+<p><span class="eng"> You can also access the individual elements of the collection with their corresponding indices. </span><span class="viet"> Bạn cũng có thể truy cập các phần tử riêng lẻ của tập hợp bằng chỉ số tương ứng của chúng. </span><span class="eng"> The first element will be at index 0: </span><span class="viet"> Phần tử đầu tiên sẽ ở chỉ số 0: </span></p>
+<p><span class="eng"> console.log(matches[0]); </span><span class="viet"> // </span></p>
+<p><span class="eng"> console.log(matches[1]); </span><span class="viet"> // </span></p>
+<p><span class="eng"> console.log(matches[2]); </span><span class="viet"> // </span></p>
+<p><span class="eng"> This is the output: </span><span class="viet"> Đây là kết quả: </span></p>
+<p><span class="eng"> &lt;li&gt;Flour&lt;/li&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng"> &lt;li&gt;Cheese&lt;/li&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng"> &lt;li&gt;Water&lt;/li&gt; </span><span class="viet"> // </span></p>
+<p><span class="eng"> The elements are printed one by one on the console. </span><span class="viet"> Các phần tử được in ra từng cái một trên bảng điều khiển. </span></p>
+<p><span class="eng"> You can also iterate over the elements with a for loop: </span><span class="viet"> Bạn cũng có thể lặp qua các phần tử bằng vòng lặp for: </span></p>
+<p><span class="eng"> for (let i = 0;i &lt;matches.length;i++) { </span><span class="viet"> // </span></p>
+<p><span class="eng">   console.log(matches[i]); </span><span class="viet"> // </span></p>
+<p><span class="eng"> The output will be exactly the same in this case. </span><span class="viet"> Kết quả đầu ra sẽ hoàn toàn giống nhau trong trường hợp này. </span><span class="eng"> But this can be very powerful for working with all the elements of the collection. </span><span class="viet"> Nhưng điều này có thể rất mạnh mẽ khi làm việc với tất cả các phần tử của tập hợp. </span></p>
+<p><span class="eng"> The querySelectorAll() method in JavaScript is a powerful tool for selecting multiple elements based on their CSS selectors. </span><span class="viet"> Phương thức `querySelectorAll()` trong JavaScript là một công cụ mạnh mẽ để chọn nhiều phần tử dựa trên bộ chọn CSS của chúng. </span><span class="eng"> With this method, you can select specific elements within your web pages and manipulate them as needed. </span><span class="viet"> Với phương thức này, bạn có thể chọn các phần tử cụ thể trong trang web của mình và thao tác với chúng khi cần. </span></p>
+<p><span class="eng"> Questions </span><span class="viet"> Câu hỏi </span></p>
+<p><span class="eng"> What is the primary purpose of the querySelectorAll() method in JavaScript? </span><span class="viet"> Mục đích chính của phương thức `querySelectorAll()` trong JavaScript là gì? </span></p>
+<p><span class="eng"> To create new elements in the DOM. </span><span class="viet"> Để tạo các phần tử mới trong DOM. </span></p>
+<p><span class="eng"> To modify the content of existing elements. </span><span class="viet"> Để sửa đổi nội dung của các phần tử hiện có. </span></p>
+<p><span class="eng"> To select multiple elements based on a CSS selector. </span><span class="viet"> Để chọn nhiều phần tử dựa trên bộ chọn CSS. </span></p>
+<p><span class="eng"> To remove elements from the DOM. </span><span class="viet"> Để xóa các phần tử khỏi DOM. </span></p>
+<p><span class="eng"> What type of object does the querySelectorAll() method return? </span><span class="viet"> Phương thức `querySelectorAll()` trả về loại đối tượng nào? </span></p>
+<p><span class="eng"> String </span><span class="viet"> Chuỗi </span></p>
+<p><span class="eng"> Number </span><span class="viet"> Số </span></p>
+<p><span class="eng"> NodeList </span><span class="viet"> Danh sách nút </span></p>
+<p><span class="eng"> Array </span><span class="viet"> Mảng </span></p>
+<p><span class="eng"> When using querySelectorAll() with a string selector, what happens if the selector doesn't match any elements? </span><span class="viet"> Khi sử dụng `querySelectorAll()` với bộ chọn chuỗi, điều gì xảy ra nếu bộ chọn không khớp với bất kỳ phần tử nào? </span></p>
+<p><span class="eng"> An error is thrown. </span><span class="viet"> Một lỗi sẽ được ném ra. </span></p>
+<p><span class="eng"> A null value is returned. </span><span class="viet"> Một giá trị null được trả về. </span></p>
+<p><span class="eng"> An empty NodeList is returned. </span><span class="viet"> Một Danh sách nút rỗng được trả về. </span></p>
+<p><span class="eng"> The first matching element is returned. </span><span class="viet"> Phần tử khớp đầu tiên được trả về. </span></p>
+
+      </div>
+      <script>
+        const test = document.getElementById("test")
+        let e = 'The first matching element is returned.'
+        let v = 'Phần tử khớp đầu tiên được trả về.'
+        test.innerHTML = `<span style="color: red"> ${e} </span><span> ${v} </span>`
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'
+               let txt1 = '<span class="viet"> '+minutesArray[0].trim()+' </span>'
+               let l_txt = '<span class="eng"> '+txt.trim()+' </span>'
+               document.querySelector(".vietEng").innerHTML = document.querySelector(".vietEng").innerHTML.replace(l_txt, "")
+               document.querySelector(".vietEng").innerHTML = document.querySelector(".vietEng").innerHTML.replace(txt1, "")
+               document.querySelector(".read").innerHTML = "<h2><span class='viet'>"+txt+"</span><br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let arr_len = document.getElementsByClassName('eng').length;
+               let eng_txt1 = '';
+               let viet_txt1 = '';
+               let eng_arr = document.getElementsByClassName('eng')
+               let viet_arr = document.getElementsByClassName('viet')
+               let combine_arr = []
+               
+               for (let i = 0; i < arr_len; i++) {
+                  
+               
+                  let eng_txt =eng_arr[i].textContent;
+                  let viet_txt = viet_arr[i].textContent;
+                  
+                  // remove vscode format
+                  // split eng_txt by "\n"
+                  if (viet_txt.length > 2) {
+                     eng_txt_arr = eng_txt.split("\n")
+                     viet_txt_arr = viet_txt.split("\n")
+                     // remove extra spaces cause by vscode 
+                     eng_txt_arr = eng_txt_arr.map(e => e.trim())
+                     viet_txt_arr = viet_txt_arr.map(e => e.trim())
+                     // convert array back into text
+                     eng_txt = eng_txt_arr.join(" ")
+                     viet_txt = viet_txt_arr.join(" ")
+                     combine_arr.push(viet_txt)
+                     combine_arr.push(eng_txt)
+                  }
+               }
+               // console.log(eng_arr)
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+

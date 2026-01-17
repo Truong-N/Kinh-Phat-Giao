@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Kinh Trung Bo 16</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./kinhTrungBo15.html">Prev</a>
+         <a href="./kinhTrungBo.html">Index</a>
+         <a href="./kinhTrungBo17.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      
+      </div>
+      <script>
+        let vietEng = document.querySelector(".vietEng");
+        let engParagraphs = `Majjhima Nikaya 16~~ The Discourse on the Desolation of the Mind~~ (Cetokhila sutta)~~ Thus I heard.~~ At one time,~ the Blessed One was residing in Savatthi,~ at Jetavana,~ the garden of Anathapindika.~ There,~ the Blessed One addressed the bhikkhus:~ "Bhikkhus!"~ --"Yes,~ Blessed One,"~ the bhikkhus replied.~ The Blessed One then expounded as follows:~~ --Bhikkhus,~ a bhikkhu who has not eradicated the five desolations of the mind,~ who has not severed the five fetters of the mind,~ cannot grow,~ mature,~ or prosper in this Dharma and Vinaya.~ This is not possible.~~ What are the five desolations of the mind that have not been eradicated?~ Bhikkhus,~ here,~ a bhikkhu doubts the Teacher,~ hesitates,~ is indecisive,~ and lacks faith.~ Bhikkhus,~ if a bhikkhu doubts the Teacher,~ hesitates,~ is indecisive,~ and lacks faith,~ then his mind is not inclined toward effort,~ diligence,~ perseverance,~ and exertion.~ If someone's mind is not inclined toward effort,~ diligence,~ perseverance,~ and exertion,~ then the first mental desolation has not been eradicated.~~ Furthermore,~ bhikkhus,~ if a bhikkhu doubts the Dharma,~ hesitates,~ is indecisive,~ and lacks faith...~ (as above)...~ If someone's mind is not inclined toward effort,~ diligence,~ perseverance,~ and exertion,~ then the second mental desolation has not been eradicated.~~ Furthermore,~ bhikkhus,~ if a bhikkhu doubts the Sangha,~ hesitates,~ is indecisive,~ and lacks faith...~ (as above)...~ If someone's mind is not inclined toward effort,~ diligence,~ perseverance,~ and exertion,~ then the third mental desolation has not been eradicated.~~ Furthermore,~ monks,~ if a monk doubts the teachings,~ hesitates,~ is indecisive,~ lacks faith...~ (as above)...~ If his mind is not directed towards effort,~ diligence,~ perseverance,~ and striving,~ then the fourth mental desolation has not been eradicated.~~ Furthermore,~ monks,~ if a monk is angry with his fellow practitioners,~ has no joy,~ his mind is rebellious and rigid.~ If a monk is angry with his fellow practitioners,~ has no joy,~ his mind is rebellious and rigid,~ then his mind is not directed towards effort,~ diligence,~ perseverance,~ and striving.~ If his mind is not directed towards effort,~ diligence,~ perseverance,~ and striving,~ then the fifth mental desolation has not been eradicated.~~ Thus,,these are the five mental desolations that have not been eradicated.~~ What are the five mental fetters that have not been eradicated?~ Bhikkhus,~ here,~ a bhikkhu,~ regarding sensual desires,~ is not without craving,~ not without desire,~ not without attachment,~ not without longing,~ not without enthusiasm,~ not without thirst.~ Bhikkhus,~ a bhikkhu who,,regarding sensual desires,~ is not without craving...~ not without thirst,~ his mind is not inclined toward effort,~ diligence,~ perseverance,~ and exertion.~ If someone's mind is not inclined toward effort,~ diligence,~ perseverance,~ and exertion,~ then the first mental fetter has not been eradicated.~~ Furthermore,~ bhikkhus,~ a bhikkhu who,,regarding himself,,is not without craving...~ (as above)...~ then the second mental fetter has not been eradicated.~~ Furthermore,~ bhikkhus,~ a bhikkhu who,,regarding material things,,is not without craving...~ (as above)...~ then the third mental fetter has not been eradicated.~~ Furthermore,~ monks,~ a monk who eats until he is completely satisfied,~ until his stomach is full,~ living indulging in the pleasures of sitting,~ the pleasures of sleeping,~ the pleasures of slumber.~ A monk who eats until he is completely satisfied,~ until his stomach is full...~ (as above)...~ thus,,the fourth mental fetter has not been eradicated.~~ Furthermore,~ monks,~ a monk who lives a life of celibacy with the desire to be reborn in the heavenly realm,,thinking:~ "With this precept,~ with this conduct,~ with this asceticism,,or with this celibacy,~ I will be reborn as this or that deity."~ A monk who lives a life of celibacy...~ (as above)...~ thus,,the fifth mental fetter has not been eradicated.~~ Thus,,five mental fetters have not been eradicated.~~ Bhikkhus,~ if a bhikkhu has not eradicated these five desolate minds,~ if he has not severed these five fetters,~ he cannot grow strong,,mature,~ and prosper in this Dharma and Vinaya;~ this will not happen.~~ Bhikkhus,~ a bhikkhu who has eradicated the five mental defilements,~ who has severed the five mental fetters,~ can grow strong,~ mature,~ and prosper in this Dharma and Vinaya;~ this event does occur.~~ What are the five mental defilements that have been eradicated?~ Bhikkhus,~ here,~ a bhikkhu does not doubt the Teacher,~ does not hesitate,~ is resolute,~ and has pure faith.~ Bhikkhus,~ a bhikkhu who does not doubt the Teacher,~ does not hesitate,~ is resolute,~ and has pure faith,~ his mind is directed towards effort,~ diligence,~ perseverance,~ and exertion.~ If someone's mind is directed towards effort,~ diligence,~ perseverance,~ and exertion,~ then the first mental defilement has been eradicated.~~ Furthermore,~ monks,~ a monk who does not doubt the Dharma,~ who does not hesitate,~ who is resolute,~ and who has pure faith...~ (as above)...~ If his mind is directed towards effort,~ diligence,~ perseverance,~ and exertion,~ then the second mental desolation has been eradicated.~~ Furthermore,~ monks,~ a monk who does not doubt the Sangha,~ who does not hesitate,~ who is resolute,~ and who has pure faith...~ (as above)...~ If his mind is directed towards effort,~ diligence,~ perseverance,~ and exertion,~ then the third mental desolation has been eradicated.~~ Monks,~ a monk who does not doubt the study of the Dharma,~ who does not hesitate,~ who is resolute,~ and who has pure faith,~ then his mind is directed towards effort,~ diligence,~ perseverance,~ and exertion.~ If his mind is directed towards effort,~ diligence,~ perseverance,~ and exertion,~ then the fourth mental desolation has been eradicated.~~ Furthermore,~ monks,~ a monk who is not angry with his fellow practitioners,~ who is joyful,~ whose mind is not rebellious or rigid~ —a monk who is not angry with his fellow practitioners,~ who is joyful,~ whose mind is not rebellious or rigid—his mind is inclined toward effort,~ diligence,~ perseverance,~ and exertion.~ If someone's mind is inclined toward effort,~ diligence,~ perseverance,~ and exertion,~ then the fifth mental desolation has been eradicated.~~ Thus,,the five mental desolations have been eradicated.~~ What are the five mental fetters that have been eradicated?~~ Monks,~ here,~ a monk has no craving,~ no desire,~ no attachment,~ no longing,~ no enthusiasm,~ no thirst for desire.~ Bhikkhus,~ a bhikkhu who has no craving,~ no desire,~ no attachment,~ no longing,~ no enthusiasm,~ no thirst for sensual pleasures,~ whose mind is directed toward effort,~ diligence,~ perseverance,~ and exertion—in this way,~ the first mental fetter has been eradicated.~~ Furthermore,~ bhikkhus,~ a bhikkhu who has no craving for himself...~ (as above)...in this way,~ the second mental fetter has been eradicated.~~ Furthermore,~ bhikkhus,~ a bhikkhu who has no craving for material things...~ (as above)...in this way,~ the third mental fetter has been eradicated.~~ Furthermore,~ monks,~ a monk who does not eat until he is completely full,~ who does not dwell excessively on the pleasures of sitting,~ the pleasures of sleeping,~ the pleasures of slumber...~ (as above)...~ thus has the fourth mental fetter eradicated.~~ Furthermore,~ monks,~ a monk who lives a life of purity,~ who does not aspire to be reborn in the heavenly realms with the thought:~ "With this precept,~ with this conduct,~ with this asceticism,~ or with this purity,~ I will be reborn as this or that deity."~ A monk who lives a life of purity,~ who does not aspire to be reborn in the heavenly realms with the thought:~ "With this precept,~ with this conduct,~ with this asceticism,~ or with this purity,~ I will be reborn as this or that deity,"~ his mind is directed towards effort,~ diligence,~ perseverance,~ and exertion.~ If someone's mind is directed towards effort,~ diligence,~ perseverance,~ and striving,~ then the fifth mental fetter has been eradicated.~~ Thus,,the five mental fetters have been eradicated.~~ Bhikkhus,~ a bhikkhu who has eradicated these five mental fetters can grow,~ mature,~ and prosper in this Dharma and Vinaya;~ this will happen.~~ He cultivates the basis of psychic power associated with sensual meditation,~ diligently practicing;~ cultivates the basis of psychic power associated with effortful meditation,~ diligently practicing;~ cultivates the basis of psychic power associated with mental meditation,~ diligently practicing;~ cultivates the basis of psychic power associated with contemplative meditation,~ diligently practicing;~ with effort being the fifth.~~ Bhikkhus,~ a bhikkhu who possesses all fifteen qualities,,including effort,~ has the capacity to break free,~ has the capacity to attain enlightenment,~ has the capacity to achieve supreme peace and liberation from all fetters.~~ Bhikkhus,~ just as a hen has eight,~ ten,,or twelve eggs,~ and she skillfully incubates them,~ sitting on them,~ keeping them warm and nurturing them,~ even if she does not have the wish,~ “May my chicks,~ after piercing the eggshells with their sharp claws or beaks,~ escape safely,”~ those chicks,~ after piercing the eggshells with their sharp claws or beaks,~ are able to escape safely.~ Similarly,~ Bhikkhus,~ a Bhikkhu who possesses the fifteen qualities,~ including effort,~ is capable of breaking free,~ capable of attaining perfect enlightenment,~ capable of achieving supreme peace and liberation from all fetters.~~ Thus the Blessed One taught.~ Those Bhikkhus rejoiced~ and accepted the Blessed One's teaching with faith.~~ `
+        let vietParagraphs = `Trung Bộ Kinh 16~~ Kinh Tâm hoang vu~~ (Cetokhila sutta)~~ Như vầy tôi nghe.~~ Một thời,~Thế Tôn ở Savatthi (Xá-vệ),~tại Jetavana (Kỳ-đà Lâm),~vườn ông Anathapindika (Cấp Cô Ðộc).~Ở đây,~Thế Tôn gọi các Tỷ-kheo:~"Này chư Tỷ-kheo".~--"Thưa vâng,~bạch Thế Tôn",~các Tỷ-kheo ấy vâng đáp Thế Tôn.~Thế Tôn thuyết giảng như sau:~~ -- Chư Tỷ-kheo,~Tỷ-kheo nào chưa diệt trừ năm tâm hoang vu,~chưa đoạn tận năm tâm triền phược,~vị ấy có thể lớn mạnh,~trưởng thành,~hưng thịnh trong Pháp và Luật này,~sự kiện này không xảy ra.~~ Thế nào là năm tâm hoang vu chưa được đoạn trừ?~Chư Tỷ-kheo,~ở đây,~Tỷ-kheo nghi ngờ bậc Ðạo Sư,~do dự,~không quyết đoán,~không có tịnh tín.~Chư Tỷ-kheo,~Tỷ-kheo nào nghi ngờ bậc Ðạo Sư,~do dự,~không quyết đoán,~không có tịnh tín,~thời tâm vị này không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ nhất chưa được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào nghi ngờ Pháp,~do dự,~không quyết đoán,~không có tịnh tín...~(như trên)...~Nếu tâm của ai không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ hai chưa được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào nghi ngờ Tăng,~do dự,~không quyết đoán,~không có tịnh tín...~(như trên)...~Nếu tâm của ai không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ ba chưa được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào nghi ngờ các học pháp,~do dự,~không quyết đoán,~không có tịnh tín...~  (như trên)...~Nếu tâm của ai không hướng về nỗ lực,~chuyên cần,~kiên trì;~tinh tấn,~như vậy là tâm hoang vu thứ tư chưa được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo phẫn nộ đối với các đồng phạm hạnh,~không có hoan hỷ,~tâm tư chống đối,,cứng rắn.~Chư Tỷ-kheo,,Tỷ-kheo nào phẫn nộ đối với các vị đồng phạm hạnh,~không có hoan hỷ,~tâm tư chống đối,,cứng rắn,~thời tâm của vị này không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ năm chưa được diệt trừ.~~ Như vậy là năm tâm hoang vu chưa được diệt trừ.~~ Thế nào là năm tâm triền phược chưa được đoạn tận?~Chư Tỷ-kheo,~ở đây,~Tỷ-kheo,~đối với những dục,~không phải không tham ái,~không phải không dục cầu,~không phải không ái luyến,~không phải không khao khát,~không phải không nhiệt tình,~không phải không khát ái.~Chư Tỷ-kheo,~vị Tỷ-kheo nào đối với những dục,~không phải không tham ái...~không phải không khát ái,~tâm của vị ấy không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai không hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm triền phược thứ nhất chưa được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào đối với tự thân không phải không tham ái...~(như trên)...~như vậy là tâm triền phược thứ hai chưa được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào đối với các sắc pháp không phải không tham ái ...~(như trên)...~như vậy là tâm triền phược thứ ba chưa được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào ăn cho đến thỏa thê,~cho đến bụng chứa đầy,~sống thiên nặng về khoái lạc về sàng tọa,~khoái lạc về ngủ nghỉ,~khoái lạc về thụy miên.~Chư Tỷ-kheo,~Tỷ-kheo nào ăn cho đến thỏa thê cho đến bụng chứa đầy...~(như trên)...~như vậy là tâm triền phược thứ tư chưa được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào sống phạm hạnh với mong cầu được sanh thiên giới với ý nghĩ:~"Ta với giới này,~với hạnh này,~với khổ hạnh này hay với phạm hạnh này sẽ được sanh làm chư Thiên này hay chư Thiên khác".~Chư Tỷ-kheo,~Tỷ-kheo nào sống phạm hạnh...~(như trên)...~như vậy là tâm triền phược thứ năm chưa được đoạn tận.~~ Như vậy là năm tâm triền phược chưa được đoạn tận.~~ Chư Tỷ-kheo,~Tỷ-kheo nào chưa diệt trừ năm tâm hoang vu này,~chưa đoạn tận năm tâm triền phược này,~vị ấy có thể lớn mạnh trưởng thành,~hưng thịnh trong Pháp và Luật này,~sự kiện này không xảy ra.~~ Chư Tỷ-kheo,~Tỷ-kheo nào đã diệt trừ năm tâm hoang vu,~đã đoạn tận năm tâm triền phược,~vị ấy có thể lớn mạnh,~trưởng thành,~hưng thịnh trong Pháp và Luật này,~sự kiện này có xảy ra.~~ Thế nào là năm tâm hoang vu đã được diệt trừ?~Chư Tỷ-kheo,~ở đây,~Tỷ-kheo không nghi ngờ bậc Ðạo Sư,~không do dự,~quyết đoán,~tịnh tín.~Chư Tỷ-kheo,~Tỷ-kheo nào không nghi ngờ bậc Ðạo Sư,~không do dự,~quyết đoán,~tịnh tín,~thời tâm vị này hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ nhất đã được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào không nghi ngờ Pháp,~không do dự,~quyết đoán,~tịnh tín...~(như trên)...~Nếu tâm của ai hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ hai đã được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào không nghi ngờ Tăng,~không do dự,~quyết đoán,~tịnh tín...~(như trên)...~Nếu tâm của ai hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ ba đã được diệt trừ.~~ Chư Tỷ-kheo,~Tỷ-kheo nào không nghi ngờ học pháp,~không do dự,~quyết đoán,~tịnh tín,~thời tâm vị này hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ tư đã được diệt trừ.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào không phẫn nộ đối với các vị đồng phạm hạnh,~hoan hỷ,~tâm tư không chống đối,,cứng rắn.~Chư Tỷ-kheo,,Tỷ-kheo không phẫn nộ đối với các vị đồng phạm hạnh,~hoan hỷ,~tâm tư không chống đối,,cứng rắn,~thời tâm vị này hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai hướng về nỗ lực,~chuyên cần kiên trì,~tinh tấn,~như vậy là tâm hoang vu thứ năm đã được diệt trừ.~~ Như vậy là năm tâm hoang vu đã được diệt trừ.~~ Thế nào là năm tâm triền phược đã được đoạn tận?~~ Chư Tỷ-kheo,~ở đây,~Tỷ-kheo đối với những dục không có tham ái,~không có dục cầu,~không có ái luyến,~không có khao khát,~không có nhiệt tình,~không có khát ái.~Chư Tỷ-kheo,~Tỷ-kheo nào đối với những dục không có tham ái,~không có dục cầu,~không có ái luyến,~không có khao khát,~không có nhiệt tình,~không có khát ái,~tâm vị ấy hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm triền phược thứ nhất đã được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào đối với tự thân không có tham ái...~(như trên)...~như vậy là tâm triền phược thứ hai đã được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào đối với các sắc pháp không có tham ái...~(như trên)...~như vậy là tâm triền phược thứ ba đã được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào không ăn cho đến thỏa thê,,cho đến bụng chứa đầy,~sống không thiên nặng về khoái lạc sàng tọa,~khoái lạc về ngủ nghĩ,~khoái lạc về thụy miên...~(như trên)...~như vậy là tâm triền phược thứ tư đã được đoạn tận.~~ Và lại nữa,~chư Tỷ-kheo,~Tỷ-kheo nào sống phạm hạnh,~không mong cầu được sanh thiên giới với ý nghĩ:~"Ta với giới này,~với hạnh này,~với khổ hạnh này,~hay với phạm hạnh này,~sẽ được sanh làm chư Thiên này hay chư Thiên khác".~Chư Tỷ-kheo,,Tỷ-kheo nào sống phạm hạnh,~không mong cầu được sanh thiên giới với ý nghĩ:~"Ta với giới này,~với hạnh này,~với khổ hạnh này,~hay với phạm hạnh này,~sẽ được sanh làm chư Thiên này hay chư Thiên khác",~tâm vị ấy hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn.~Nếu tâm của ai hướng về nỗ lực,~chuyên cần,~kiên trì,~tinh tấn,~như vậy là tâm triền phược thứ năm đã được đoạn tận.~~ Như vậy là năm tâm triền phược đã được đoạn tận.~~ Chư Tỷ-kheo,~Tỷ-kheo nào đã đoạn tận năm tâm triền phược này,,thời vị ấy có thể lớn mạnh,~trưởng thành,~hưng thịnh trong Pháp và Luật này,~sự kiện này có xảy ra.~~ Vị này tu tập như ý túc câu hữu với dục Thiền định,~tinh cần hành;~tu tập như ý túc câu hữu với tinh tấn Thiền định,~tinh cần hành;~tu tập như ý túc câu hữu với tâm Thiền định,~tinh cần hành;~tu tập như ý túc câu hữu với tư duy Thiền định,~tinh cần hành;~với nỗ lực là thứ năm.~~ Chư Tỷ-kheo,~Tỷ-kheo nào đầy đủ mười lăm pháp kể cả nỗ lực,~thời có đủ khả năng để phá vỡ,~có đủ khả năng để chánh giác,~có đủ khả năng để đạt thành vô thượng an ổn khỏi các ách phược.~~ Chư Tỷ-kheo,~như có khoảng tám,~mười hay mười hai cái trứng của con gà mái,~những trứng này được con gà mái khéo ấp,~ngồi lên trên,~khéo ấp nóng,,khéo ấp dưỡng,~thời dầu cho con gà mái không khởi lên sự mong ước:~"Mong rằng những con gà con của ta,~sau khi đâm thủng vỏ trứng với móng chân nhọn của chúng,,hay với mỏ của chúng,~có thể thoát ra một cách yên ổn",~những con gà con ấy,~sau khi đâm thủng vỏ trứng với móng chân nhọn của chúng hay với mỏ của chúng,~có khả năng thoát ra một cách yên ổn.~Chư Tỷ-kheo,~cũng vậy,~Tỷ-kheo đầy đủ mười lăm pháp,~kể cả nỗ lực,~thời có đủ khả năng để phá vỡ,~có đủ khả năng để chánh giác,~có đủ khả năng để đạt thành vô thượng an ổn khỏi các ách phược.~~ Thế Tôn thuyết giảng như vậy.~Các Tỷ-kheo ấy hoan hỷ,~tín thọ lời dạy của Thế Tôn.~~ `
+        let englishParagraphsArray = engParagraphs.split("~~")
+        let vietParagraphsArray = vietParagraphs.split("~~")
+        let eng_arr = []
+        let viet_arr = []
+        function show_arr(vietArr, engArr) {
+           vietEng.innerHTML += "<p>"
+           for (let i = 0; i < vietArr.length; i++) {
+             vietEng.innerHTML += "<span> " + vietArr[i].trim() + ' </span><span style="color:red"> ' + engArr[i].trim() + " </span>"
+             eng_arr.push(engArr[i])
+             viet_arr.push(vietArr[i])
+           }
+           vietEng.innerHTML += "</p>"
+        }
+        for (let i = 0; i < vietParagraphsArray.length; i++){
+           englishParagraph = englishParagraphsArray[i].split("~")
+           vietParagraph = vietParagraphsArray[i].split("~")
+           show_arr(vietParagraph, englishParagraph)
+        }
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'
+               let txt1 = '<span style="color:red"> '+minutesArray[0].trim()+' </span>'
+               let v_txt = '<span> '+txt.trim()+' </span>'
+               vietEng.innerHTML = vietEng.innerHTML.replace(v_txt, "");
+               vietEng.innerHTML = vietEng.innerHTML.replace(txt1, "");
+               document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let combine_arr = []
+               
+               for (let i = 0; i < eng_arr.length; i++) {
+                 combine_arr.push(viet_arr[i])
+                 combine_arr.push(eng_arr[i])
+               }
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+
