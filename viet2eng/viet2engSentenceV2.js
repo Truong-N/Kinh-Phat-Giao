@@ -57,8 +57,8 @@ function show_arr(viet_arr, eng_arr) {
    let txt = "<p>"
    
    for (let ind_snt = 0; ind_snt < viet_arr.length; ind_snt++) {
-      let e_txt = eng_arr[ind_snt].replaceAll(',,', ', ').replaceAll('..', '. ').replaceAll('??','? ')
-      let v_txt = viet_arr[ind_snt].replaceAll(',,', ', ').replaceAll('..', '. ').replaceAll('??','? ')
+      let e_txt = eng_arr[ind_snt].replaceAll(',,', ', ').replaceAll('.?', '. ').replaceAll('??','? ')
+      let v_txt = viet_arr[ind_snt].replaceAll(',,', ', ').replaceAll('.?', '. ').replaceAll('??','? ')
       txt += `<span class="viet"> ${v_txt} </span><span class="eng"> ${e_txt} </span>`
       cnt++
    }
@@ -90,9 +90,9 @@ function setFocusStatus(){
 
 function combine() {
    clear_output()
-//    engParagraphs = engValue.value
-//    vietParagraphs = vietValue.value
-   
+   engParagraphs = ""
+   vietParagraphs = ""
+
    // store paragraphs in to arrays
    let eng_paragraphs_arr = engValue.value.split("\n")
    let viet_paragraphs_arr = vietValue.value.split("\n")
@@ -119,8 +119,8 @@ function combine() {
             combine_txt += show_arr(viet_paragraphs_arr[ind_para], eng_paragraphs_arr[ind_para])
             engParagraphs += eng_paragraphs_arr[ind_para].join("~ ") + '~~ '
             vietParagraphs += viet_paragraphs_arr[ind_para].join("~") + '~~ '
-            engParagraphs = engParagraphs.replaceAll(',,', ', ').replaceAll('..', '. ').replaceAll('??','? ')
-            vietParagraphs = vietParagraphs.replaceAll(',,', ', ').replaceAll('..', '. ').replaceAll('??','? ')
+            engParagraphs = engParagraphs.replaceAll(',,', ', ').replaceAll('.?', '. ').replaceAll('??','? ')
+            vietParagraphs = vietParagraphs.replaceAll(',,', ', ').replaceAll('.?', '. ').replaceAll('??','? ')
             combine_txtarea_shown(combine_txt)
 
          } else {
@@ -131,12 +131,9 @@ function combine() {
             for (let i = 0; i < smll_arr_len; i++) {
                statusInnerHTML.innerHTML += `<br>${viet_paragraphs_arr[ind_para][i]}<br>${eng_paragraphs_arr[ind_para][i]}<br>`
          
-               combineValue.value += viet_paragraphs_arr[ind_para][i] + '\n'
-               combineValue.value += eng_paragraphs_arr[ind_para][i] + '\n'
+               // combineValue.value += viet_paragraphs_arr[ind_para][i] + '\n'
+               // combineValue.value += eng_paragraphs_arr[ind_para][i] + '\n'
             }
-            // alert(`viet:${viet_paragraphs_arr[ind_para].length}, eng:${eng_paragraphs_arr[ind_para].length}`)
-            // console.log(viet_paragraphs_arr[ind_para])
-            // console.log(eng_paragraphs_arr[ind_para])
             break;
          }
 

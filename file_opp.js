@@ -16,9 +16,19 @@ fs.readFile(filePath, 'utf8', (err, data) => {
         }
         return
     }
-    //rotected text
+    
+    
+    data = data.replaceAll("Dịch và biên tập bởi Rừng Truyện!!!", "")
     data = data.replaceAll("Bạn đang đọc truyện tại rungtruyen.com. Chúc vui vẻ!!!", "")
     data = data.replaceAll("protected text", "")
+    // data = data.replaceAll("", "")
+    // data = data.replaceAll("", "")
+    // data = data.replaceAll("", "")
+    // data = data.replaceAll("", "")
+    // data = data.replaceAll("", "")
+    // data = data.replaceAll("", "")
+    // data = data.replaceAll("", "")
+    data = data.replaceAll("Thôi Phu nhân", "Thoi phu nhân")
     data = data.replaceAll("Kiến Lan", "Kien Lan")
     data = data.replaceAll("Lăng Cửu Xuyên", "Lang Cuu Xuyen")
     data = data.replaceAll("Thôi thị", "Thoi thị")
