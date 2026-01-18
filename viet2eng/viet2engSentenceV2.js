@@ -6,11 +6,10 @@
 // });
 function add_split_sign(arr) {
    return arr.replaceAll("? ", "?~ ")
+    //   .replaceAll(`," `, `,"~ `)
+    //   .replaceAll(`,” `, `,”~ `)
+    //   .replaceAll(`, `, `,~ `)
       .replaceAll(', “', ': “').replaceAll(', "',': "')
-   
-      .replaceAll(`," `, `,"~ `)
-      .replaceAll(`,” `, `,”~ `)
-      .replaceAll(`, `, `,~ `)
       .replaceAll(`: `, `:~ `)
       .replaceAll(`.'" `, `.'"~ `)
       .replaceAll("; ", ";~ ")
@@ -18,7 +17,7 @@ function add_split_sign(arr) {
       .replaceAll(".’ ", ".’~ ")
       .replaceAll('." ', '."~ ')
       .replaceAll(".' ", ".'~ ")
-      .replaceAll(",' ", ",'~ ")
+    //   .replaceAll(",' ", ",'~ ")
       .replaceAll("\"' ", "\"'~ ")
       .replaceAll("?’ ", "?’~ ")
       .replaceAll("?” ", "?”~ ")
@@ -46,7 +45,7 @@ function getEng(){
 }
 function handleCopyTextAreaHTMLContent() {
     combineValue.select();
-    let txt = combineValue.value.replaceAll(",,", ", ")
+    let txt = combineValue.value
     navigator.clipboard.writeText(txt)
    //  const blob = new Blob([combineValue.value], {type: "text/plain"});
    //  // create a temporary link element
@@ -56,11 +55,11 @@ function handleCopyTextAreaHTMLContent() {
 }
 function show_arr(viet_arr, eng_arr) {
    let txt = "<p>"
+   
    for (let ind_snt = 0; ind_snt < viet_arr.length; ind_snt++) {
       let e_txt = eng_arr[ind_snt].replaceAll(',,', ', ').replaceAll('..', '. ').replaceAll('??','? ')
       let v_txt = viet_arr[ind_snt].replaceAll(',,', ', ').replaceAll('..', '. ').replaceAll('??','? ')
       txt += `<span class="viet"> ${v_txt} </span><span class="eng"> ${e_txt} </span>`
-      // txt += `<span class="viet"> ${viet_arr[ind_snt]} </span><span class="eng"> ${eng_arr[ind_snt]} </span>`
       cnt++
    }
    txt += "</p>\n"
@@ -160,6 +159,7 @@ function combine() {
    }
 }
 function combine_txtarea_shown(txt) {
+
    combineValue.value = `
 <!DOCTYPE html>
 <html lang="en">
