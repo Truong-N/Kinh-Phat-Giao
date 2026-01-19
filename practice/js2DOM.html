@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js2DOM</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js1webAPI.html">Prev</a>
+         <!-- <a href="./index.html">Index</a> -->
+         <a href="./js3DOM.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      <p><span class="viet"> What Is the DOM, and How Do You Access Elements? </span><span class="eng"> DOM là gì và làm thế nào để truy cập các phần tử? </span></p>
+<p><span class="viet"> Let's learn about the DOM and why it's so important for web development. </span><span class="eng"> Hãy cùng tìm hiểu về DOM và tầm quan trọng của nó đối với phát triển web. </span><span class="viet"> DOM stands for Document Object Model. </span><span class="eng"> DOM là viết tắt của Document Object Model (Mô hình Đối tượng Tài liệu). </span><span class="viet"> It's a programming interface that lets us interact with HTML documents. </span><span class="eng"> Nó là một giao diện lập trình cho phép chúng ta tương tác với các tài liệu HTML. </span></p>
+<p><span class="viet"> With the DOM, you can add, modify, or delete elements on a webpage. </span><span class="eng"> Với DOM, bạn có thể thêm, sửa đổi hoặc xóa các phần tử trên một trang web. </span><span class="viet"> You can even make your website interactive by making elements listen to and respond to events. </span><span class="eng"> Bạn thậm chí có thể làm cho trang web của mình tương tác bằng cách làm cho các phần tử lắng nghe và phản hồi các sự kiện. </span></p>
+<p><span class="viet"> In the DOM, an HTML document is represented as a tree of nodes. </span><span class="eng"> Trong DOM, một tài liệu HTML được biểu diễn dưới dạng một cây các nút. </span><span class="viet"> Each node represents an HTML element from the HTML document: </span><span class="eng"> Mỗi nút đại diện cho một phần tử HTML từ tài liệu HTML: </span></p>
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;DOM Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;What is the DOM?&lt;/h1&gt;
+    &lt;h2&gt;Let's learn about the DOM&lt;/h2&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<p><span class="viet"> This is a diagram representing the basic DOM structure of our example: </span><span class="eng"> Đây là sơ đồ biểu diễn cấu trúc DOM cơ bản của ví dụ của chúng ta: </span></p>
+
+<pre>Document
+========
+
+HTML
+-----
+
+- Head
+  - Title
+- Body
+  - H1
+  - H2   
+</pre>
+<p><span class="viet"> Of course, this can be more detailed and complex based on the structure of the HTML markup of a webpage. </span><span class="eng"> Tất nhiên, điều này có thể chi tiết và phức tạp hơn dựa trên cấu trúc đánh dấu HTML của một trang web. </span></p>
+<p><span class="viet"> The HTML document is the root node in the DOM hierarchy. </span><span class="eng"> Tài liệu HTML là nút gốc trong hệ thống phân cấp DOM. </span><span class="viet"> It has one child node, the html element. </span><span class="eng"> Nó có một nút con, phần tử html. </span><span class="viet"> This is the root element of the HTML document, since all other nodes descend from it. </span><span class="eng"> Đây là phần tử gốc của tài liệu HTML, vì tất cả các nút khác đều bắt nguồn từ nó. </span></p>
+<p><span class="viet"> The html element has two children: </span><span class="eng"> Phần tử html có hai phần tử con: </span><span class="viet"> head and body. </span><span class="eng"> head và body. </span></p>
+<p><span class="viet"> The head element contains metadata about the document. </span><span class="eng"> Phần tử head chứa siêu dữ liệu về tài liệu. </span><span class="viet"> It provides essential information about the webpage. </span><span class="eng"> Nó cung cấp thông tin thiết yếu về trang web. </span></p>
+<p><span class="viet"> The body element contains the visible content of the webpage. </span><span class="eng"> Phần tử `body` chứa nội dung hiển thị của trang web. </span></p>
+<p><span class="viet"> You can access these elements with JavaScript, work with them in your code, and even modify them dynamically. </span><span class="eng"> Bạn có thể truy cập các phần tử này bằng JavaScript, làm việc với chúng trong mã của mình và thậm chí sửa đổi chúng một cách động. </span><span class="viet"> That's the power of the DOM and web APIs. </span><span class="eng"> Đó là sức mạnh của DOM và các API web. </span></p>
+<p><span class="viet"> To access these elements in JavaScript, you can use getElementById() and querySelector() methods. </span><span class="eng"> Để truy cập các phần tử này trong JavaScript, bạn có thể sử dụng các phương thức `getElementById()` và `querySelector()`. </span><span class="viet"> These methods are web APIs because they provide standardized ways to interact with the DOM using JavaScript. </span><span class="eng"> Các phương thức này là API web vì chúng cung cấp các cách chuẩn hóa để tương tác với DOM bằng JavaScript. </span></p>
+<p><span class="viet"> With getElementById(), you can get an object that represents the HTML element with the specified id. </span><span class="eng"> Với `getElementById()`, bạn có thể nhận được một đối tượng đại diện cho phần tử HTML có id được chỉ định. </span><span class="viet"> Remember that ids must be unique in every HTML document, so this method will only return one Element object. </span><span class="eng"> Hãy nhớ rằng id phải là duy nhất trong mọi tài liệu HTML, vì vậy phương thức này sẽ chỉ trả về một đối tượng `Element`. </span><span class="viet"> Here you can see an example: </span><span class="eng"> Bạn có thể xem ví dụ sau: </span></p>
+<pre>const container = document.getElementById("container");</pre>
+<p><span class="viet"> This line of JavaScript code gets an element with the id value of container and assigns that object to a JavaScript constant. </span><span class="eng"> Dòng mã JavaScript này lấy một phần tử có giá trị id là `container` và gán đối tượng đó cho một hằng số JavaScript. </span><span class="viet"> You must pass the id within quotation marks as an argument. </span><span class="eng"> Bạn phải truyền id trong dấu ngoặc kép làm đối số. </span><span class="viet"> If you log this object to the console, you will see it in the output: </span><span class="eng"> Nếu bạn in đối tượng này ra console, bạn sẽ thấy nó trong kết quả: </span></p>
+<pre>&lt;div id="container"&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;p&gt;Welcome to learning about the DOM.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script src="index.js"&gt;&lt;/script&gt;
+const container = document.getElementById("container");
+console.log(container); 
+</pre>
+<p><span class="viet"> querySelector() is broader than getElementById(). </span><span class="eng"> `querySelector()` có phạm vi rộng hơn `getElementById()`. </span><span class="viet"> With querySelector(), you can get the first element in the HTML document that matches the CSS selector passed as argument. </span><span class="eng"> Với phương thức `querySelector()`, bạn có thể lấy phần tử đầu tiên trong tài liệu HTML khớp với bộ chọn CSS được truyền làm đối số. </span></p>
+<p><span class="viet"> In this example, you will get the element that matches the section selector: </span><span class="eng"> Trong ví dụ này, bạn sẽ lấy phần tử khớp với bộ chọn `section`: </span></p>
+<pre>&lt;section&gt;
+  &lt;h2&gt;Section Title&lt;/h2&gt;
+  &lt;p&gt;This is a section of the webpage.&lt;/p&gt;
+&lt;/section&gt;
+&lt;script src="index.js"&gt;&lt;/script&gt;  
+const sectionEl = document.querySelector("section");
+console.log(sectionEl);
+</pre>
+<p><span class="viet"> If you want to select an element by its class name using querySelector(), you need to prefix the class name with a dot (.). </span><span class="eng"> Nếu bạn muốn chọn một phần tử theo tên lớp của nó bằng cách sử dụng `querySelector()`, bạn cần thêm dấu chấm (.) vào trước tên lớp. </span><span class="viet"> Here's an example: </span><span class="eng"> Đây là một ví dụ: </span></p>
+<pre>&lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;div class="highlight"&gt;
+  &lt;p&gt;This content is highlighted.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script src="index.js"&gt;&lt;/script&gt;
+body {
+  background-color: lightgray;
+}
+
+.highlight {
+  background-color: yellow;
+}
+const highlightEl = document.querySelector(".highlight");
+console.log(highlightEl);
+</pre>
+<p><span class="viet"> You also have other methods to match multiple elements, like getElementsByClassName() and querySelectorAll(). </span><span class="eng"> Bạn cũng có các phương thức khác để khớp nhiều phần tử, chẳng hạn như `getElementsByClassName()` và `querySelectorAll()`. </span><span class="viet"> You'll learn more about them in future lessons. </span><span class="eng"> Bạn sẽ tìm hiểu thêm về chúng trong các bài học sau. </span></p>
+<p><span class="viet"> By understanding how to use web APIs to manipulate the DOM efficiently, you can create powerful and interactive web applications. </span><span class="eng"> Bằng cách hiểu cách sử dụng API web để thao tác DOM một cách hiệu quả, bạn có thể tạo ra các ứng dụng web mạnh mẽ và tương tác. </span></p>
+<p><span class="viet"> Questions </span><span class="eng"> Câu hỏi </span></p>
+<p><span class="viet"> What is the Document Object Model (DOM)? </span><span class="eng"> Mô hình Đối tượng Tài liệu (DOM) là gì? </span><br>
+<span class="viet"> A programming language used for web development. </span><span class="eng"> Một ngôn ngữ lập trình được sử dụng để phát triển web. </span><br>
+<span class="viet"> A collection of CSS styles. </span><span class="eng"> Một tập hợp các kiểu CSS. </span><br>
+<span class="viet"> A tree-structured representation of an HTML document.X </span><span class="eng"> Một biểu diễn cấu trúc cây của tài liệu HTML. </span><br>
+<span class="viet"> A method for creating dynamic web pages. </span><span class="eng"> Một phương pháp để tạo các trang web động. </span></p>
+
+<p><span class="viet"> Which of the following methods can be used to access an element by its id in JavaScript? </span><span class="eng"> Phương thức nào sau đây có thể được sử dụng để truy cập một phần tử bằng ID của nó trong JavaScript? </span><br>
+<span class="viet"> getElementById()X </span><span class="eng">  </span><br>
+<span class="viet"> getElementsByClassName() </span><span class="eng">  </span><br>
+<span class="viet"> querySelectorAll() </span><span class="eng">  </span><br>
+<span class="viet"> createElement() </span><span class="eng">  </span><br></p>
+
+<p><span class="viet"> What is the primary purpose of the querySelector() method? </span><span class="eng"> Mục đích chính của phương thức querySelector() là gì? </span><br>
+<span class="viet"> To create a new element in the DOM. </span><span class="eng"> Để tạo một phần tử mới trong DOM. </span><br>
+<span class="viet"> To select an element based on a CSS selector.X </span><span class="eng"> Để chọn một phần tử dựa trên bộ chọn CSS. </span><br>
+<span class="viet"> To modify the content of an existing element. </span><span class="eng"> Để sửa đổi nội dung của một phần tử hiện có. </span><br>
+<span class="viet"> To remove an element from the DOM. </span><span class="eng"> Để xóa một phần tử khỏi DOM. </span>
+
+      </div>
+      <script>
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'
+               let txt1 = '<span class="eng"> '+minutesArray[0].trim()+' </span>'
+               let l_txt = '<span class="viet"> '+txt.trim()+' </span>'
+               document.querySelector(".vietEng").innerHTML = document.querySelector(".vietEng").innerHTML.replace(l_txt, "")
+               document.querySelector(".vietEng").innerHTML = document.querySelector(".vietEng").innerHTML.replace(txt1, "")
+               document.querySelector(".read").innerHTML = "<h2><span class='viet'>"+txt+"</span><br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let arr_len = document.getElementsByClassName('eng').length;
+               let eng_txt1 = '';
+               let viet_txt1 = '';
+               let eng_arr = document.getElementsByClassName('eng')
+               let viet_arr = document.getElementsByClassName('viet')
+               let combine_arr = []
+               
+               for (let i = 0; i < arr_len; i++) {
+                  
+               
+                  let eng_txt =eng_arr[i].textContent;
+                  let viet_txt = viet_arr[i].textContent;
+                  
+                  // remove vscode format
+                  // split eng_txt by "\n"
+                  if (viet_txt.length > 2) {
+                     eng_txt_arr = eng_txt.split("\n")
+                     viet_txt_arr = viet_txt.split("\n")
+                     // remove extra spaces cause by vscode 
+                     eng_txt_arr = eng_txt_arr.map(e => e.trim())
+                     viet_txt_arr = viet_txt_arr.map(e => e.trim())
+                     // convert array back into text
+                     eng_txt = eng_txt_arr.join(" ")
+                     viet_txt = viet_txt_arr.join(" ")
+                     combine_arr.push(viet_txt)
+                     combine_arr.push(eng_txt)
+                  }
+               }
+               // console.log(eng_arr)
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animate</title>
+</head>
+<body>
+    
+    <script>
+        const body = document.body
+        body.style.background = '#f1f1f1'
+        body.style.display = "flex";
+        body.style.flexDirection = "column";
+        body.style.alignItems = "center";
+        body.style.justifyContent = "center";
+        body.style.height = "100vh";
+        const square = document.createElement("div")
+        body.appendChild(square)
+        square.style.background = "#1b1b32";
+        square.style.width = "10rem";
+        square.style.aspectRatio = "1/1";
+        square.style.marginBottom = "20px";
+        const playBtn = document.createElement("button")
+        const pauseBtn = document.createElement("button")
+        body.appendChild(playBtn);
+        body.appendChild(pauseBtn);
+        playBtn.textContent = "Play";
+        pauseBtn.textContent = "Pause";
+        function setBtnStyle (btn){
+            btn.style.margin = "10px";
+            btn.padding = "10px 20px";
+            btn.fontSize = "16px";
+        }
+        setBtnStyle(playBtn)
+        setBtnStyle(pauseBtn)
+        const animation = square.animate(
+            [{transform: "translateX(0px)"},{transform:"translateX(200px)"}],
+            {
+                duration: 5000, // makes animation lasts 2 seconds
+                // iterations: Infinity, // loops indefinitely
+                direction: "alternate", // moves back and forth
+                easing: "ease-in-out" // smooth easing
+            }
+        )
+        // Set the onfinish property to log a message when the animation ends
+        animation.onfinish = () => {
+            console.log("Animation finished!");
+        };
+        // Play the animation when the "Play" button is clicked
+        playBtn.addEventListener("click", () =>{
+            animation.play();
+            console.log("You start the animation");
+        });
+        pauseBtn.addEventListener("click", () => {
+            animation.pause();
+            console.log("You pause the animation");
+        })
+    </script>
+</body>
+</html>

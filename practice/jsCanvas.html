@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <script>
+        const body = document.body
+        const canvas = document.createElement("canvas");
+        body.appendChild(canvas)
+        canvas.width = 400;
+        canvas.height = 400;
+        ctx = canvas.getContext("2d");
+        console.log(ctx)
+        ctx.font = "30px Arial";
+
+        // Set the background color
+        ctx.fillStyle = "crimson";
+        ctx.fillText("Hello HTML Canvas!", 1, 50)
+        // ctx.fillRect(1,1,150, 100);
+    </script>
+</body>
+</html>

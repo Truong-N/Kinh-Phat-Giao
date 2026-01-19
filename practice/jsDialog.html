@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog</title>
+</head>
+<body>
+    <dialog id="my-modal">
+        <p>This is a modal dialog.</p>
+    </dialog>
+    <script>
+        const body = document.body
+        const dialog = document.getElementById("my-modal")
+        // dialog.showModal()
+        const dialog1 = document.createElement("dialog");
+        body.appendChild(dialog1)
+        dialog1.textContent = "dialog 1"
+        const closeBtn = document.createElement("button");
+        body.appendChild(closeBtn);
+        closeBtn.textContent = "Close"
+        closeBtn.addEventListener("click",  () => {
+            console.log("close")
+            dialog1.show()
+        })
+
+        // dialog1.show()
+    </script>
+</body>
+</html>

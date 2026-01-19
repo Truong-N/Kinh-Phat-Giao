@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <!-- <a href="./">Prev</a> -->
+         <!-- <a href="./js0.html">Index</a> -->
+         <a href="./js2DOM.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      
+      </div>
+      <script>
+        let vietEng = document.querySelector(".vietEng");
+        let engParagraphs = `API là gì và API web là gì?~~ Hãy cùng tìm hiểu về API và lý do tại sao chúng lại cần thiết cho việc phát triển web.~ API là viết tắt của Giao diện Lập trình Ứng dụng.~ API thiết lập một tập hợp các quy tắc và giao thức cho phép các ứng dụng phần mềm giao tiếp với nhau và trao đổi dữ liệu một cách hiệu quả.~~ Bạn có thể coi chúng như những cấu trúc cho phép các nhà phát triển tạo ra các chức năng phức tạp hơn dựa trên các khối xây dựng đơn giản hơn đã được triển khai.~~ Có nhiều loại API khác nhau.~ API web được thiết kế đặc biệt cho các ứng dụng web.~ Có nhiều loại API web khác nhau dành cho việc phát triển JavaScript phía máy khách.~ Chúng không phải là một phần của chính JavaScript.~~ Các loại API này thường được chia thành hai loại chính:~ API trình duyệt và API của bên thứ ba.~~ API trình duyệt hiển thị dữ liệu từ trình duyệt.~ Là một nhà phát triển web, bạn có thể truy cập và thao tác dữ liệu này bằng JavaScript.~~ Chúng cũng cung cấp quyền truy cập vào nhiều chức năng khác nhau, chẳng hạn như thao tác cấu trúc của trang web, xử lý sự kiện, làm việc với bộ nhớ và giao tiếp với mạng.~~ Một số ví dụ về các API trình duyệt thường được sử dụng bao gồm:~~ API DOM, bạn có thể sử dụng để thao tác với các phần tử HTML, kiểu dáng và thuộc tính của chúng.~ Bạn sẽ tìm hiểu thêm nhiều về DOM trong các bài học tiếp theo.~ Đây là một khái niệm cốt lõi trong phát triển web.~~ API Storage, để lưu trữ dữ liệu cục bộ trên thiết bị của người dùng.~~ Và nhiều hơn nữa.~~ Có nhiều API trình duyệt khác nhau mà bạn có thể sử dụng để xử lý tương tác người dùng và lấy thêm thông tin từ trình duyệt, chẳng hạn như vị trí hiện tại của người dùng.~~ Bạn cũng có thể làm việc với các loại phần tử khác, chẳng hạn như video và âm thanh.~~ API trình duyệt có thể là công cụ hữu ích để xây dựng các ứng dụng web mạnh mẽ.~ Chúng đã được tích hợp sẵn trong trình duyệt.~~ Nhưng bạn cũng có thể sử dụng các API của bên thứ ba, không được tích hợp sẵn trong trình duyệt theo mặc định.~ Để sử dụng chúng, bạn cần phải lấy mã của chúng bằng một cách nào đó.~ Thông thường, chúng đi kèm với tài liệu chi tiết giải thích cách sử dụng các dịch vụ của chúng.~~ Một ví dụ là API Google Maps, bạn có thể sử dụng để hiển thị bản đồ tương tác trên trang web của mình.~~ Có nhiều loại API web của bên thứ ba, bao gồm API thời tiết, API mạng xã hội, API thanh toán, API dữ liệu, API dịch thuật, và nhiều hơn nữa.~ Bạn chỉ cần tìm API phù hợp với nhu cầu của mình.~~ API web là công cụ thiết yếu để xây dựng các ứng dụng web hiện đại có thể tương tác với nhiều dịch vụ và nguồn dữ liệu khác nhau.~ Bằng cách học cách tận dụng sức mạnh của chúng, bạn sẽ mở rộng bộ công cụ của mình để tạo ra các trang web năng động và hấp dẫn.~~ Câu hỏi~~ Mục đích chính của API là gì?~~ Để tạo ra các ngôn ngữ lập trình mới.~~ Để cung cấp giao diện người dùng cho các ứng dụng.~~ Để cho phép giao tiếp giữa các ứng dụng phần mềm khác nhau.~~ Để lưu trữ và quản lý dữ liệu.~~ Sự khác biệt giữa API thông thường và API web là gì?~~ API thông thường chỉ được sử dụng cho các ứng dụng web, trong khi API web có thể được sử dụng cho bất kỳ loại ứng dụng nào.~~ API web được thiết kế đặc biệt để tương tác với trình duyệt web và máy chủ.~~ Không có sự khác biệt giữa API thông thường và API web.~~ API tổng quát được sử dụng để giao tiếp bên ngoài trong phạm vi ứng dụng, trong khi API web được sử dụng để giao tiếp nội bộ.~~ API web đơn giản hóa việc phát triển ứng dụng web như thế nào?~~ Bằng cách cung cấp giao diện người dùng được xây dựng sẵn.~~ Bằng cách loại bỏ nhu cầu sử dụng ngôn ngữ lập trình.~~ Bằng cách cung cấp các phương thức chuẩn hóa để truy cập và thao tác dữ liệu và chức năng.~~ Bằng cách tự động hóa toàn bộ quy trình phát triển.~~ `
+        let englishParagraphsArray = engParagraphs.split("~~")
+        let vietParagraphsArray = vietParagraphs.split("~~")
+        let eng_arr = []
+        let viet_arr = []
+        function show_arr(vietArr, engArr) {
+           vietEng.innerHTML += "<p>"
+           for (let i = 0; i < vietArr.length; i++) {
+             vietEng.innerHTML += "<span> " + vietArr[i].trim() + ' </span><span style="color:red"> ' + engArr[i].trim() + " </span>"
+             eng_arr.push(engArr[i])
+             viet_arr.push(vietArr[i])
+           }
+           vietEng.innerHTML += "</p>"
+        }
+        for (let i = 0; i < vietParagraphsArray.length; i++){
+           englishParagraph = englishParagraphsArray[i].split("~")
+           vietParagraph = vietParagraphsArray[i].split("~")
+           show_arr(vietParagraph, englishParagraph)
+        }
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'
+               let txt1 = '<span style="color:red"> '+minutesArray[0].trim()+' </span>'
+               let v_txt = '<span> '+txt.trim()+' </span>'
+               vietEng.innerHTML = vietEng.innerHTML.replace(v_txt, "");
+               vietEng.innerHTML = vietEng.innerHTML.replace(txt1, "");
+               document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let combine_arr = []
+               
+               for (let i = 0; i < eng_arr.length; i++) {
+                 combine_arr.push(viet_arr[i])
+                 combine_arr.push(eng_arr[i])
+               }
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+
