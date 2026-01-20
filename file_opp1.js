@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // define the file path ( change 'example.txt to your file name)
-const filePath = path.join(__dirname, 'majjhima104-test.html');
+const filePath = path.join(__dirname, 'example.txt');
 
 // read the file asynchronously (none-blocking)
 fs.readFile(filePath, 'utf8', (err, data) => {
@@ -16,10 +16,21 @@ fs.readFile(filePath, 'utf8', (err, data) => {
         return
     }
     let fstr = / \d*">/g
-    data = data.replaceAll(fstr, '">')
+    // data = data.replaceAll(fstr, '">')
+    let spt = /[.;:?!] /g
+    data = data.replaceAll(". ", ".. ")
+                .replaceAll(": ", ":: ")
+                .replaceAll("; ", ";; ")
+                .replaceAll("? ", "?? ")
+                .replaceAll("! ", "!! ")
+
+    data = data.split('\n').filter(e => e.length>1).map(e => e.trim().split(spt).join("\nabcd\n")).join("\nhgfedcba\n")
+    
+    console.log(data)
+    // .join("paragraph\n")
     // output file content
     // console.log(data)
-    fs.writeFile("majjhima104-test.txt", data, 'utf8',(err) =>{
+    fs.writeFile("exampleV.txt", data, 'utf8',(err) =>{
         if (err) {
             console.error('Error writing to file: ', err.message);
             return;

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+</head>
+<body>
+    <script>
+        const body = document.body;
+        body.style.display = "flex";
+        body.style.flexDirection = "column";
+        body.style.alignItems = "center";
+        body.style.justifyContent = "center";
+        // body.style.height = "100vh";
+        
+        const rawTextDiv = document.createElement("div");
+        body.appendChild(rawTextDiv);
+        rawTextDiv.textContent = "Raw Text";
+
+        const rawTextTA = document.createElement("textarea");
+        body.appendChild(rawTextTA);
+        rawTextTA.style.width = "80%";
+        rawTextTA.style.height = "500px";
+
+        const processRawTextDiv = document.createElement("div");
+        body.appendChild(processRawTextDiv);
+
+        const separatedTextTA = document.createElement("textarea");
+        body.appendChild(separatedTextTA);
+        separatedTextTA.style.width = "80%";
+        separatedTextTA.style.height = "500px";
+
+        const condensedTextDiv = document.createElement("div");
+        body.appendChild(condensedTextDiv);
+
+        const condensedTextTA = document.createElement("textarea");
+        body.appendChild(condensedTextTA);
+        condensedTextTA.style.width = "80%";
+        condensedTextTA.style.height = "500px";
+
+        // button inside div Process Raw Text
+        const processRawTextBtn = document.createElement("button")
+        processRawTextDiv.appendChild(processRawTextBtn)
+        processRawTextBtn.textContent = "Process Raw Text"
+        processRawTextBtn.addEventListener("click", () =>{
+            let rawText = rawTextTA.value.replaceAll(". ", ".. ")
+                .replaceAll(": ", ":: ")
+                .replaceAll("; ", ";; ")
+                .replaceAll("? ", "?? ")
+                .replaceAll("! ", "!! ")
+                .split('\n').filter(e => e.length>1).map(e => e.trim().split(/[.;:?!] /g).join("\nabcd\n")).join("\nhgfedcba\n")
+            separatedTextTA.value = rawText
+
+        })
+
+        const copyProcessedTextBtn = document.createElement("button")
+        processRawTextDiv.appendChild(copyProcessedTextBtn)
+        copyProcessedTextBtn.textContent = "Copy Processed Text to Clipboard"
+        copyProcessedTextBtn.addEventListener("click", () =>{
+            separatedTextTA.select()
+            navigator.clipboard.writeText(separatedTextTA.value);
+        })
+
+        // button inside div condensed Text
+        const condensedTextBtn = document.createElement("button")
+        condensedTextDiv.appendChild(condensedTextBtn)
+        condensedTextBtn.textContent = "Condense Text"
+        condensedTextBtn.addEventListener("click", () =>{
+            let condensedText = separatedTextTA.value.replaceAll("abcd", "~ ")
+                .replaceAll("hgfedcba", "~~ ")
+                .replaceAll("\n", "")
+            condensedTextTA.value = condensedText
+        })
+
+        
+
+</script>
+    
+</body>
+</html>

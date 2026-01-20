@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>converter</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        textarea {
+            width: 80%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <a name="rawTA"></a>
+    
+    <div >
+        Raw Text
+        <button type="button" onclick="saveRaw()">Save</button>
+        <button type="button" onclick="retrieveRaw()">Retrieve</button>
+        Go to:
+        <a href="#separateTA">SeparateTA</a>
+        <a href="#condenseTA">CondenseTA</a>
+        <a href="#translateTA">TranslateTA</a>
+        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
+    
+    </div>
+
+    <textarea id="rawTA"></textarea>
+
+    <a name="separateTA"></a>
+    <div>
+        Process Text
+        <button type="button" onclick="separate()">Separate</button>
+        <button type="button" onclick="separate2clipboard()">clipboard</button>
+        Go to:
+        <a href="#rawTA">RawTA</a>
+        <!-- <a href="#separateTA">SeparateTA</a> -->
+        <a href="#condenseTA">CondenseTA</a>
+        <a href="#translateTA">TranslateTA</a>
+        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
+    
+    </div>
+    
+    <textarea id="separateTA"></textarea>
+    
+    <div>
+        Condensed Text
+        <button type="button" onclick="condense()">Condense</button>
+        <button type="button" onclick="condense2clipboard()">clipboard</button>
+        <a name="condenseTA"></a>
+        Go to:
+        <a href="#rawTA">RawTA</a>
+        <a href="#separateTA">SeparateTA</a>
+        <!-- <a href="#condenseTA">CondenseTA</a> -->
+        <a href="#translateTA">TranslateTA</a>
+        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
+
+    </div>
+    
+    <textarea id="condenseTA"></textarea>
+    <div>
+        Translated Text
+        <button type="button" onclick="saveTranslate()">Save</button>
+        <button type="button" onclick="retrieveTranslate()">Retrieve</button>
+        <a name="translateTA"></a>
+        Go to:
+        <a href="#rawTA">RawTA</a>
+        <a href="#separateTA">SeparateTA</a>
+        <a href="#condenseTA">CondenseTA</a>
+        <!-- <a href="#translateTA">TranslateTA</a> -->
+        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
+    </div>
+
+    <textarea id="translateTA"></textarea>
+    
+    <div>
+        Condense Translate 
+        <button type="button" onclick="condenseTranslate()">Condense</button>
+        <button type="button" onclick="condenseTranslate2clipboard()">clipboard</button>
+        <a name="condenseTranslateTA"></a>
+        Go to:
+        <a href="#rawTA">RawTA</a>
+        <a href="#separateTA">SeparateTA</a>
+        <a href="#condenseTA">CondenseTA</a>
+        <a href="#translateTA">TranslateTA</a>
+        <!-- <a href="#condenseTranslateTA">CondenseTranslateTA</a> -->
+    </div>
+
+    <textarea id="condenseTranslateTA"></textarea>
+
+    <div>
+        <button type="button" onclick="combine()">Combine</button>;
+        Go to:
+        <a href="#rawTA">RawTA</a>
+        <a href="#separateTA">SeparateTA</a>
+        <a href="#condenseTA">CondenseTA</a>
+        <a href="#translateTA">TranslateTA</a>
+        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
+    </div>
+    <textarea id="combineTA"></textarea>
+    <script>
+        function saveRaw(){
+            rawTA.select()
+            localStorage.setItem("raw", rawTA.value)
+        }
+        function retrieveRaw(){
+            rawTA.value = localStorage.getItem("raw")
+        }
+        function saveTranslate(){
+            translateTA.select()
+            localStorage.setItem("translate", translateTA.value)
+        }
+        function retrieveTranslate(){
+            translateTA.value = localStorage.getItem("translate")
+        }
+        function separate() {
+            separateTA.value = rawTA.value.replaceAll(". ", ".. ")
+                .replaceAll(": ", ":: ")
+                .replaceAll("; ", ";; ")
+                .replaceAll("? ", "?? ")
+                .replaceAll("! ", "!! ")
+                .split('\n').filter(e => e.length>1).map((e,i) => i+'\n'+e.trim().split(/[.;:?!] /g)
+                                .join("\n\n")).join("\n\n\n")
+        }
+        function separate2clipboard(){
+            separateTA.select()
+            navigator.clipboard.writeText(separateTA.value)
+        }
+        function condense() {
+            let txt = separateTA.value
+            // console.log(txt)
+            // convert to array
+            let arr = txt.split('\n')
+            // remove empty line
+                .filter(e => e.length > 0)
+                // convert paragraph number to '~~ '
+                .map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
+            console.log(arr)
+            condenseTA.value = arr
+        }
+        function condense2clipboard(){
+            condenseTA.select()
+            navigator.clipboard.writeText(condenseTA.value)
+        }
+
+        function condenseTranslate() {
+            let txt = translateTA.value
+            // console.log(txt)
+            // convert to array
+            let arr = txt.split('\n')
+            // remove empty line
+                .filter(e => e.length > 0)
+                // convert paragraph number to '~~ '
+                .map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
+            console.log(arr)
+            condenseTranslateTA.value = arr
+        }
+        function condenseTranslate2clipboard(){
+            condenseTranslateTA.select()
+            navigator.clipboard.writeText(condenseTranslateTA.value)
+        }
+
+        function combine() {
+            let condenseArray = condenseTA.value.split('~~')
+            let condenseTranslateArray = condenseTranslateTA.value.split('~~')
+            let len = 0
+            if (condenseArray.length === condenseTranslateArray.length){
+                len = condenseArray.length
+            } else {
+                len = Math.min(condenseArray.length, condenseTranslateArray.length)
+                alert("Array lengths not equal")
+            }
+            let str = ''
+            for (let i = 0; i < len; i++){
+                let condArray = condenseArray[i].split('~')
+                let condTransArray = condenseTranslateArray[i].split('~')
+                let jLength = 0
+                if (condArray.length === condTransArray.length){
+                    jLength = condArray.length 
+                } else {
+                    alert(`jLengths are not equal: (${i}+1)`)
+                    jLength = Math.min(condArray.length, condTransArray.length)
+                }
+                for (let j = 0; j < jLength; j++){
+                    str += condArray[j]+'\n'+condTransArray[j]+'\n-------\n'
+                }
+                str += `(${i})==============\n`
+                // str += condenseArray[i] + '\n----------\n' + condenseTranslateArray[i] + '\n///////////////////////////////\n'  
+            }
+            combineTA.textContent = str
+        }
+        const rawTA = document.getElementById("rawTA")
+        const separateTA = document.getElementById("separateTA")
+        const condenseTA = document.getElementById("condenseTA")
+        const translateTA = document.getElementById("translateTA")
+        const condenseTranslateTA = document.getElementById("condenseTranslateTA")
+        const combineTA = document.getElementById("combineTA")
+        rawTA.focus()
+    </script>
+</body>
+</html>
