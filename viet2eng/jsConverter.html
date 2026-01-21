@@ -19,7 +19,6 @@
 </head>
 <body>
     <a name="rawTA"></a>
-    
     <div >
         Raw Text
         <button type="button" onclick="saveRaw()">Save</button>
@@ -29,7 +28,7 @@
         <a href="#condenseTA">CondenseTA</a>
         <a href="#translateTA">TranslateTA</a>
         <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-    
+        <a href="#combineTA">CombineTA</a>
     </div>
 
     <textarea id="rawTA"></textarea>
@@ -45,16 +44,16 @@
         <a href="#condenseTA">CondenseTA</a>
         <a href="#translateTA">TranslateTA</a>
         <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-    
+        <a href="#combineTA">CombineTA</a>
     </div>
     
     <textarea id="separateTA"></textarea>
     
+    <a name="condenseTA"></a>
     <div>
         Condensed Text
         <button type="button" onclick="condense()">Condense</button>
         <button type="button" onclick="condense2clipboard()">clipboard</button>
-        <a name="condenseTA"></a>
         Go to:
         <a href="#rawTA">RawTA</a>
         <a href="#separateTA">SeparateTA</a>
@@ -62,40 +61,45 @@
         <a href="#translateTA">TranslateTA</a>
         <a href="#condenseTranslateTA">CondenseTranslateTA</a>
 
+        <a href="#combineTA">CombineTA</a>
     </div>
     
     <textarea id="condenseTA"></textarea>
+    
+    <a name="translateTA"></a>
     <div>
         Translated Text
-        <button type="button" onclick="convertGtLt()">Convert Gt Lt</button>
+        <!-- <button type="button" onclick="convertGtLt()">Convert Gt Lt</button> -->
         <button type="button" onclick="saveTranslate()">Save</button>
         <button type="button" onclick="retrieveTranslate()">Retrieve</button>
-        <a name="translateTA"></a>
         Go to:
         <a href="#rawTA">RawTA</a>
         <a href="#separateTA">SeparateTA</a>
         <a href="#condenseTA">CondenseTA</a>
         <!-- <a href="#translateTA">TranslateTA</a> -->
         <a href="#condenseTranslateTA">CondenseTranslateTA</a>
+        <a href="#combineTA">CombineTA</a>
     </div>
 
     <textarea id="translateTA"></textarea>
     
+    <a name="condenseTranslateTA"></a>
     <div>
         Condense Translate 
         <button type="button" onclick="condenseTranslate()">Condense</button>
         <button type="button" onclick="condenseTranslate2clipboard()">clipboard</button>
-        <a name="condenseTranslateTA"></a>
         Go to:
         <a href="#rawTA">RawTA</a>
         <a href="#separateTA">SeparateTA</a>
         <a href="#condenseTA">CondenseTA</a>
         <a href="#translateTA">TranslateTA</a>
         <!-- <a href="#condenseTranslateTA">CondenseTranslateTA</a> -->
+        <a href="#combineTA">CombineTA</a>
     </div>
 
     <textarea id="condenseTranslateTA"></textarea>
 
+    <a name="combineTA"></a>
     <div>
         <button type="button" onclick="combine()">Combine</button>;
         Go to:
@@ -122,15 +126,25 @@
             translateTA.value = localStorage.getItem("translate")
         }
         function separate() {
-            separateTA.value = rawTA.value.replaceAll(". ", ".. ")
+            let sumLength = 0
+            let txt = rawTA.value
+                .replaceAll(". ", ".. ")
                 .replaceAll(": ", ":: ")
                 .replaceAll("; ", ";; ")
                 .replaceAll("? ", "?? ")
                 .replaceAll("! ", "!! ")
                 .replaceAll('<', '&lt;')
                 .replaceAll('>', '&gt;')
-                .split('\n').filter(e => e.length>1).map((e,i) => i+'\n'+e.trim().split(/[.;:?!] /g)
-                                .join("\n\n")).join("\n\n\n")
+            let array = txt
+                .split('\n') // split to array
+                .filter(e => e.length>1) // remove empty lines
+                .map((e,i) => { // each array is a paragraph, out put array number, total length
+                    if(sumLength+e.length>4700)sumLength=e.length
+                    else sumLength += e.length
+                    return `${i}\n${e.length}\n${sumLength}\n`+e.trim()
+                })
+            array = array.map(e => e.split(/[.;:?!] /g).join("\n"))
+            separateTA.value = array.join("\n")
         }
         function separate2clipboard(){
             separateTA.select()
@@ -141,16 +155,32 @@
             // console.log(txt)
             // convert to array
             let arr = txt.split('\n')
+            let arr1 = []
+            let i = 0;
+            do {
+                if ( isFinite(arr[i])){
+                    arr1.push(arr[i])
+                    i++;
+                    i++;
+                    i++;
+                } else {
+                    arr1.push(arr[i])
+                    i++
+                }
+
+            } while (i < arr.length)            // console.log(arr1)
             // remove empty line
-                .filter(e => e.length > 0)
+            // arr1 = arr1.filter(e => e.length > 1)
                 // convert paragraph number to '~~ '
-                .map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
-            console.log(arr)
-            condenseTA.value = arr
+            arr = arr1.map(e => isFinite(e)? "~~ ": e+'~ ')
+            txt = arr.join('')//
+            txt = txt.replaceAll('~ ~~', '~~')
+            // console.log(arr)
+            condenseTA.value = txt
         }
-        function convertGtLt(){
-            translateTA.value = translateTA.value.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-        }
+        // function convertGtLt(){
+        //     translateTA.value = translateTA.value.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+        // }
         function condense2clipboard(){
             condenseTA.select()
             navigator.clipboard.writeText(condenseTA.value)
@@ -163,8 +193,23 @@
             let arr = txt.split('\n')
             // remove empty line
                 .filter(e => e.length > 0)
+            let i = 0;
+            let arr1 = []
+
+            do {
+                if ( isFinite(arr[i])){
+                    arr1.push(arr[i])
+                    i++;
+                    i++;
+                    i++;
+                } else {
+                    arr1.push(arr[i])
+                    i++
+                }
+
+            } while (i < arr.length)
                 // convert paragraph number to '~~ '
-                .map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
+            arr = arr1.map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
             console.log(arr)
             condenseTranslateTA.value = arr
         }
@@ -182,22 +227,24 @@
                 .replaceAll("&lt;", "<")
                 .replaceAll("&gt;", ">")
             .split('~~')
-            let len = 0
+            let iLength = 0
             if (condenseArray.length === condenseTranslateArray.length){
-                len = condenseArray.length
+                iLength = condenseArray.length
             } else {
-                len = Math.min(condenseArray.length, condenseTranslateArray.length)
+                iLength = Math.min(condenseArray.length, condenseTranslateArray.length)
                 alert("Array lengths not equal")
             }
             let str = ''
-            for (let i = 0; i < len; i++){
+            for (let i = 0; i < iLength; i++){
                 let condArray = condenseArray[i].split('~')
                 let condTransArray = condenseTranslateArray[i].split('~')
                 let jLength = 0
                 if (condArray.length === condTransArray.length){
                     jLength = condArray.length 
                 } else {
-                    alert(`jLengths are not equal: (${i}+1)`)
+                    alert(`jLengths are not equal: (${i}+1)` )
+                    console.log(condArray)
+                    console.log(condTransArray)
                     jLength = Math.min(condArray.length, condTransArray.length)
                 }
                 for (let j = 0; j < jLength; j++){
