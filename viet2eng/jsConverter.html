@@ -67,6 +67,7 @@
     <textarea id="condenseTA"></textarea>
     <div>
         Translated Text
+        <button type="button" onclick="convertGtLt()">Convert Gt Lt</button>
         <button type="button" onclick="saveTranslate()">Save</button>
         <button type="button" onclick="retrieveTranslate()">Retrieve</button>
         <a name="translateTA"></a>
@@ -126,6 +127,8 @@
                 .replaceAll("; ", ";; ")
                 .replaceAll("? ", "?? ")
                 .replaceAll("! ", "!! ")
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
                 .split('\n').filter(e => e.length>1).map((e,i) => i+'\n'+e.trim().split(/[.;:?!] /g)
                                 .join("\n\n")).join("\n\n\n")
         }
@@ -144,6 +147,9 @@
                 .map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
             console.log(arr)
             condenseTA.value = arr
+        }
+        function convertGtLt(){
+            translateTA.value = translateTA.value.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
         }
         function condense2clipboard(){
             condenseTA.select()
@@ -168,8 +174,14 @@
         }
 
         function combine() {
-            let condenseArray = condenseTA.value.split('~~')
-            let condenseTranslateArray = condenseTranslateTA.value.split('~~')
+            let condenseArray = condenseTA.value
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+            .split('~~')
+            let condenseTranslateArray = condenseTranslateTA.value
+                .replaceAll("&lt;", "<")
+                .replaceAll("&gt;", ">")
+            .split('~~')
             let len = 0
             if (condenseArray.length === condenseTranslateArray.length){
                 len = condenseArray.length
@@ -189,7 +201,12 @@
                     jLength = Math.min(condArray.length, condTransArray.length)
                 }
                 for (let j = 0; j < jLength; j++){
-                    str += condArray[j]+'\n'+condTransArray[j]+'\n-------\n'
+                    if( condArray[j] == condTransArray[j]){
+                        str += condArray[j]+'\n'+'\n'+'\n-------\n'
+                        
+                    } else {
+                        str += condArray[j]+'\n'+condTransArray[j]+'\n-------\n'
+                    }
                 }
                 str += `(${i})==============\n`
                 // str += condenseArray[i] + '\n----------\n' + condenseTranslateArray[i] + '\n///////////////////////////////\n'  

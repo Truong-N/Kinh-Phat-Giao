@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js7</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <!-- <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div> -->
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js6.html">Prev</a>
+         <!-- <a href="./js0.html">Index</a> -->
+         <a href="./js8Attribute.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      
+      </div>
+      <script>
+        let vietEng = document.querySelector(".vietEng");
+        let vietParagraphs = `~~ How Do You Add and Remove Nodes from the DOM with appendChild() and removeChild()?~~ There will be times where you will need to add or remove nodes from the DOM and there are a couple of Web APIs you can use.~~ In this lesson, we will cover the appendChild() and removeChild() methods.~~ The appendChild() method is used to add a node to the end of the list of children of a specified parent node.~~ Here is the basic syntax for the appendChild() method:~~ parentNode.appendChild(newNode);~~ Let's take a look at an example to better understand how to use the appendChild() method.~~ In this example, we have an unordered list element with an ID of desserts inside the HTML.~ This list contains two list items of Cake and Pie:~~ &lt;ul id="desserts"&gt;~~ &lt;li&gt;Cake&lt;/li&gt;~~ &lt;li&gt;Pie&lt;/li&gt;~~ &lt;/ul&gt;~~ To access that list inside the JavaScript file, we can use the getElementById() method:~~ const dessertsList = document.getElementById("desserts");~~ We have a variable called dessertsList that stores the reference to the ul element with the ID of desserts.~~ Then we need to create a new list item element using the createElement() method:~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ The following code will create a new list item element and store it in a variable called listItem.~~ To add that node to the end of the list of children of the ul element, we can use the appendChild() method:~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ dessertsList.appendChild(listItem);~~ If you were to run this code, you will see that a new list item element is added to the end of the list of children of the ul element.~~ &lt;ul id="desserts"&gt;~~ &lt;li&gt;Cake&lt;/li&gt;~~ &lt;li&gt;Pie&lt;/li&gt;~~ &lt;/ul&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ dessertsList.appendChild(listItem);~~ The problem is that the new list item element is empty.~ To add text content to the new list item element, you can use the textContent property:~~ &lt;ul id="desserts"&gt;~~ &lt;li&gt;Cake&lt;/li&gt;~~ &lt;li&gt;Pie&lt;/li&gt;~~ &lt;/ul&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ listItem.textContent = "Cookies";~~ dessertsList.appendChild(listItem);~~ Now the list will show Cake, Pie, and Cookies.~~ To remove a node from the DOM, you can use the removeChild() method.~~ Here is the basic syntax for the removeChild() method:~~ parentNode.removeChild(childNode);~~ Let's take look at an example where we want to remove that last paragraph element from this section element:~~ &lt;section id="example-section"&gt;~~ &lt;h2&gt;Example sub heading&lt;/h2&gt;~~ &lt;p&gt;first paragraph&lt;/p&gt;~~ &lt;p&gt;second paragraph&lt;/p&gt;~~ &lt;/section&gt;~~ We can access the section element inside of the JavaScript file using the getElementById() method:~~ const sectionEl = document.getElementById("example-section");~~ Once we have the reference to the section element, we can then access that last paragraph using the querySelector() method:~~ const sectionEl = document.getElementById("example-section");~~ const lastParagraph = document.querySelector("#example-section p:last-of-type");~~ We are using the :last-of-type pseudo-class to select the last paragraph element inside the section element.~~ Now that we have the parent and child nodes, we can remove the last paragraph element from the section element using the removeChild() method:~~ &lt;section id="example-section"&gt;~~ &lt;h2&gt;Example sub heading&lt;/h2&gt;~~ &lt;p&gt;first paragraph&lt;/p&gt;~~ &lt;p&gt;second paragraph&lt;/p&gt;~~ &lt;/section&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const sectionEl = document.getElementById("example-section");~~ const lastParagraph = document.querySelector("#example-section p:last-of-type");~~ sectionEl.removeChild(lastParagraph);~~ So, when might you want to add or remove nodes from the DOM?~~ If you're working with dynamic content, you might need to add or remove nodes from the DOM.~ Real world examples include shopping carts, to-do lists, and social media feeds.~~ Questions~~ What does the appendChild() method do?~~ It removes a node from the DOM.~~ It adds a node to the end of the list of children of a specified parent node.~~ It replaces an existing node with a new node.~~ It moves a node to a different location within the DOM.~~ How would you add text content to a newly created list item element?~~ Use the setText() method on the new node.~~ Directly assign a string to the innerHTML property of the new node.~~ Set the textContent property of the new node to the desired string.~~ Use the appendChild() method with a text node as an argument.~~ How can you remove the last paragraph element from a section using JavaScript?~~ Use removeChild() on the section element with the reference to the last paragraph element.~~ Use deleteChild() on the section element with the reference to the last paragraph element.~~ Use detachChild() on the section element with the reference to the last paragraph element.~~ Use removeNode() on the section element with the reference to the last paragraph element.~ `
+        let engParagraphs = `~~ Làm thế nào để thêm và xóa các nút khỏi DOM bằng appendChild() và removeChild()?~~ Sẽ có lúc bạn cần thêm hoặc xóa các nút khỏi DOM và có một vài API web bạn có thể sử dụng.~~ Trong bài học này, chúng ta sẽ tìm hiểu về các phương thức appendChild() và removeChild().~~ Phương thức appendChild() được sử dụng để thêm một nút vào cuối danh sách các phần tử con của một nút cha được chỉ định.~~ Đây là cú pháp cơ bản cho phương thức appendChild():~~ parentNode.appendChild(newNode);~~ Hãy xem một ví dụ để hiểu rõ hơn cách sử dụng phương thức appendChild().~~ Trong ví dụ này, chúng ta có một phần tử danh sách không thứ tự với ID là desserts bên trong HTML.~ Danh sách này chứa hai mục là Cake và Pie:~~ &lt;ul id="desserts"&gt;~~ &lt;li&gt;Bánh ngọt&lt;/li&gt;~~ &lt;li&gt;Bánh nướng&lt;/li&gt;~~ &lt;/ul&gt;~~ Để truy cập danh sách đó bên trong tệp JavaScript, chúng ta có thể sử dụng phương thức getElementById():~~ const dessertsList = document.getElementById("desserts");~~ Chúng ta có một biến tên là dessertsList lưu trữ tham chiếu đến phần tử ul có ID là desserts.~~ Sau đó, chúng ta cần tạo một phần tử mục danh sách mới bằng cách sử dụng phương thức createElement():~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ Đoạn mã sau sẽ tạo một phần tử mục danh sách mới và lưu trữ nó trong một biến có tên là listItem.~~ Để thêm nút đó vào cuối danh sách các phần tử con của phần tử ul, chúng ta có thể sử dụng phương thức appendChild():~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ dessertsList.appendChild(listItem);~~ Nếu bạn chạy đoạn mã này, bạn sẽ thấy một phần tử mục danh sách mới được thêm vào cuối danh sách các phần tử con của phần tử ul.~~ &lt;ul id="desserts"&gt;~~ &lt;li&gt;Cake&lt;/li&gt;~~ &lt;li&gt;Pie&lt;/li&gt;~~ &lt;/ul&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ dessertsList.appendChild(listItem);~~ Vấn đề là phần tử mục danh sách mới bị trống.~ Để thêm nội dung văn bản vào phần tử mục danh sách mới, bạn có thể sử dụng thuộc tính textContent:~~ &lt;ul id="desserts"&gt;~~ &lt;li&gt;Bánh ngọt&lt;/li&gt;~~ &lt;li&gt;Bánh nướng&lt;/li&gt;~~ &lt;/ul&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const dessertsList = document.getElementById("desserts");~~ const listItem = document.createElement("li");~~ listItem.textContent = "Cookies";~~ dessertsList.appendChild(listItem);~~ Bây giờ danh sách sẽ hiển thị Bánh ngọt, Bánh nướng và Bánh quy.~~ Để xóa một nút khỏi DOM, bạn có thể sử dụng phương thức removeChild().~~ Đây là cú pháp cơ bản cho phương thức removeChild():~~ parentNode.removeChild(childNode);~~ Hãy xem một ví dụ, trong đó chúng ta muốn xóa phần tử đoạn văn cuối cùng khỏi phần tử phần này:~~ &lt;section id="example-section"&gt;~~ &lt;h2&gt;Ví dụ tiêu đề phụ&lt;/h2&gt;~~ &lt;p&gt;đoạn văn đầu tiên&lt;/p&gt;~~ &lt;p&gt;đoạn văn thứ hai&lt;/p&gt;~~ &lt;section&gt;~~ Chúng ta có thể truy cập phần tử section bên trong tệp JavaScript bằng phương thức getElementById():~~ const sectionEl = document.getElementById("example-section");~~ Sau khi có tham chiếu đến phần tử section, chúng ta có thể truy cập đoạn văn cuối cùng bằng phương thức querySelector():~~ const sectionEl = document.getElementById("example-section");~~ const lastParagraph = document.querySelector("#example-section p:last-of-type");~~ Chúng ta đang sử dụng lớp giả :last-of-type để chọn phần tử đoạn văn cuối cùng bên trong phần tử section.~~ Bây giờ chúng ta đã có các nút cha và con, chúng ta có thể xóa phần tử đoạn văn cuối cùng khỏi phần tử section bằng phương thức removeChild():~~ &lt;section id="example-section"&gt;~~ &lt;h2&gt;Ví dụ tiêu đề phụ&lt;/h2&gt;~~ &lt;p&gt;đoạn văn đầu tiên&lt;/p&gt;~~ &lt;p&gt;đoạn văn thứ hai&lt;/p&gt;~~ &lt;section&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const sectionEl = document.getElementById("example-section");~~ const lastParagraph = document.querySelector("#example-section p:last-of-type");~~ sectionEl.removeChild(lastParagraph);~~ Vậy, khi nào bạn cần thêm hoặc xóa các nút khỏi DOM?~~ Nếu bạn đang làm việc với nội dung động, bạn có thể cần thêm hoặc xóa các nút khỏi DOM.~ Các ví dụ thực tế bao gồm giỏ hàng, danh sách việc cần làm và nguồn cấp dữ liệu mạng xã hội.~~ Câu hỏi~~ Phương thức appendChild() làm gì?~~ Nó xóa một nút khỏi DOM.~~ Nó thêm một nút vào cuối danh sách các phần tử con của một nút cha được chỉ định.~~ Nó thay thế một nút hiện có bằng một nút mới.~~ Nó di chuyển một nút đến một vị trí khác trong DOM.~~ Làm thế nào để thêm nội dung văn bản vào một phần tử mục danh sách mới được tạo?~~ Sử dụng phương thức setText() trên nút mới.~~ Gán trực tiếp một chuỗi cho thuộc tính innerHTML của nút mới.~~ Đặt thuộc tính textContent của nút mới thành chuỗi mong muốn.~~ Sử dụng phương thức appendChild() với một nút văn bản làm đối số.~~ Làm thế nào bạn có thể xóa phần tử đoạn văn cuối cùng khỏi một phần bằng JavaScript?~~ Sử dụng removeChild() trên phần tử section với tham chiếu đến phần tử đoạn văn cuối cùng.~~ Sử dụng deleteChild() trên phần tử section với tham chiếu đến phần tử đoạn văn cuối cùng.~~ Sử dụng detachChild() trên phần tử section với tham chiếu đến phần tử đoạn văn cuối cùng.~~ Sử dụng removeNode() trên phần tử section với tham chiếu đến phần tử đoạn văn cuối cùng.~ `
+        let englishParagraphsArray = engParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let vietParagraphsArray = vietParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let eng_arr = []
+        let viet_arr = []
+        function show_arr(vietArr, engArr) {
+           vietEng.innerHTML += "<p>"
+           for (let i = 0; i < vietArr.length; i++) {
+            if (vietArr[i] === engArr[i]){
+                engArr[i] = '//'
+            }
+            //  vietEng.innerHTML += "<span> " + vietArr[i].trim() + ' </span><br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             vietEng.innerHTML += vietArr[i].trim() + '<br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             eng_arr.push(engArr[i])
+             viet_arr.push(vietArr[i])
+           }
+           vietEng.innerHTML += "</p>"
+        }
+        for (let i = 0; i < vietParagraphsArray.length; i++){
+           englishParagraph = englishParagraphsArray[i].split("~")
+           vietParagraph = vietParagraphsArray[i].split("~")
+           show_arr(vietParagraph, englishParagraph)
+        }
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'// 'vi-VN'
+               let txt1 = '<span style="color:red"> '+minutesArray[0].trim()+' </span>'
+               let v_txt = '<span> '+txt.trim()+' </span><br>'
+               vietEng.innerHTML = vietEng.innerHTML.replace(v_txt, "");
+               vietEng.innerHTML = vietEng.innerHTML.replace(txt1, "");
+               document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'// 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let combine_arr = []
+               
+               for (let i = 0; i < eng_arr.length; i++) {
+                 combine_arr.push(viet_arr[i])
+                 combine_arr.push(eng_arr[i])
+               }
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+

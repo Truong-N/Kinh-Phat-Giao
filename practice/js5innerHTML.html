@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js5</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <!-- <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div> -->
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js4querySelectorAll.html">Prev</a>
+         <!-- <a href="./js0.html">Index</a> -->
+         <a href="./js6.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      
+      </div>
+      <script>
+        let vietEng = document.querySelector(".vietEng");
+        let vietParagraphs = `~~ How Do You Create New Nodes Using innerHTML and createElement()?~~ Let's see how you can create nodes with innerHTML and createElement().~~ We'll start with innerHTML.~~ innerHTML is a property of Element objects that you can use to set their HTML markup.~ With innerHTML, you can set the HTML structure of an existing element with a string, creating all the necessary nodes.~~ This is an example.~ We have an empty div and we'll add some elements within it using the innerHTML property:~~ &lt;div id="container"&gt;~~ &lt;!-- Add new elements here --&gt;~~ &lt;/div&gt;~~ First, we need to select the element by its ID:~~ const container = document.getElementById("container");~~ Then, we set the innerHTML property of the container to a string.~ This string has to have all the markup necessary to represent the nodes and the structure that you want to create.~ You can think of it as writing HTML within a string.~~ &lt;div id="container"&gt;&lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ container.innerHTML = "&lt;ul&gt;&lt;li&gt;Cheese&lt;/li&gt;&lt;li&gt;Tomato&lt;/li&gt;&lt;/ul&gt;";~~ We will set the innerHTML of this element to an unordered list of pizza ingredients (cheese and tomato).~~ You can also write the string on multiple lines if it makes the markup easier to understand.~ The important thing is that the markup accurately represents the HTML structure you want to create.~~ After running this code, you will see the following HTML structure if you inspect your markup.~~ &lt;div id="container"&gt;~~ &lt;ul&gt;~~ &lt;li&gt;Cheese&lt;/li&gt;~~ &lt;li&gt;Tomato&lt;/li&gt;~~ &lt;/ul&gt;~~ &lt;/div&gt;~~ The new nodes were created and added dynamically to the DOM after the string was parsed.~~ innerHTML can be very helpful for certain scenarios.~ However, it does have some security risks that you should be familiar with.~ You shouldn't use it if you won't have full control over the string.~~ For example, if the string will be entered by the user, you shouldn't use innerHTML because the user might insert malicious content into your website.~ Because of this, it’s usually recommended to use textContent instead, to insert plain text.~~ Another way to create a new node is by using the createElement() method.~ With this new method, you can create a new element by specifying its tag name.~~ For example, if you want to create an image element, you would pass the img tag as a string when calling this method:~~ document.createElement("img");~~ And you can assign this new object to a variable:~~ const img = document.createElement("img");~~ The createElement() method returns a new HTMLElement object if the document is an HTMLDocument.~ Else, it returns an Element object.~~ Once you have this new element ready, you can add it to the DOM as a child of another existing element using the appendChild() method, or you can insert it at a specific location using other methods.~ Choose the one that best fits your needs.~~ &lt;div id="container"&gt;&lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ const img = document.createElement("img");~~ img.src = "https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg";~~ img.alt = "A slice of lasagna on a plate.";~~ container.appendChild(img);~~ Creating nodes with innerHTML and createElement() allows you to dynamically manipulate the structure and content of your websites.~ By combining these techniques, you can build interactive web applications.~~ Questions~~ What is the primary purpose of the innerHTML property?~~ To update HTML elements.~~ To set the text content of an element.~~ To modify the attributes of an element.~~ To dynamically inject HTML content into an element.~~ Which of the following methods is used to create a new HTML element in JavaScript?~~ createElement()~~ createNode()~~ appendChild()~~ getElementById()~~ What is the main risk of using innerHTML when you do not have control over the string?~~ Causing an infinite loop.~~ Insertion of malicious content.~~ Performance issues.~~ Accessibility issues.~ `
+        let engParagraphs = `~~ Làm thế nào để tạo các nút mới bằng innerHTML và createElement()?~~ Hãy xem cách bạn có thể tạo các nút bằng innerHTML và createElement().~~ Chúng ta sẽ bắt đầu với innerHTML.~~ innerHTML là một thuộc tính của đối tượng Element mà bạn có thể sử dụng để thiết lập cấu trúc HTML của chúng.~ Với innerHTML, bạn có thể thiết lập cấu trúc HTML của một phần tử hiện có bằng một chuỗi, tạo ra tất cả các nút cần thiết.~~ Đây là một ví dụ.~ Chúng ta có một thẻ div trống và chúng ta sẽ thêm một số phần tử vào bên trong nó bằng cách sử dụng thuộc tính innerHTML:~~ &lt;div id="container"&gt;~~ &lt;!-- Thêm các phần tử mới vào đây --&gt;~~ &lt;/div&gt;~~ Đầu tiên, chúng ta cần chọn phần tử theo ID của nó:~~ const container = document.getElementById("container");~~ Tiếp theo, chúng ta đặt thuộc tính innerHTML của container thành một chuỗi.~ Chuỗi này phải chứa tất cả các mã HTML cần thiết để biểu diễn các nút và cấu trúc mà bạn muốn tạo.~ Bạn có thể coi đó như việc viết HTML bên trong một chuỗi.~~ &lt;div id="container"&gt;&lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ container.innerHTML = "&lt;ul&gt;&lt;li&gt;Cheese&lt;/li&gt;&lt;li&gt;Tomato&lt;/li&gt;&lt;/ul&gt;";~~ Chúng ta sẽ đặt innerHTML của phần tử này thành một danh sách không có thứ tự các nguyên liệu làm pizza (phô mai và cà chua).~~ Bạn cũng có thể viết chuỗi trên nhiều dòng nếu điều đó giúp mã dễ hiểu hơn.~ Điều quan trọng là mã phải thể hiện chính xác cấu trúc HTML mà bạn muốn tạo.~~ Sau khi chạy đoạn mã này, bạn sẽ thấy cấu trúc HTML sau nếu kiểm tra mã của mình.~~ &lt;div id="container"&gt;~~ &lt;ul&gt;~~ &lt;li&gt;Phô mai&lt;/li&gt;~~ &lt;li&gt;Cà chua&lt;/li&gt;~~ &lt;/ul&gt;~~ &lt;/div&gt;~~ Các nút mới được tạo và thêm động vào DOM sau khi chuỗi được phân tích cú pháp.~~ innerHTML có thể rất hữu ích trong một số trường hợp nhất định.~ Tuy nhiên, nó cũng có một số rủi ro bảo mật mà bạn nên biết.~ Bạn không nên sử dụng nó nếu bạn không có toàn quyền kiểm soát chuỗi.~~ Ví dụ, nếu chuỗi sẽ được người dùng nhập, bạn không nên sử dụng innerHTML vì người dùng có thể chèn nội dung độc hại vào trang web của bạn.~ Vì lý do này, thông thường nên sử dụng textContent thay thế để chèn văn bản thuần túy.~~ Một cách khác để tạo một nút mới là sử dụng phương thức createElement().~ Với phương thức mới này, bạn có thể tạo một phần tử mới bằng cách chỉ định tên thẻ của nó.~~ Ví dụ, nếu bạn muốn tạo một phần tử hình ảnh, bạn sẽ truyền thẻ img dưới dạng chuỗi khi gọi phương thức này:~~ document.createElement("img");~~ Và bạn có thể gán đối tượng mới này cho một biến:~~ const img = document.createElement("img");~~ Phương thức createElement() trả về một đối tượng HTMLElement mới nếu tài liệu là một HTMLDocument.~ Ngược lại, nó trả về một đối tượng Element.~~ Sau khi bạn đã có phần tử mới này, bạn có thể thêm nó vào DOM làm con của một phần tử hiện có khác bằng cách sử dụng phương thức appendChild(), hoặc bạn có thể chèn nó vào một vị trí cụ thể bằng các phương thức khác.~ Hãy chọn phương thức phù hợp nhất với nhu cầu của bạn.~~ &lt;div id="container"&gt;&lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ const img = document.createElement("img");~~ img.src = "https://cdn.freecodecamp.org/curriculum/cat-photo-app/lasagna.jpg";~~ img.alt = "Một lát lasagna trên đĩa.";~~ container.appendChild(img);~~ Việc tạo các nút bằng innerHTML và createElement() cho phép bạn thao tác động cấu trúc và nội dung của trang web.~ Bằng cách kết hợp các kỹ thuật này, bạn có thể xây dựng các ứng dụng web tương tác.~~ Câu hỏi~~ Mục đích chính của thuộc tính innerHTML là gì?~~ Để cập nhật các phần tử HTML.~~ Để đặt nội dung văn bản của một phần tử.~~ Để sửa đổi các thuộc tính của một phần tử.~~ Để chèn nội dung HTML động vào một phần tử.~~ Phương pháp nào sau đây được sử dụng để tạo một phần tử HTML mới trong JavaScript?~~ createElement()~~ createNode()~~ appendChild()~~ getElementById()~~ Rủi ro chính khi sử dụng innerHTML khi bạn không kiểm soát được chuỗi là gì?~~ Gây ra vòng lặp vô hạn.~~ Chèn nội dung độc hại.~~ Vấn đề về hiệu suất.~~ Vấn đề về khả năng truy cập.~ `
+        let englishParagraphsArray = engParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let vietParagraphsArray = vietParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let eng_arr = []
+        let viet_arr = []
+        function show_arr(vietArr, engArr) {
+           vietEng.innerHTML += "<p>"
+           for (let i = 0; i < vietArr.length; i++) {
+            if (vietArr[i] === engArr[i]){
+                engArr[i] = ''
+            }
+            //  vietEng.innerHTML += "<span> " + vietArr[i].trim() + ' </span><br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             vietEng.innerHTML += vietArr[i].trim() + '<br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             eng_arr.push(engArr[i])
+             viet_arr.push(vietArr[i])
+           }
+           vietEng.innerHTML += "</p>"
+        }
+        for (let i = 0; i < vietParagraphsArray.length; i++){
+           englishParagraph = englishParagraphsArray[i].split("~")
+           vietParagraph = vietParagraphsArray[i].split("~")
+           show_arr(vietParagraph, englishParagraph)
+        }
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'// 'vi-VN'
+               let txt1 = '<span style="color:red"> '+minutesArray[0].trim()+' </span>'
+               let v_txt = '<span> '+txt.trim()+' </span><br>'
+               vietEng.innerHTML = vietEng.innerHTML.replace(v_txt, "");
+               vietEng.innerHTML = vietEng.innerHTML.replace(txt1, "");
+               document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'// 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let combine_arr = []
+               
+               for (let i = 0; i < eng_arr.length; i++) {
+                 combine_arr.push(viet_arr[i])
+                 combine_arr.push(eng_arr[i])
+               }
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+

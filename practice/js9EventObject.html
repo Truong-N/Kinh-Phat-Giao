@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js9</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <!-- <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div> -->
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js8Attribute.html">Prev</a>
+         <!-- <a href="./js0.html">Index</a> -->
+         <a href="./js2DOM.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      
+      </div>
+      <script>
+        let vietEng = document.querySelector(".vietEng");
+        let vietParagraphs = `~~ What Is the Event Object?~~ The Event object is a payload that triggers when a user interacts with your web page in some way.~ These interactions can be anything from clicking on a button or focusing an input to shaking their mobile device.~~ Like all JavaScript objects, the Event object has a number of properties that might be helpful.~ The properties available depend on the event that triggered this payload.~~ All Event objects will have the type property.~ This property reveals the type of event that triggered the payload, such as "keydown" or "click".~ These values will correspond to the same values you might pass to addEventListener(), where you can capture and utilize the Event object.~~ Event objects will always have the target property.~ The target property is a reference to whatever object triggered the event.~ Most commonly, this will be some sort of HTMLElement object, or the Document or Window objects.~ But it can also be something more specific, like an AudioContext.~~ Events also have methods, which are functions exposed as properties on the object.~ One commonly used method is preventDefault(), which prevents the default behavior of the event when called.~~ If you want to handle form submissions yourself, for example, you might call preventDefault() to keep the browser from trying to submit the form data as a POST request.~ You will learn more about POST requests in future lessons.~~ You'll also likely run in to the stopPropagation() method.~ This method prevents the event from bubbling up or propagating to parent elements.~ You'll learn more about what this means in a future lesson.~~ There are also a large number of properties that are specific to certain implementations of the Event object.~ For example, a FetchEvent will have a request property to contain the request that triggered the event.~~ If you are ever unsure of what properties are available, you can log the Event object in question or even check the documentation.~~ Questions~~ What is the purpose of the Event object in JavaScript?~~ To create new HTML elements.~~ To store user data.~~ To provide information about user interactions with a web page~~ To define CSS styles for elements.~~ Which of the following properties is always available on all Event objects?~~ request~~ type~~ keyCode~~ clientX~~ What does the preventDefault() method do when called on an Event object?~~ It stops the event from bubbling up to parent elements.~~ It prevents the default behavior of the event.~~ It removes all event listeners from the target element.~~ It cancels the event entirely.~ `
+        let engParagraphs = `~~ Đối tượng Sự kiện là gì?~~ Đối tượng Sự kiện là một tải trọng được kích hoạt khi người dùng tương tác với trang web của bạn theo một cách nào đó.~ Những tương tác này có thể là bất cứ điều gì, từ việc nhấp vào một nút hoặc tập trung vào một ô nhập liệu đến việc lắc thiết bị di động của họ.~~ Giống như tất cả các đối tượng JavaScript, đối tượng Sự kiện có một số thuộc tính có thể hữu ích.~ Các thuộc tính có sẵn phụ thuộc vào sự kiện đã kích hoạt tải trọng này.~~ Tất cả các đối tượng Sự kiện sẽ có thuộc tính 'type'.~ Thuộc tính này tiết lộ loại sự kiện đã kích hoạt tải trọng, chẳng hạn như "keydown" hoặc "click".~ Các giá trị này sẽ tương ứng với các giá trị mà bạn có thể truyền cho 'addEventListener()'', nơi bạn có thể bắt và sử dụng đối tượng Sự kiện.~~ Các đối tượng Sự kiện sẽ luôn có thuộc tính 'target'.~ Thuộc tính 'target' là một tham chiếu đến bất kỳ đối tượng nào đã kích hoạt sự kiện.~ Thông thường nhất, đây sẽ là một loại đối tượng 'HTMLElement', hoặc các đối tượng 'Document' hoặc 'Window'.~ Nhưng nó cũng có thể là một thứ cụ thể hơn, chẳng hạn như AudioContext.~~ Các sự kiện cũng có các phương thức, là các hàm được hiển thị dưới dạng thuộc tính trên đối tượng.~ Một phương thức thường được sử dụng là preventDefault(), ngăn chặn hành vi mặc định của sự kiện khi được gọi.~~ Ví dụ, nếu bạn muốn tự xử lý việc gửi biểu mẫu, bạn có thể gọi preventDefault() để ngăn trình duyệt cố gắng gửi dữ liệu biểu mẫu dưới dạng yêu cầu POST.~ Bạn sẽ tìm hiểu thêm về các yêu cầu POST trong các bài học sau.~~ Bạn cũng có thể gặp phương thức stopPropagation().~ Phương thức này ngăn sự kiện lan truyền lên các phần tử cha.~ Bạn sẽ tìm hiểu thêm về ý nghĩa của điều này trong một bài học sau.~~ Ngoài ra còn có một số lượng lớn các thuộc tính dành riêng cho một số cách triển khai nhất định của đối tượng Event.~ Ví dụ, một FetchEvent sẽ có thuộc tính request để chứa yêu cầu đã kích hoạt sự kiện.~~ Nếu bạn không chắc chắn về các thuộc tính có sẵn, bạn có thể ghi nhật ký đối tượng Sự kiện đó hoặc thậm chí kiểm tra tài liệu.~~ Câu hỏi~~ Mục đích của đối tượng Sự kiện trong JavaScript là gì?~~ Để tạo các phần tử HTML mới.~~ Để lưu trữ dữ liệu người dùng.~~ Để cung cấp thông tin về tương tác của người dùng với một trang web~~ Để định nghĩa kiểu CSS cho các phần tử.~~ Thuộc tính nào sau đây luôn có sẵn trên tất cả các đối tượng Sự kiện?~~ request~~ type~~ keyCode~~ clientX~~ Phương thức preventDefault() làm gì khi được gọi trên một đối tượng Sự kiện?~~ Nó ngăn sự kiện lan truyền lên các phần tử cha.~~ Nó ngăn chặn hành vi mặc định của sự kiện.~~ Nó loại bỏ tất cả các trình lắng nghe sự kiện khỏi phần tử mục tiêu.~~ Nó hủy bỏ hoàn toàn sự kiện.~ `
+        let englishParagraphsArray = engParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let vietParagraphsArray = vietParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let eng_arr = []
+        let viet_arr = []
+        function show_arr(vietArr, engArr) {
+           vietEng.innerHTML += "<p>"
+           for (let i = 0; i < vietArr.length; i++) {
+            if (vietArr[i] === engArr[i]){
+                engArr[i] = '//'
+            }
+            //  vietEng.innerHTML += "<span> " + vietArr[i].trim() + ' </span><br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             vietEng.innerHTML += vietArr[i].trim() + '<br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             eng_arr.push(engArr[i])
+             viet_arr.push(vietArr[i])
+           }
+           vietEng.innerHTML += "</p>"
+        }
+        for (let i = 0; i < vietParagraphsArray.length; i++){
+           englishParagraph = englishParagraphsArray[i].split("~")
+           vietParagraph = vietParagraphsArray[i].split("~")
+           show_arr(vietParagraph, englishParagraph)
+        }
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'// 'vi-VN'
+               let txt1 = '<span style="color:red"> '+minutesArray[0].trim()+' </span>'
+               let v_txt = '<span> '+txt.trim()+' </span><br>'
+               vietEng.innerHTML = vietEng.innerHTML.replace(v_txt, "");
+               vietEng.innerHTML = vietEng.innerHTML.replace(txt1, "");
+               document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'// 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let combine_arr = []
+               
+               for (let i = 0; i < eng_arr.length; i++) {
+                 combine_arr.push(viet_arr[i])
+                 combine_arr.push(eng_arr[i])
+               }
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+

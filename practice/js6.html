@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js5</title>
+   </head>
+   <style>
+      * {
+      cursor: pointer;
+      }
+      .viet {
+      color: red;
+      }
+      img { width: 75%;}
+      
+   </style>
+   <body>
+      <div>
+         <!-- <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div> -->
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js5innerHTML.html">Prev</a>
+         <!-- <a href="./js0.html">Index</a> -->
+         <a href="./js7AddRemoveChild.html">Next</a>
+      </div>
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      
+      </div>
+      <script>
+        let vietEng = document.querySelector(".vietEng");
+        let vietParagraphs = `~~ What Is the Difference Between innerText, textContent, and innerHTML?~~ Let's learn about innerText, textContent, and innerHTML.~~ These are properties that you can access in JavaScript to get or change the content of an HTML element.~ Even if they may look very similar at first, they do have key differences.~ Choosing the right one depends on your specific use case, so let's dive in.~~ Let's start with innerText.~~ innerText represents the visible text content of the HTML element and its descendants.~ This property doesn't include hidden text or HTML tags, only rendered text.~~ For example, here you can see a div element that contains two paragraphs:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ If we get a reference to this HTML element in our JavaScript code using getElementById(), we can access the innerText property of this element:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.innerText);~~ This is the inner text of this element:~~ Hello, World!~~ I'm learning JavaScript~~ The property returns a string with the text contained within the element, including text from its descendants.~~ You should know that innerText only returns the text that is visible at the particular moment when the string is requested.~ If a child element is hidden, its text won't be visible.~~ This is an example where the second paragraph is hidden:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p hidden&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ If we try to log the innerText again, now the output won’t have the text of the second paragraph:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p hidden&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.innerText);~~ You can set the innerText of an HTML element like this, but this will replace the existing text and add a line break element (br) element for every line break:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ container.innerText = "JavaScript is awesome!";~~ Since innerText takes visibility into account, getting its value triggers a process called "reflow", that recalculates the position of certain elements on the website.~ This process can be computationally intensive, so you should avoid triggering it if possible.~~ Great.~ Now let's talk about textContent.~~ textContent returns the plain text content of an element, including all the text within its descendants.~~ The most important difference between innerText and textContent is that textContent always returns the full text content of an HTML element and its descendants, regardless of whether it's visible or hidden.~~ Here we have the same example in HTML:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ If you try to access this property, you'll see the text of the element and its descendants as the output, keeping the indentation and spacing:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.textContent);~~ If an HTML element is not visible, like you can see over here, where we’ve hidden the second paragraph, its text will still be included in this property:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p hidden&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.textContent);~~ textContent will also include the content of elements like script and style.~~ If you try to replace the value of textContent on a node, it will remove all its child nodes and replace them with a single text node containing the new string:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p hidden&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ container.textContent = "New content";~~ And finally, let's talk about how textContent and innerText differs from innerHTML.~~ Remember that with innerHTML you can set the inner HTML content of an element.~ This is helpful for injecting new HTML into the DOM dynamically.~~ However, remember that this poses a security risk if you don't have control over the string, such as strings containing data entered by the user.~ If that data is malicious, it can lead to serious security issues.~~ To avoid this, it's recommended to use the textContent property to insert plain text instead.~~ The innerText, textContent, and innerHTML properties in JavaScript provide different ways to access and manipulate the content of HTML elements.~ You should understand the differences between these properties if your goal is to work with HTML content in JavaScript effectively.~~ Questions~~ Which of the following properties returns the visible text content of an HTML element, excluding any hidden text or text within hidden elements?~~ innerHTML~~ textContent~~ innerText~~ All of the above.~~ Which of the following properties can be used to dynamically inject new HTML content into an element?~~ innerHTML~~ textContent~~ innerText~~ None of the above.~~ Which of the following properties returns the plain text content of an element, including all text within child elements, regardless of whether it is visible or hidden?~~ innerHTML~~ textContent~~ innerText~~ All of the above.~ `
+        let engParagraphs = `~~ Sự khác biệt giữa innerText, textContent và innerHTML là gì?~~ Hãy cùng tìm hiểu về innerText, textContent và innerHTML.~~ Đây là các thuộc tính mà bạn có thể truy cập trong JavaScript để lấy hoặc thay đổi nội dung của một phần tử HTML.~ Mặc dù thoạt nhìn chúng có vẻ rất giống nhau, nhưng chúng vẫn có những điểm khác biệt chính.~ Việc lựa chọn thuộc tính phù hợp phụ thuộc vào trường hợp sử dụng cụ thể của bạn, vì vậy hãy cùng tìm hiểu.~~ Hãy bắt đầu với innerText.~~ innerText đại diện cho nội dung văn bản hiển thị của phần tử HTML và các phần tử con của nó.~ Thuộc tính này không bao gồm văn bản ẩn hoặc thẻ HTML, chỉ bao gồm văn bản được hiển thị.~~ Ví dụ, ở đây bạn có thể thấy một phần tử div chứa hai đoạn văn:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ Nếu chúng ta lấy được tham chiếu đến phần tử HTML này trong mã JavaScript bằng cách sử dụng getElementById(), chúng ta có thể truy cập thuộc tính innerText của phần tử này:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.innerText);~~ Đây là văn bản bên trong của phần tử này:~~ Xin chào thế giới!~~ Tôi đang học JavaScript~~ Thuộc tính trả về một chuỗi chứa văn bản bên trong phần tử, bao gồm cả văn bản từ các phần tử con của nó.~~ Bạn nên biết rằng innerText chỉ trả về văn bản hiển thị tại thời điểm cụ thể khi chuỗi được yêu cầu.~ Nếu một phần tử con bị ẩn, văn bản của nó sẽ không hiển thị.~~ Đây là một ví dụ trong đó đoạn văn thứ hai bị ẩn:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p hidden&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ Nếu chúng ta thử ghi lại innerText một lần nữa, thì bây giờ kết quả sẽ không có văn bản của đoạn văn thứ hai:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p hidden&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.innerText);~~ Bạn có thể đặt thuộc tính innerText của một phần tử HTML như thế này, nhưng điều này sẽ thay thế văn bản hiện có và thêm một thẻ xuống dòng (br) cho mỗi lần xuống dòng:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ container.innerText = "JavaScript thật tuyệt vời!";~~ Vì innerText tính đến khả năng hiển thị, việc lấy giá trị của nó sẽ kích hoạt một quá trình gọi là "reflow", quá trình này tính toán lại vị trí của một số phần tử nhất định trên trang web.~ Quá trình này có thể tốn nhiều tài nguyên tính toán, vì vậy bạn nên tránh kích hoạt nó nếu có thể.~~ Tuyệt vời.~ Bây giờ chúng ta hãy nói về textContent.~~ textContent trả về nội dung văn bản thuần túy của một phần tử, bao gồm tất cả văn bản trong các phần tử con của nó.~~ Sự khác biệt quan trọng nhất giữa innerText và textContent là textContent luôn trả về toàn bộ nội dung văn bản của một phần tử HTML và các phần tử con của nó, bất kể nó hiển thị hay ẩn.~~ Đây là ví dụ tương tự trong HTML:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Hello, World!&lt;/p&gt;~~ &lt;p&gt;I'm learning JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ Nếu bạn thử truy cập thuộc tính này, bạn sẽ thấy văn bản của phần tử và các phần tử con của nó được hiển thị, giữ nguyên khoảng cách và thụt lề:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.textContent);~~ Nếu một phần tử HTML không hiển thị, như bạn có thể thấy ở đây, nơi chúng ta đã ẩn đoạn văn thứ hai, văn bản của nó vẫn sẽ được bao gồm trong thuộc tính này:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p hidden&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ console.log(container.textContent);~~ textContent cũng sẽ bao gồm nội dung của các phần tử như script và style.~~ Nếu bạn cố gắng thay thế giá trị của textContent trên một nút, nó sẽ xóa tất cả các nút con của nút đó và thay thế chúng bằng một nút văn bản duy nhất chứa chuỗi mới:~~ &lt;div id="container"&gt;~~ &lt;p&gt;Xin chào thế giới!&lt;/p&gt;~~ &lt;p hidden&gt;Tôi đang học JavaScript&lt;/p&gt;~~ &lt;/div&gt;~~ &lt;script src="index.js"&gt;&lt;/script&gt;~~ const container = document.getElementById("container");~~ container.textContent = "Nội dung mới";~~ Cuối cùng, hãy cùng tìm hiểu sự khác biệt giữa textContent, innerText và innerHTML.~~ Hãy nhớ rằng với innerHTML, bạn có thể thiết lập nội dung HTML bên trong của một phần tử.~ Điều này rất hữu ích để chèn HTML mới vào DOM một cách động.~~ Tuy nhiên, hãy nhớ rằng điều này tiềm ẩn rủi ro bảo mật nếu bạn không kiểm soát được chuỗi, chẳng hạn như các chuỗi chứa dữ liệu do người dùng nhập.~ Nếu dữ liệu đó độc hại, nó có thể dẫn đến các vấn đề bảo mật nghiêm trọng.~~ Để tránh điều này, bạn nên sử dụng thuộc tính textContent để chèn văn bản thuần túy.~~ Các thuộc tính innerText, textContent và innerHTML trong JavaScript cung cấp các cách khác nhau để truy cập và thao tác nội dung của các phần tử HTML.~ Bạn nên hiểu sự khác biệt giữa các thuộc tính này nếu mục tiêu của bạn là làm việc hiệu quả với nội dung HTML trong JavaScript.~~ Câu hỏi~~ Thuộc tính nào sau đây trả về nội dung văn bản hiển thị của một phần tử HTML, không bao gồm bất kỳ văn bản ẩn hoặc văn bản bên trong các phần tử ẩn?~~ innerHTML~~ textContent~~ innerText~~ Tất cả các đáp án trên.~~ Thuộc tính nào sau đây có thể được sử dụng để chèn nội dung HTML mới vào một phần tử một cách động?~~ innerHTML~~ textContent~~ innerText~~ Không có đáp án nào đúng.~~ Thuộc tính nào sau đây trả về nội dung văn bản thuần túy của một phần tử, bao gồm tất cả văn bản bên trong các phần tử con, bất kể nó hiển thị hay ẩn?~~ innerHTML~~ textContent~~ innerText~~ Tất cả các đáp án trên.~ `
+        let englishParagraphsArray = engParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let vietParagraphsArray = vietParagraphs
+            // .replaceAll("&lt;", "<")
+            // .replaceAll("&gt;", ">")
+            .split("~~")
+        let eng_arr = []
+        let viet_arr = []
+        function show_arr(vietArr, engArr) {
+           vietEng.innerHTML += "<p>"
+           for (let i = 0; i < vietArr.length; i++) {
+            if (vietArr[i] === engArr[i]){
+                engArr[i] = '//'
+            }
+            //  vietEng.innerHTML += "<span> " + vietArr[i].trim() + ' </span><br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             vietEng.innerHTML += vietArr[i].trim() + '<br><span style="color:red"> ' + engArr[i].trim() + " </span><br>"
+             eng_arr.push(engArr[i])
+             viet_arr.push(vietArr[i])
+           }
+           vietEng.innerHTML += "</p>"
+        }
+        for (let i = 0; i < vietParagraphsArray.length; i++){
+           englishParagraph = englishParagraphsArray[i].split("~")
+           vietParagraph = vietParagraphsArray[i].split("~")
+           show_arr(vietParagraph, englishParagraph)
+        }
+         const readeng = document.querySelector("#readeng")
+         const eng = document.querySelectorAll(".eng")
+         let pre_txt = ' '
+         let readEngOnly = false
+         
+         readeng.addEventListener("change", () => {
+            readEngOnly = !readEngOnly
+            
+         })
+         const msg = new SpeechSynthesisUtterance();
+         let voice = [];
+         const speakButton = document.querySelector('#speak');
+         const stopButton = document.querySelector('#stop');
+
+         
+         function speakMinutes_viet(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               speakMinutes_eng(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'en-US'// 'vi-VN'
+               let txt1 = '<span style="color:red"> '+minutesArray[0].trim()+' </span>'
+               let v_txt = '<span> '+txt.trim()+' </span><br>'
+               vietEng.innerHTML = vietEng.innerHTML.replace(v_txt, "");
+               vietEng.innerHTML = vietEng.innerHTML.replace(txt1, "");
+               document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt1+"</h2>"
+               if( readEngOnly){
+                  utterance.text = ' '
+               }
+               speechSynthesis.speak(utterance);
+
+            }
+         }
+         function speakMinutes_eng(minutesArray) {
+            if (minutesArray.length > 0) {
+
+               let txt = minutesArray.shift(); // extract first item
+               
+               let utterance = new SpeechSynthesisUtterance(txt);
+               // When the current utterance ends, speak the next one
+               utterance.onend = function (event) {
+               console.log('Speech ended, starting next minute.');
+               speakMinutes_viet(minutesArray); // Recursively call the function for the next item
+               };
+
+               // Handle potential errors
+               utterance.onerror = function (event) {
+                  console.error('Speech synthesis error: ' + event.error);
+               };
+               utterance.lang = 'vi-VN'// 'en-US'
+               speechSynthesis.speak(utterance);
+            }
+         }
+         function readEV(startOver = true) {
+            speechSynthesis.cancel();
+            if (startOver) {
+               let combine_arr = []
+               
+               for (let i = 0; i < eng_arr.length; i++) {
+                 combine_arr.push(viet_arr[i])
+                 combine_arr.push(eng_arr[i])
+               }
+               speakMinutes_viet(combine_arr)
+            }
+         }
+         speakButton.addEventListener('click', readEV);
+         stopButton.addEventListener('click', readEV.bind(null, false));
+      </script>
+   </body>
+</html>
+

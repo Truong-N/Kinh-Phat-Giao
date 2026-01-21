@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <p>Hello world!</p>
+        <p hidden>I am learning JavaScript</p>
+    </div>
+    <script>
+        const container = document.getElementById("container");
+        console.log(container.innerText)
+        console.log(container.textContent)
+        container.innerText = "JavaScript is awesome!"
+    </script>
+</body>
+</html>
