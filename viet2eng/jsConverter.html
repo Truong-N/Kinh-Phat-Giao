@@ -139,7 +139,7 @@
                 .split('\n') // split to array
                 .filter(e => e.length>1) // remove empty lines
                 .map((e,i) => { // each array is a paragraph, out put array number, total length
-                    if(sumLength+e.length>4700)sumLength=e.length
+                    if(sumLength+e.length>4200)sumLength=e.length
                     else sumLength += e.length
                     return `${i}\n${e.length}\n${sumLength}\n`+e.trim()
                 })
@@ -167,11 +167,13 @@
                     arr1.push(arr[i])
                     i++
                 }
-
             } while (i < arr.length)            // console.log(arr1)
             // remove empty line
             // arr1 = arr1.filter(e => e.length > 1)
                 // convert paragraph number to '~~ '
+            console.log("arr1:",arr1.length)
+            arr1.shift()
+            console.log("arr1:",arr1.length)
             arr = arr1.map(e => isFinite(e)? "~~ ": e+'~ ')
             txt = arr.join('')//
             txt = txt.replaceAll('~ ~~', '~~')
@@ -187,7 +189,7 @@
         }
 
         function condenseTranslate() {
-            let txt = translateTA.value
+            let txt = translateTA.value.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
             // console.log(txt)
             // convert to array
             let arr = txt.split('\n')
@@ -209,6 +211,7 @@
 
             } while (i < arr.length)
                 // convert paragraph number to '~~ '
+            arr1.shift()
             arr = arr1.map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
             console.log(arr)
             condenseTranslateTA.value = arr
