@@ -1,0 +1,25 @@
+.floating-container {
+    position: fixed; /* Fixes the position relative to the viewport */
+    bottom: 20px;    /* Positions it 20px from the bottom */
+    right: 20px;     /* Positions it 20px from the right */
+    z-index: 9999;   /* Ensures it sits on top of other content */
+}
+
+.floating-button {
+    /* Basic button styling */
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #F44336; /* Example color */
+    color: white;
+    text-align: center;
+    line-height: 60px; /* Centers the '+' icon/text vertically */
+    border-radius: 50%; /* Makes it a circle */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); /* Adds a shadow */
+    text-decoration: none; /* Removes default anchor underline */
+    font-size: 36px;
+}
+
+.floating-button:hover {
+    background-color: #555555; /* Changes color on hover */
+}

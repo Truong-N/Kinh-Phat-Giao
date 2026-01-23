@@ -16,19 +16,23 @@
             height: 500px;
         }
     </style>
+    <link rel="stylesheet" href="./jsConverter.css">
 </head>
 <body>
+    <div class="floating-container">
+        <a href="#rawTA">Raw</a><br><br>
+        <a href="#separateTA">Separate</a><br><br>
+        <a href="#translateTA">Translate</a><br><br>
+        <a href="#html">html</a><br><br>
+        <a href="#combineTA">Combine</a><br><br>
+    </div>
+
     <a name="rawTA"></a>
     <div >
         Raw Text
         <button type="button" onclick="saveRaw()">Save</button>
         <button type="button" onclick="retrieveRaw()">Retrieve</button>
-        Go to:
-        <a href="#separateTA">SeparateTA</a>
-        <a href="#condenseTA">CondenseTA</a>
-        <a href="#translateTA">TranslateTA</a>
-        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-        <a href="#combineTA">CombineTA</a>
+        
     </div>
 
     <textarea id="rawTA"></textarea>
@@ -38,78 +42,31 @@
         Process Text
         <button type="button" onclick="separate()">Separate</button>
         <button type="button" onclick="separate2clipboard()">clipboard</button>
-        Go to:
-        <a href="#rawTA">RawTA</a>
-        <!-- <a href="#separateTA">SeparateTA</a> -->
-        <a href="#condenseTA">CondenseTA</a>
-        <a href="#translateTA">TranslateTA</a>
-        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-        <a href="#combineTA">CombineTA</a>
+        
     </div>
     
     <textarea id="separateTA"></textarea>
     
-    <a name="condenseTA"></a>
-    <div>
-        Condensed Text
-        <button type="button" onclick="condense()">Condense</button>
-        <button type="button" onclick="condense2clipboard()">clipboard</button>
-        Go to:
-        <a href="#rawTA">RawTA</a>
-        <a href="#separateTA">SeparateTA</a>
-        <!-- <a href="#condenseTA">CondenseTA</a> -->
-        <a href="#translateTA">TranslateTA</a>
-        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-
-        <a href="#combineTA">CombineTA</a>
-    </div>
-    
-    <textarea id="condenseTA"></textarea>
-    
     <a name="translateTA"></a>
     <div>
-        Translated Text
-        <!-- <button type="button" onclick="convertGtLt()">Convert Gt Lt</button> -->
+        Translated Text<br>
+        <button type="button" onclick="removeEmptyLines()">Remove Empty Lines</button>
         <button type="button" onclick="saveTranslate()">Save</button>
         <button type="button" onclick="retrieveTranslate()">Retrieve</button>
-        Go to:
-        <a href="#rawTA">RawTA</a>
-        <a href="#separateTA">SeparateTA</a>
-        <a href="#condenseTA">CondenseTA</a>
-        <!-- <a href="#translateTA">TranslateTA</a> -->
-        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-        <a href="#combineTA">CombineTA</a>
+        <button type="button" onclick="translate2Clipboard()">Clipboard</button>
     </div>
 
     <textarea id="translateTA"></textarea>
     
-    <a name="condenseTranslateTA"></a>
     <div>
-        Condense Translate 
-        <button type="button" onclick="condenseTranslate()">Condense</button>
-        <button type="button" onclick="condenseTranslate2clipboard()">clipboard</button>
-        Go to:
-        <a href="#rawTA">RawTA</a>
-        <a href="#separateTA">SeparateTA</a>
-        <a href="#condenseTA">CondenseTA</a>
-        <a href="#translateTA">TranslateTA</a>
-        <!-- <a href="#condenseTranslateTA">CondenseTranslateTA</a> -->
-        <a href="#combineTA">CombineTA</a>
+        <button type="button" onclick="combine1()">Combine</button>
+        <button type="button" onclick="output2File()">Output</button>
+        <button type="button" onclick="combine2Clipboard()">Clipboard</button>
     </div>
-
-    <textarea id="condenseTranslateTA"></textarea>
-
     <a name="combineTA"></a>
-    <div>
-        <button type="button" onclick="combine()">Combine</button>;
-        Go to:
-        <a href="#rawTA">RawTA</a>
-        <a href="#separateTA">SeparateTA</a>
-        <a href="#condenseTA">CondenseTA</a>
-        <a href="#translateTA">TranslateTA</a>
-        <a href="#condenseTranslateTA">CondenseTranslateTA</a>
-    </div>
     <textarea id="combineTA"></textarea>
+    <a name="html"></a>
+    <div id="show"></div>
     <script>
         function saveRaw(){
             rawTA.select()
@@ -150,125 +107,111 @@
             separateTA.select()
             navigator.clipboard.writeText(separateTA.value)
         }
-        function condense() {
-            let txt = separateTA.value
-            // console.log(txt)
-            // convert to array
+        function translate2Clipboard(){
+            translateTA.select()
+            navigator.clipboard.writeText(translateTA.value)
+        }
+        function combine2Clipboard(){
+            combineTA.select()
+            navigator.clipboard.writeText(combineTA.value)
+        }
+        function removeEmptyLines(){
+            let txt = translateTA.value
             let arr = txt.split('\n')
-            let arr1 = []
-            let i = 0;
-            do {
-                if ( isFinite(arr[i])){
-                    arr1.push(arr[i])
-                    i++;
-                    i++;
-                    i++;
-                } else {
-                    arr1.push(arr[i])
-                    i++
-                }
-            } while (i < arr.length)            // console.log(arr1)
-            // remove empty line
-            // arr1 = arr1.filter(e => e.length > 1)
-                // convert paragraph number to '~~ '
-            console.log("arr1:",arr1.length)
-            arr1.shift()
-            console.log("arr1:",arr1.length)
-            arr = arr1.map(e => isFinite(e)? "~~ ": e+'~ ')
-            txt = arr.join('')//
-            txt = txt.replaceAll('~ ~~', '~~')
-            // console.log(arr)
-            condenseTA.value = txt
-        }
-        // function convertGtLt(){
-        //     translateTA.value = translateTA.value.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-        // }
-        function condense2clipboard(){
-            condenseTA.select()
-            navigator.clipboard.writeText(condenseTA.value)
+            let newArr = arr.filter(e => e.length > 0)
+            let newTxt = newArr.join('\n')
+            translateTA.value = newTxt
         }
 
-        function condenseTranslate() {
-            let txt = translateTA.value.replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-            // console.log(txt)
-            // convert to array
-            let arr = txt.split('\n')
-            // remove empty line
-                .filter(e => e.length > 0)
-            let i = 0;
-            let arr1 = []
-
-            do {
-                if ( isFinite(arr[i])){
-                    arr1.push(arr[i])
-                    i++;
-                    i++;
-                    i++;
-                } else {
-                    arr1.push(arr[i])
-                    i++
-                }
-
-            } while (i < arr.length)
-                // convert paragraph number to '~~ '
-            arr1.shift()
-            arr = arr1.map(e => isFinite(e)? "~~ ": e+'~ ').join('').replaceAll('~ ~~', '~~')
-            console.log(arr)
-            condenseTranslateTA.value = arr
-        }
-        function condenseTranslate2clipboard(){
-            condenseTranslateTA.select()
-            navigator.clipboard.writeText(condenseTranslateTA.value)
-        }
-
-        function combine() {
-            let condenseArray = condenseTA.value
-                .replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-            .split('~~')
-            let condenseTranslateArray = condenseTranslateTA.value
-                .replaceAll("&lt;", "<")
-                .replaceAll("&gt;", ">")
-            .split('~~')
-            let iLength = 0
-            if (condenseArray.length === condenseTranslateArray.length){
-                iLength = condenseArray.length
-            } else {
-                iLength = Math.min(condenseArray.length, condenseTranslateArray.length)
-                alert("Array lengths not equal")
-            }
-            let str = ''
-            for (let i = 0; i < iLength; i++){
-                let condArray = condenseArray[i].split('~')
-                let condTransArray = condenseTranslateArray[i].split('~')
-                let jLength = 0
-                if (condArray.length === condTransArray.length){
-                    jLength = condArray.length 
-                } else {
-                    alert(`jLengths are not equal: (${i}+1)` )
-                    console.log(condArray)
-                    console.log(condTransArray)
-                    jLength = Math.min(condArray.length, condTransArray.length)
-                }
-                for (let j = 0; j < jLength; j++){
-                    if( condArray[j] == condTransArray[j]){
-                        str += condArray[j]+'\n'+'\n'+'\n-------\n'
+        function combine1(){
+            let sourceTxt = separateTA.value.trim()
+            let translateTxt = translateTA.value.trim()
+            let sourceArr = sourceTxt.split('\n')
+            let translateArr = translateTxt.split('\n')
+            
+            if (sourceArr.length === translateArr.length){
+                
+                combineTA.value = ''
+                // keep paragraph number, remove paragraph length, remove sum length
+                let i = 0
+                let p = 1
+                let str = '<p>';
+                
+                do {
+                    if (sourceArr[i].trim() !== translateArr[i].trim() ) {
+                        str += `<span> ${sourceArr[i]} </span>`
+                        str += `<span style="color: blue"> ${translateArr[i]} </span>`
                         
-                    } else {
-                        str += condArray[j]+'\n'+condTransArray[j]+'\n-------\n'
                     }
+                    if (p === Number(sourceArr[i].trim())){
+                        str += `</p>\n<p> paragraph: ${p} `
+                        p++
+                    }
+                    // if (sourceArr[i].trim() === translateArr[i].trim() && isFinite(sourceArr[i].trim())){
+                    //     str += `p:${p}, ${sourceArr[i]}`
+                    // }
+                    i++
+                } while (i < sourceArr.length)
+                str += "</p>"
+                show.innerHTML = str
+            } else {
+                alert("difference length")
+                show.innerHTML = ''
+                let smallArrLength = Math.min(sourceArr.length, translateArr.length)
+                let txt = ""
+                for (let i = 0; i < smallArrLength; i++){
+                    txt += sourceArr[i] + '\n' + translateArr[i] + '\n-------\n'
                 }
-                str += `(${i})==============\n`
-                // str += condenseArray[i] + '\n----------\n' + condenseTranslateArray[i] + '\n///////////////////////////////\n'  
+                combineTA.value = txt
             }
-            combineTA.textContent = str
         }
+        function output2File () {
+            if (combineTA.value.length > 0){
+            let fileNum = Number(combineTA.value)
+            let txt = `
+&lt;!DOCTYPE html\>
+&lt;html lang="en"\>
+   &lt;head\>
+      &lt;meta charset="UTF-8"\>
+      &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"\>
+      &lt;title\>KinhTrungBo${fileNum}&lt;/title\>
+   &lt;/head\>
+   &lt;body\>
+      &lt;div\>
+         &lt;div\>
+            &lt;button id="stop"\>Stop!&lt;/button\>
+            &lt;button id="speak"\>Speak&lt;/button\>
+         &lt;/div\>
+         &lt;label\>&lt;input type="checkbox" id="readeng" name="pencil" \>read English only&lt;/label\>&lt;br\>
+         &lt;a href="./kinhTrungBo${fileNum-1}.html"\>Prev&lt;/a\>
+         &lt;a href="./kinhTrungBo.html"\>Index&lt;/a\>
+         &lt;a href="./kinhTrungBo${fileNum+1}.html"\>Next&lt;/a\>
+      &lt;/div\>
+      Source: //www.budsas.org/uni/u-kinh-trungbo/trung${fileNum}.htm and Google translate
+      &lt;div style="font-size: larger;" class="read"\>&lt;/div\>
+      &lt;div class="vietEng"\>
+      &lt;/div\>
+      &lt;div \>
+         &lt;pre id="engP" style="display:none"\>
+${translateTA.value}
+         &lt;/pre\>
+         &lt;pre id="vietP" style="display:none"\>
+${separateTA.value}
+         &lt;/pre\>
+      &lt;/div\>
+      &lt;script src="./ktb.js"\>&lt;/script\>
+   &lt;/body\>
+&lt;/html\>`
+            combineTA.value = txt.replaceAll("&lt;", "<")
+        }}
+
         const rawTA = document.getElementById("rawTA")
         const separateTA = document.getElementById("separateTA")
-        const condenseTA = document.getElementById("condenseTA")
+        // const condenseTA = document.getElementById("condenseTA")
         const translateTA = document.getElementById("translateTA")
-        const condenseTranslateTA = document.getElementById("condenseTranslateTA")
+        // const condenseTranslateTA = document.getElementById("condenseTranslateTA")
         const combineTA = document.getElementById("combineTA")
+        const show = document.getElementById("show")
         rawTA.focus()
     </script>
 </body>
