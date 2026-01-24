@@ -7,10 +7,12 @@ const translateTA = document.getElementById("translateTA")
 const combineTA = document.getElementById("combineTA")
 const show = document.getElementById("show")
 ////////////////////////
+const separateDiv = document.getElementById("separateDiv")
 const saveRawBtn = document.getElementById("saveRawBtn")
 const retrieveRawBtn = document.getElementById("retrieveRawBtn")
 const separateBtn = document.getElementById("separateBtn")
 const separate2ClipboardBtn = document.getElementById("separate2ClipboardBtn")
+const divideBtn = document.getElementById("divideBtn")
 const removeEmptyLinesTranslateTABtn = document.getElementById("removeEmptyLinesTranslateTABtn")
 const saveTranslateBtn = document.getElementById("saveTranslateBtn")
 const retrieveTranslateBtn = document.getElementById("retrieveTranslateBtn")
@@ -46,6 +48,7 @@ if (!separateBtn){
 }
 separateBtn.addEventListener('click', function () {
    let sumLength = 0
+   let groupNumber = 0
    let txt = rawTA.value
       .replaceAll(". ", ".. ")
       .replaceAll(": ", ":: ")
@@ -58,9 +61,12 @@ separateBtn.addEventListener('click', function () {
       .split('\n') // split to array
       .filter(e => e.length>1) // remove empty lines
       .map((e,i) => { // each array is a paragraph, out put array number, total length
-         if(sumLength+e.length>4200)sumLength=e.length
+         if(sumLength+e.length>4200){
+            sumLength=e.length
+            groupNumber++
+         }
          else sumLength += e.length
-         return `${i}\n${e.length}\n${sumLength}\n`+e.trim()
+         return `${i}\n${groupNumber}\n${sumLength}\n`+e.trim()
       })
    array = array.map(e => e.split(/[.;:?!] /g).join("\n"))
    separateTA.value = array.join("\n")
@@ -74,6 +80,60 @@ if (!separate2ClipboardBtn){
 separate2ClipboardBtn.addEventListener('click', ()=>{
    separateTA.select()
    navigator.clipboard.writeText(separateTA.value)
+})
+////////////////////////
+if (!separateDiv){
+   console.log("separateDiv not found");
+}
+if (!divideBtn){
+   console.log("divideBtn not found");
+}
+let separateArr = []
+let separateArrBtn = []
+divideBtn.addEventListener('click', () => {
+   let wholeTxt = separateTA.value.trim()
+   let wholeTxtArr = wholeTxt.split('\n')
+   let lineNumber = Number(wholeTxtArr[0])
+   let groupNumber = Number(wholeTxtArr[1])
+   let sumLength = Number(wholeTxtArr[2])
+   let groupArr = [[]]
+   let groupArrI = 0
+   let isNewGroup = false
+   do{
+      
+      if ( wholeTxtArr[lineNumber] && isNumberLine(wholeTxtArr[lineNumber].trim()) &&
+         wholeTxtArr[lineNumber+1] && isNumberLine(wholeTxtArr[lineNumber+1].trim()) &&
+         wholeTxtArr[lineNumber+2] && isNumberLine(wholeTxtArr[lineNumber+2].trim()) ){
+         if (groupNumber < Number(wholeTxtArr[lineNumber+1])){
+            groupArr.push([])
+            groupArrI++
+            groupNumber++
+         }
+            groupArr[groupArrI].push(wholeTxtArr[lineNumber])
+            groupArr[groupArrI].push(wholeTxtArr[lineNumber+1])
+            groupArr[groupArrI].push(wholeTxtArr[lineNumber+2])
+            if (groupNumber < Number(wholeTxtArr[lineNumber+1])){
+               isNewGroup = true
+            }
+            lineNumber++
+            lineNumber++
+      } else {
+         groupArr[groupArrI].push(wholeTxtArr[lineNumber])
+         
+      }
+      lineNumber++
+   } while( lineNumber < wholeTxtArr.length)
+   separateArr = groupArr
+   for (let i = 0; i < separateArr.length; i++){
+      separateArrBtn[i] = document.createElement("button")
+      separateDiv.appendChild(separateArrBtn[i])
+      separateArrBtn[i].textContent = `Group ${i}`
+      separateArrBtn[i].addEventListener('click', () => {
+         let groupTxt = separateArr[i].join('\n')
+         navigator.clipboard.writeText(groupTxt)
+      })
+   }
+   console.log(separateArr)
 })
 ////////////////////////
 // translate section
