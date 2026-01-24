@@ -109,14 +109,14 @@ divideBtn.addEventListener('click', () => {
             groupArrI++
             groupNumber++
          }
-            groupArr[groupArrI].push(wholeTxtArr[lineNumber])
-            groupArr[groupArrI].push(wholeTxtArr[lineNumber+1])
-            groupArr[groupArrI].push(wholeTxtArr[lineNumber+2])
-            if (groupNumber < Number(wholeTxtArr[lineNumber+1])){
-               isNewGroup = true
-            }
-            lineNumber++
-            lineNumber++
+         groupArr[groupArrI].push(wholeTxtArr[lineNumber])
+         groupArr[groupArrI].push(wholeTxtArr[lineNumber+1])
+         groupArr[groupArrI].push(wholeTxtArr[lineNumber+2])
+         if (groupNumber < Number(wholeTxtArr[lineNumber+1])){
+            isNewGroup = true
+         }
+         lineNumber++
+         lineNumber++
       } else {
          groupArr[groupArrI].push(wholeTxtArr[lineNumber])
          
@@ -172,6 +172,24 @@ removeEmptyLinesTranslateTABtn.addEventListener('click', () =>{
    let newArr = arr.filter(e => e.length > 0)
    let newTxt = newArr.join('\n')
    translateTA.value = newTxt
+   let newArrI = 0
+   let found3 = []
+   do{
+      if ( newArr[newArrI] && isNumberLine(newArr[newArrI].trim()) &&
+      newArr[newArrI+1] && isNumberLine(newArr[newArrI+1].trim()) &&
+      newArr[newArrI+2] && isNumberLine(newArr[newArrI+2].trim()) ){
+         found3.push(Number(newArr[newArrI]))
+         newArrI++
+         newArrI++
+      } 
+      newArrI++
+   } while (newArrI < newArr.length)
+   combineTA.value = ''
+   for (let i = 1; i < found3.length; i++){
+      if (found3[i] - found3[i-1] > 1){
+         combineTA.value += `${found3[i-1]} to ${found3[i]}\n`
+      }
+   }
 })
 ////////////////////////
 ////////////////////////
