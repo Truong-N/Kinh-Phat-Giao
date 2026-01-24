@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>KinhTrungBo11</title>
+   </head>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./kinhTrungBo10.html">Prev</a>
+         <a href="./kinhTrungBo.html">Index</a>
+         <a href="./kinhTrungBo12.html">Next</a>
+      </div>
+      Source: //www.budsas.org/uni/u-kinh-trungbo/trung11.htm and Google translate
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      </div>
+      <div >
+         <pre id="engP" style="display:none">
+0
+92
+92
+Trình xử lý sự kiện nội tuyến là gì và tại sao thay vào đó nên sử dụng addEventListener là cách tốt nhất?
+1
+179
+271
+Trong các bài học trước, bạn đã học cách làm việc với các sự kiện bằng cách sử dụng phương thức addEventListener().
+Nhưng có một cách khác không được khuyến nghị để làm việc với các sự kiện trong JavaScript.
+2
+126
+397
+Trình xử lý sự kiện nội tuyến là các thuộc tính đặc biệt trên phần tử HTML được sử dụng để thực thi mã JavaScript khi sự kiện xảy ra.
+3
+74
+471
+Dưới đây là ví dụ về thành phần nút có trình xử lý sự kiện nhấp chuột nội tuyến:
+4
+71
+542
+//
+5
+128
+670
+Khi người dùng nhấp vào nút, chức năng cảnh báo sẽ được gọi và hộp thoại cảnh báo sẽ hiển thị với thông báo Hello World!.
+6
+116
+786
+Một cách khác để sử dụng trình xử lý sự kiện nội tuyến là gọi hàm được xác định trong thẻ tập lệnh trong tài liệu HTML.
+7
+113
+899
+Dưới đây là ví dụ về cách xác định hàm có tên là ChangeBgColor và gọi nó từ trình xử lý sự kiện nhấp chuột nội tuyến:
+8
+14
+913
+
+9
+28
+941
+
+10
+54
+995
+
+11
+3
+998
+
+12
+15
+1013
+
+13
+78
+1091
+
+14
+235
+1326
+Khi người dùng nhấp vào nút, hàm ChangeBgColor sẽ được gọi và màu nền của trang sẽ chuyển sang màu xanh nhạt.
+Mặc dù có thể sử dụng các trình xử lý sự kiện nội tuyến như thế này nhưng nó không được coi là cách thực hành tốt nhất.
+15
+480
+1806
+Vì một lý do, trình xử lý sự kiện nội tuyến chỉ có thể được sử dụng để đính kèm một trình xử lý sự kiện vào một phần tử.
+Nếu bạn muốn đính kèm nhiều trình xử lý sự kiện vào cùng một phần tử, bạn sẽ cần sử dụng addEventListener().
+Một lý do khác là trình xử lý sự kiện nội tuyến kết hợp mã HTML và JavaScript với nhau, điều này có thể khiến mã của bạn khó đọc và bảo trì hơn.
+Tốt hơn là bạn nên tách biệt mã HTML và mã JavaScript bằng cách sử dụng addEventListener() để đính kèm trình xử lý sự kiện vào các phần tử.
+16
+180
+1986
+Trình xử lý sự kiện nội tuyến không được khuyến nghị sử dụng trong JavaScript hiện đại.
+Vì vậy, cách tốt nhất là bạn nên sử dụng phương thức addEventListener() khi làm việc với các sự kiện trong JavaScript.
+17
+9
+1995
+Câu hỏi
+18
+32
+2027
+Trình xử lý sự kiện nội tuyến là gì?
+19
+58
+2085
+Một phương thức để đính kèm nhiều trình xử lý sự kiện vào một phần tử.
+20
+83
+2168
+Thuộc tính trên phần tử HTML thực thi mã JavaScript khi một sự kiện xảy ra.
+21
+56
+2224
+Một cách để xác định các hàm trong một tệp JavaScript riêng biệt.
+22
+35
+2259
+Một kiểu tạo kiểu CSS cho các phần tử.
+23
+94
+2353
+Tại sao việc sử dụng addEventListener() thay vì trình xử lý sự kiện nội tuyến được coi là cách tốt nhất?
+24
+64
+2417
+addEventListener() cho phép bạn kết hợp HTML và JavaScript một cách dễ dàng.
+25
+71
+2488
+Trình xử lý sự kiện nội tuyến chỉ có thể đính kèm một trình xử lý sự kiện vào một phần tử.
+26
+38
+2526
+addEventListener() dễ viết hơn.
+27
+57
+2583
+Trình xử lý sự kiện nội tuyến nhanh hơn addEventListener().
+28
+60
+2643
+Hạn chế tiềm ẩn của việc sử dụng trình xử lý sự kiện nội tuyến là gì?
+29
+46
+2689
+Chúng nhanh hơn việc sử dụng addEventListener().
+30
+32
+2721
+Họ yêu cầu nhiều dòng mã hơn.
+31
+73
+2794
+Chúng làm cho mã khó đọc và bảo trì hơn bằng cách trộn lẫn HTML và JavaScript.
+32
+35
+2829
+Chúng chỉ có thể được sử dụng với các nút.
+         </pre>
+         <pre id="vietP" style="display:none">
+0
+92
+92
+What Are Inline Event Handlers, and Why Is It Best Practice to Use addEventListener Instead?
+1
+179
+271
+In the previous lessons, you learned how to work with events by using the addEventListener() method.
+But there is another, not recommended way, to work with events in JavaScript.
+2
+126
+397
+Inline event handlers are special attributes on an HTML element that are used to execute JavaScript code when an event occurs.
+3
+74
+471
+Here is an example of a button element with an inline click event handler:
+4
+71
+542
+<pre>&lt;button onclick="alert('Hello World!')"&gt;Show alert&lt;/button&gt;</pre>
+5
+128
+670
+When the user clicks on the button, the alert function is called and an alert dialog is displayed with the message Hello World!.
+6
+116
+786
+Another way to use inline event handlers is to call a function that is defined in a script tag in the HTML document.
+7
+113
+899
+Here is an example of defining a function called changeBgColor and calling it from an inline click event handler:
+8
+14
+913
+&lt;script&gt;
+9
+28
+941
+function changeBgColor() {
+10
+54
+995
+document.body.style.backgroundColor = "lightblue";
+11
+3
+998
+}
+12
+15
+1013
+&lt;/script&gt;
+13
+78
+1091
+<pre>&lt;button onclick="changeBgColor()"&gt;Change background color&lt;/button&gt;</pre>
+14
+235
+1326
+When the user clicks on the button, the changeBgColor function is called and the background color of the page is changed to light blue.
+While it is possible to use inline event handlers like this, it is not considered a best practice.
+15
+480
+1806
+For one reason, inline event handlers can only be used to attach one event listener to an element.
+If you want to attach multiple event listeners to the same element, you will need to use addEventListener().
+Another reason is that inline event handlers mix HTML and JavaScript code together, which can make your code harder to read and maintain.
+It is better to keep your HTML code and JavaScript code separate by using addEventListener() to attach event listeners to elements.
+16
+180
+1986
+Inline event handlers are not recommended for use in modern JavaScript.
+So, it is best practice to stick with the addEventListener() method when working with events in JavaScript.
+17
+9
+1995
+Questions
+18
+32
+2027
+What is an inline event handler?
+19
+58
+2085
+A method to attach multiple event listeners to an element.
+20
+83
+2168
+An attribute on an HTML element that executes JavaScript code when an event occurs.
+21
+56
+2224
+A way to define functions in a separate JavaScript file.
+22
+35
+2259
+A type of CSS styling for elements.
+23
+94
+2353
+Why is it considered best practice to use addEventListener() instead of inline event handlers?
+24
+64
+2417
+addEventListener() allows you to mix HTML and JavaScript easily.
+25
+71
+2488
+Inline event handlers can only attach one event listener to an element.
+26
+38
+2526
+addEventListener() is easier to write.
+27
+57
+2583
+Inline event handlers are faster than addEventListener().
+28
+60
+2643
+What is a potential drawback of using inline event handlers?
+29
+46
+2689
+They are faster than using addEventListener().
+30
+32
+2721
+They require more lines of code.
+31
+73
+2794
+They make code harder to read and maintain by mixing HTML and JavaScript.
+32
+35
+2829
+They can only be used with buttons.
+         </pre>
+      </div>
+      <script src="./js0.js"></script>
+   </body>
+</html>

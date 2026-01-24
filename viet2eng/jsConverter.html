@@ -30,8 +30,8 @@
     <a name="rawTA"></a>
     <div >
         Raw Text
-        <button type="button" onclick="saveRaw()">Save</button>
-        <button type="button" onclick="retrieveRaw()">Retrieve</button>
+        <button type="button" id="saveRawBtn" >Save Raw</button>
+        <button type="button" id="retrieveRawBtn">Retrieve</button>
         
     </div>
 
@@ -39,9 +39,9 @@
 
     <a name="separateTA"></a>
     <div>
-        Process Text
-        <button type="button" onclick="separate()">Separate</button>
-        <button type="button" onclick="separate2clipboard()">clipboard</button>
+        Separate Text
+        <button type="button" id="separateBtn">Separate</button>
+        <button type="button" id="separate2ClipboardBtn">clipboard</button>
         
     </div>
     
@@ -50,169 +50,25 @@
     <a name="translateTA"></a>
     <div>
         Translated Text<br>
-        <button type="button" onclick="removeEmptyLines()">Remove Empty Lines</button>
-        <button type="button" onclick="saveTranslate()">Save</button>
-        <button type="button" onclick="retrieveTranslate()">Retrieve</button>
-        <button type="button" onclick="translate2Clipboard()">Clipboard</button>
+        <button type="button" id="removeEmptyLinesTranslateTABtn">Remove Empty Lines</button>
+        <button type="button" id="saveTranslateBtn">Save</button>
+        <button type="button" id="retrieveTranslateBtn">Retrieve</button>
+        <button type="button" id="translate2ClipboardBtn">Clipboard</button>
     </div>
 
     <textarea id="translateTA"></textarea>
     
     <div>
-        <button type="button" onclick="combine1()">Combine</button>
-        <button type="button" onclick="output2File()">Output</button>
-        <button type="button" onclick="combine2Clipboard()">Clipboard</button>
+        <button type="button" id="combineBtn">Combine</button>
+        <button type="button" id="output2FileBtn">Output</button>
+        <button type="button" id="combine2ClipboardBtn">Clipboard</button>
     </div>
     <a name="combineTA"></a>
     <textarea id="combineTA"></textarea>
     <a name="html"></a>
     <div id="show"></div>
-    <script>
-        function saveRaw(){
-            rawTA.select()
-            localStorage.setItem("raw", rawTA.value)
-        }
-        function retrieveRaw(){
-            rawTA.value = localStorage.getItem("raw")
-        }
-        function saveTranslate(){
-            translateTA.select()
-            localStorage.setItem("translate", translateTA.value)
-        }
-        function retrieveTranslate(){
-            translateTA.value = localStorage.getItem("translate")
-        }
-        function separate() {
-            let sumLength = 0
-            let txt = rawTA.value
-                .replaceAll(". ", ".. ")
-                .replaceAll(": ", ":: ")
-                .replaceAll("; ", ";; ")
-                .replaceAll("? ", "?? ")
-                .replaceAll("! ", "!! ")
-                .replaceAll('<', '&lt;')
-                .replaceAll('>', '&gt;')
-            let array = txt
-                .split('\n') // split to array
-                .filter(e => e.length>1) // remove empty lines
-                .map((e,i) => { // each array is a paragraph, out put array number, total length
-                    if(sumLength+e.length>4200)sumLength=e.length
-                    else sumLength += e.length
-                    return `${i}\n${e.length}\n${sumLength}\n`+e.trim()
-                })
-            array = array.map(e => e.split(/[.;:?!] /g).join("\n"))
-            separateTA.value = array.join("\n")
-        }
-        function separate2clipboard(){
-            separateTA.select()
-            navigator.clipboard.writeText(separateTA.value)
-        }
-        function translate2Clipboard(){
-            translateTA.select()
-            navigator.clipboard.writeText(translateTA.value)
-        }
-        function combine2Clipboard(){
-            combineTA.select()
-            navigator.clipboard.writeText(combineTA.value)
-        }
-        function removeEmptyLines(){
-            let txt = translateTA.value
-            let arr = txt.split('\n')
-            let newArr = arr.filter(e => e.length > 0)
-            let newTxt = newArr.join('\n')
-            translateTA.value = newTxt
-        }
-
-        function combine1(){
-            let sourceTxt = separateTA.value.trim()
-            let translateTxt = translateTA.value.trim()
-            let sourceArr = sourceTxt.split('\n')
-            let translateArr = translateTxt.split('\n')
-            
-            if (sourceArr.length === translateArr.length){
-                
-                combineTA.value = ''
-                // keep paragraph number, remove paragraph length, remove sum length
-                let i = 0
-                let p = 1
-                let str = '<p>';
-                
-                do {
-                    if (sourceArr[i].trim() !== translateArr[i].trim() ) {
-                        str += `<span> ${sourceArr[i]} </span>`
-                        str += `<span style="color: blue"> ${translateArr[i]} </span>`
-                        
-                    }
-                    if (p === Number(sourceArr[i].trim())){
-                        str += `</p>\n<p> paragraph: ${p} `
-                        p++
-                    }
-                    // if (sourceArr[i].trim() === translateArr[i].trim() && isFinite(sourceArr[i].trim())){
-                    //     str += `p:${p}, ${sourceArr[i]}`
-                    // }
-                    i++
-                } while (i < sourceArr.length)
-                str += "</p>"
-                show.innerHTML = str
-            } else {
-                alert("difference length")
-                show.innerHTML = ''
-                let smallArrLength = Math.min(sourceArr.length, translateArr.length)
-                let txt = ""
-                for (let i = 0; i < smallArrLength; i++){
-                    txt += sourceArr[i] + '\n' + translateArr[i] + '\n-------\n'
-                }
-                combineTA.value = txt
-            }
-        }
-        function output2File () {
-            if (combineTA.value.length > 0){
-            let fileNum = Number(combineTA.value)
-            let txt = `
-&lt;!DOCTYPE html\>
-&lt;html lang="en"\>
-   &lt;head\>
-      &lt;meta charset="UTF-8"\>
-      &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"\>
-      &lt;title\>KinhTrungBo${fileNum}&lt;/title\>
-   &lt;/head\>
-   &lt;body\>
-      &lt;div\>
-         &lt;div\>
-            &lt;button id="stop"\>Stop!&lt;/button\>
-            &lt;button id="speak"\>Speak&lt;/button\>
-         &lt;/div\>
-         &lt;label\>&lt;input type="checkbox" id="readeng" name="pencil" \>read English only&lt;/label\>&lt;br\>
-         &lt;a href="./kinhTrungBo${fileNum-1}.html"\>Prev&lt;/a\>
-         &lt;a href="./kinhTrungBo.html"\>Index&lt;/a\>
-         &lt;a href="./kinhTrungBo${fileNum+1}.html"\>Next&lt;/a\>
-      &lt;/div\>
-      Source: //www.budsas.org/uni/u-kinh-trungbo/trung${fileNum}.htm and Google translate
-      &lt;div style="font-size: larger;" class="read"\>&lt;/div\>
-      &lt;div class="vietEng"\>
-      &lt;/div\>
-      &lt;div \>
-         &lt;pre id="engP" style="display:none"\>
-${translateTA.value}
-         &lt;/pre\>
-         &lt;pre id="vietP" style="display:none"\>
-${separateTA.value}
-         &lt;/pre\>
-      &lt;/div\>
-      &lt;script src="./ktb.js"\>&lt;/script\>
-   &lt;/body\>
-&lt;/html\>`
-            combineTA.value = txt.replaceAll("&lt;", "<")
-        }}
-
-        const rawTA = document.getElementById("rawTA")
-        const separateTA = document.getElementById("separateTA")
-        // const condenseTA = document.getElementById("condenseTA")
-        const translateTA = document.getElementById("translateTA")
-        // const condenseTranslateTA = document.getElementById("condenseTranslateTA")
-        const combineTA = document.getElementById("combineTA")
-        const show = document.getElementById("show")
-        rawTA.focus()
+    <script src="./jsConverter.js">
+        
     </script>
 </body>
 </html>
