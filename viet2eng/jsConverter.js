@@ -79,7 +79,22 @@ if (!separate2ClipboardBtn){
 
 separate2ClipboardBtn.addEventListener('click', ()=>{
    separateTA.select()
-   navigator.clipboard.writeText(separateTA.value)
+   let txt = separateTA.value
+   let arr = txt.split('\n')
+   arr = arr.map(e => e+"<br>")
+   txt = arr.join(" ")
+   let txt1 =`<!DOCTYPE html>
+<html lang="vi">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <p>
+`
+   
+   navigator.clipboard.writeText(txt1+txt+"</p></body></html>")
 })
 ////////////////////////
 if (!separateDiv){
