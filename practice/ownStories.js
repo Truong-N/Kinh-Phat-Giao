@@ -22,10 +22,12 @@ const storyObj = {
 };
 
 function displayStory(genre) {
-  if (genre in storyObj){
-    result.textContent = genre
+  if(storyObj.hasOwnProperty(genre)){
+    resultParagraph.innerHTML = storyObj[genre].story 
+    storyContainer.style.borderColor = storyObj[genre].borderColor
   }
 }
 
-scaryStoryBtn.addEventListener("click", displayStory);
-
+scaryStoryBtn.addEventListener("click", displayStory.bind(null,"scary"));
+funnyStoryBtn.addEventListener("click", displayStory.bind(null,"funny"));
+adventureStoryBtn.addEventListener("click", displayStory.bind(null,"adventure"));

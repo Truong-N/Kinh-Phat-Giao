@@ -26,46 +26,54 @@
         <a href="#html">html</a><br><br>
         <a href="#combineTA">Combine</a><br><br>
     </div>
-
+    <div><a name="rawTA"></a></div>
     
-    <div ><a name="rawTA"></a>
-        Raw Text <br>
+    <textarea id="rawTA"></textarea>
+    <p>Copy text from web site and paste into textarea</p>
+    <div >
+        Raw Textarea Above
         <button type="button" id="saveRawBtn" >Save Raw</button>
         <button type="button" id="retrieveRawBtn">Retrieve</button>
+        <button type="button" id="paragraphBtn">Check Paragraph Length</button>
         
     </div>
+    <p id="paragraph-length-error">Not checking yet</p>
+    <p>Remind: Add sutra number to the first line, remove dot at the third line</p>
 
-    <textarea id="rawTA"></textarea>
-
+    <div><a name="separateTA"></a></div>
     
-    <div><a name="separateTA"></a>
-        Separate Text <br>
+    <textarea id="separateTA"></textarea>
+    <div>
+        Separate Textarea Above 
         <button type="button" id="separateBtn">Separate</button>
         <button type="button" id="separate2ClipboardBtn">clipboard</button>
         <button type="button" id="divideBtn">divide</button>
-        
     </div>
     
-    <textarea id="separateTA"></textarea>
-    
-    <a name="translateTA"></a>
-    <div id="separateDiv">
-        Translated Text<br>
+
+    <div><a name="translateTA"></a></div>
+    <textarea id="translateTA"></textarea>
+    <div id="btn-list-div"></div>    
+    <div id="translate-ta-error-div">Not checking Translate Textarea yet</div>
+    <div>
+        Translated Textarea Above
         <button type="button" id="removeEmptyLinesTranslateTABtn">Remove Empty Lines</button>
         <button type="button" id="saveTranslateBtn">Save</button>
         <button type="button" id="retrieveTranslateBtn">Retrieve</button>
         <button type="button" id="translate2ClipboardBtn">Clipboard</button>
+        <button type="button" id="paste-btn">Paste</button>
+
     </div>
 
-    <textarea id="translateTA"></textarea>
-    
-    <div>Combine <br>
+    <a name="combineTA"></a>
+    <textarea id="combineTA"></textarea>
+    <div>Combine Textarea Above
+         <!-- <label><input type="checkbox" id="readeng" name="pencil" >not working</label><br> -->
         <button type="button" id="combineBtn">Combine</button>
         <button type="button" id="output2FileBtn">Output</button>
         <button type="button" id="combine2ClipboardBtn">Clipboard</button>
     </div>
-    <a name="combineTA"></a>
-    <textarea id="combineTA"></textarea>
+    <div id="combine-div">No Error</div>
     <a name="html"></a>
     <div id="show"></div>
     <script src="./jsConverter.js">

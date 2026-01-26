@@ -7,7 +7,14 @@ const translateTA = document.getElementById("translateTA")
 const combineTA = document.getElementById("combineTA")
 const show = document.getElementById("show")
 ////////////////////////
-const separateDiv = document.getElementById("separateDiv")
+const combineDiv = document.getElementById("combine-div")
+const buttonListDiv = document.getElementById("btn-list-div")
+const translateTAErrorDiv = document.getElementById("translate-ta-error-div")
+////////////////////////
+const paragraphLengthErrorP = document.getElementById("paragraph-length-error")
+////////////////////////
+
+const paragraphBtn = document.getElementById("paragraphBtn")
 const saveRawBtn = document.getElementById("saveRawBtn")
 const retrieveRawBtn = document.getElementById("retrieveRawBtn")
 const separateBtn = document.getElementById("separateBtn")
@@ -17,6 +24,7 @@ const removeEmptyLinesTranslateTABtn = document.getElementById("removeEmptyLines
 const saveTranslateBtn = document.getElementById("saveTranslateBtn")
 const retrieveTranslateBtn = document.getElementById("retrieveTranslateBtn")
 const translate2ClipboardBtn = document.getElementById("translate2ClipboardBtn")
+const pasteBtn = document.getElementById("paste-btn")
 const combineBtn = document.getElementById("combineBtn")
 const combine2ClipboardBtn = document.getElementById("combine2ClipboardBtn")
 const output2FileBtn = document.getElementById("output2FileBtn")
@@ -24,7 +32,7 @@ const output2FileBtn = document.getElementById("output2FileBtn")
 // Regex to check if a line contains only digits
 const isNumberLine = line => /^\d+$/.test(line);
 ////////////////////////
-////////////////////////
+//////////////////////// Save Raw Button
 if (!saveRawBtn){
    console.log("saveRawBtn not found");
 }
@@ -34,15 +42,37 @@ saveRawBtn.addEventListener('click', function (){
       localStorage.setItem("raw", rawTA.value)
    } else {console.log("Raw text area is empty")}
 })
-////////////////////////
+
+//////////////////////// Retrive Raw Button
 if (!retrieveRawBtn){
    console.log("retrieveRawBtn not found");
 }
 retrieveRawBtn.addEventListener('click', function (){
    rawTA.value = localStorage.getItem("raw")
 })
+
+//////////////////////// Check Paragraph Length Button
+if (!paragraphBtn){
+   console.log("paragraphBtn not found")
+}
+paragraphBtn.addEventListener("click", () =>{
+   paragraphLengthErrorP.innerHTML = ''
+   let txt = rawTA.value.trim()
+   separateTA.value = ''
+   let paragraphs = txt.split("\n")
+   let i = 0;
+   for(const paragraph of paragraphs){
+      if(paragraph.length > 4200){
+         paragraphLengthErrorP.innerHTML += `(${i}) ${paragraph.slice(0,20)} <br>`
+      } 
+      i++
+   }
+   if(paragraphLengthErrorP.innerHTML === ''){
+      paragraphLengthErrorP.innerHTML = "Finished checking paragraph length"
+   }
+})
 ////////////////////////
-///////////////////////
+/////////////////////// Separate Button
 if (!separateBtn){
    console.log("separateBtn not found");
 }
@@ -72,7 +102,7 @@ separateBtn.addEventListener('click', function () {
    separateTA.value = array.join("\n")
    }
 )
-////////////////////////
+//////////////////////// Copy separate textarea to clipboard
 if (!separate2ClipboardBtn){
    console.log("separate2ClipboardBtn not found");
 }
@@ -80,26 +110,15 @@ if (!separate2ClipboardBtn){
 separate2ClipboardBtn.addEventListener('click', ()=>{
    separateTA.select()
    let txt = separateTA.value
-   let arr = txt.split('\n')
-   arr = arr.map(e => e+"<br>")
-   txt = arr.join(" ")
-   let txt1 =`<!DOCTYPE html>
-<html lang="vi">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-</head>
-<body>
-   <p>
-`
-   
-   navigator.clipboard.writeText(txt1+txt+"</p></body></html>")
+   navigator.clipboard.writeText(txt);
 })
-////////////////////////
-if (!separateDiv){
-   console.log("separateDiv not found");
+//////////////////////// Google translate can handle max 5000 / page, if text in separate
+// textarea is too long, a list of buttons appears here in sequencial order
+// eadh button contain up to 5000 characters, 
+if (!buttonListDiv){
+   console.log("btn-list-div not found");
 }
+/////////////////////// Divide Button 
 if (!divideBtn){
    console.log("divideBtn not found");
 }
@@ -141,18 +160,19 @@ divideBtn.addEventListener('click', () => {
    separateArr = groupArr
    for (let i = 0; i < separateArr.length; i++){
       separateArrBtn[i] = document.createElement("button")
-      separateDiv.appendChild(separateArrBtn[i])
+      buttonListDiv.appendChild(separateArrBtn[i])
       separateArrBtn[i].textContent = `Group ${i}`
       separateArrBtn[i].addEventListener('click', () => {
          let groupTxt = separateArr[i].join('\n')
          navigator.clipboard.writeText(groupTxt)
+         separateArrBtn[i].style.display = "none"
       })
    }
-   console.log(separateArr)
+   // console.log(separateArr)
 })
 ////////////////////////
 // translate section
-///////////////////////
+/////////////////////// Save content of translate text area to momory
 if (!saveTranslateBtn){
    console.log("saveTranslateBtn not found");
 }
@@ -162,14 +182,14 @@ saveTranslateBtn.addEventListener('click', function (){
       localStorage.setItem("translate", translateTA.value)
    } else {console.log("translateTA is empty")}
 })
-////////////////////////
+//////////////////////// Retrieve Translate Textarea
 if(!retrieveTranslateBtn){
    console.log("retrieveTranslateBtn not found");
 }
 retrieveTranslateBtn.addEventListener('click', () =>{
    translateTA.value = localStorage.getItem("translate")
 })
-////////////////////////
+//////////////////////// copy content of translate textarea to clipboard
 if(!translate2ClipboardBtn){
    console.log("translate2ClipboardBtn not found");
 }
@@ -178,6 +198,9 @@ translate2ClipboardBtn.addEventListener('click', () =>{
    navigator.clipboard.writeText(translateTA.value)
 })
 ///////////////////////
+if (!translateTAErrorDiv){
+   console.log("translateTAErrorDiv not found")
+}
 if(!removeEmptyLinesTranslateTABtn){
    console.log("removeEmptyLinesTranslateTABtn not found")
 }        
@@ -200,9 +223,30 @@ removeEmptyLinesTranslateTABtn.addEventListener('click', () =>{
       newArrI++
    } while (newArrI < newArr.length)
    combineTA.value = ''
+   translateTAErrorDiv.innerHTML = ''
    for (let i = 1; i < found3.length; i++){
       if (found3[i] - found3[i-1] > 1){
-         combineTA.value += `${found3[i-1]} to ${found3[i]}\n`
+         translateTAErrorDiv.innerHTML += `${found3[i-1]} to ${found3[i]}; `
+      }
+   }
+})
+//////////////////////// append clipboard to translate texteara
+if (!pasteBtn){
+   console.log("pasteBtn not found")
+}
+pasteBtn.addEventListener("click", async() => {
+   if (!navigator.clipboard || !navigator.clipboard.readText) {
+      alert("Clipboard API not supported in this browser.");
+    
+   } else {
+      try {
+        // Request clipboard text
+        const text = await navigator.clipboard.readText();
+        console.log("text:", text)
+        translateTA.value += '\n' + text; // Paste into textarea
+      } catch (err) {
+        console.error("Failed to read clipboard: ", err);
+        alert("Unable to access clipboard. Please allow permissions.");
       }
    }
 })
@@ -216,6 +260,7 @@ combine2ClipboardBtn.addEventListener('click', ()=>{
    navigator.clipboard.writeText(combineTA.value)
 })
       
+//////////////////////// Combine Button
 if (!combineBtn){
    console.log("combineBtn not found")
 }
@@ -225,37 +270,38 @@ combineBtn.addEventListener('click', () =>{
    let sourceArr = sourceTxt.split('\n')
    let translateArr = translateTxt.split('\n')
    // compare source textarea and translate textarea   
-   if (sourceArr.length === translateArr.length){
-      // clear combine text area
-      combineTA.value = ''
-      // keep track paragraph number, remove paragraph length, remove sum length
-      let lineNumber= 0
-      let paragraphNumber = 1
-      let str = '<p>';
-      do {
-         // clean source line
-         let sourceLine = sourceArr[lineNumber].trim()
-         // clean translate line
-         let translateLine = translateArr[lineNumber].trim()
-         if (sourceLine !== translateLine ) {
-            str += `<span> ${sourceLine} </span>`
-            str += `<span style="color: blue"> ${translateLine} </span>`
-         }
-         if (isNumberLine(sourceLine) && paragraphNumber === Number(sourceLine)){
-            str += `</p>\n<p> paragraph: ${paragraphNumber} `
-            paragraphNumber++
-         }
-         lineNumber++
-      } while (lineNumber < sourceArr.length)
-      str += "</p>"
-      show.innerHTML = str
+   if (sourceArr.length !== translateArr.length){
+      combineDiv.innerHTML = 'Array lenght are not equal'
+      // // clear combine text area
+      // combineTA.value = ''
+      // // keep track paragraph number, remove paragraph length, remove sum length
+      // let lineNumber= 0
+      // let paragraphNumber = 1
+      // let str = '<p>';
+      // do {
+      //    // clean source line
+      //    let sourceLine = sourceArr[lineNumber].trim()
+      //    // clean translate line
+      //    let translateLine = translateArr[lineNumber].trim()
+      //    if (sourceLine !== translateLine ) {
+      //       str += `<span> ${sourceLine} </span>`
+      //       str += `<span style="color: blue"> ${translateLine} </span>`
+      //    }
+      //    if (isNumberLine(sourceLine) && paragraphNumber === Number(sourceLine)){
+      //       str += `</p>\n<p> paragraph: ${paragraphNumber} `
+      //       paragraphNumber++
+      //    }
+      //    lineNumber++
+      // } while (lineNumber < sourceArr.length)
+      // str += "</p>"
+      // show.innerHTML = str
    } else {
-      alert("difference length: sourceArr.length: "+sourceArr.length+", translateArr.length: "+translateArr.length)
+
       show.innerHTML = ''
-      let smallArrLength = Math.min(sourceArr.length, translateArr.length)
+      // let smallArrLength = Math.min(sourceArr.length, translateArr.length)
       let txt = ""
-      for (let i = 0; i < smallArrLength; i++){
-         txt += sourceArr[i] + '\n' + translateArr[i] + '\n-------\n'
+      for (let i = 0; i < sourceArr.length; i++){
+         txt += "s: "+sourceArr[i] + '\nt: ' + translateArr[i] + '\n'
       }
       combineTA.value = txt
    }
@@ -294,13 +340,10 @@ output2FileBtn.addEventListener('click', () =>{
       &lt;/div\>
       &lt;div \>
          &lt;pre id="engP" style="display:none"\>
-${translateTA.value}
-         &lt;/pre\>
-         &lt;pre id="vietP" style="display:none"\>
-${separateTA.value}
+${combineTA.value}
          &lt;/pre\>
       &lt;/div\>
-      &lt;script src="./ktb.js"\>&lt;/script\>
+      &lt;script src="./ktb1.js"\>&lt;/script\>
    &lt;/body\>
 &lt;/html\>`
    combineTA.value = txt.replaceAll("&lt;", "<")

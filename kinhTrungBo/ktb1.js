@@ -1,36 +1,53 @@
-         let vietEng = document.querySelector(".vietEng");
-         
-         let engParagraphs = document.getElementById("engP").textContent.trim()
-         let vietParagraphs = document.getElementById("vietP").textContent.trim()
-         let sourceArr = vietParagraphs.split('\n')
-         let translateArr = engParagraphs.split('\n')
+let vietEng = document.querySelector(".vietEng");
+
+let paragraphs = document.getElementById("engP").textContent.trim()
+paragraphs = paragraphs.split("\n")
+
+// Regex to check if a line contains only digits
+const isNumberLine = line => /^\d+$/.test(line);
+
+
          // remove paragraph number, remove paragraph length, remove sum length
          let vietReadArr = []
          let englishReadArr = []
-         let i = 0
-         let p = 1
+         let ind = 0
+         let paragraphNum = 1
          let str = '<p>';
-         
+         let sourceLine = ''
+         let translateLine = ''
          do {
-            console.log(sourceArr[i].trim())
-            console.log(translateArr[i].trim())
-            if (sourceArr[i].trim() !== translateArr[i].trim() ) {
-               vietReadArr.push(sourceArr[i])
-               englishReadArr.push(translateArr[i])
-               str += `<span> ${sourceArr[i]} </span>`
-               str += `<span style="color: blue"> ${translateArr[i]} </span>`
-            } else if (sourceArr[i].trim() === translateArr[i].trim() && !isFinite(sourceArr[i].trim())) {
+            sourceLine = paragraphs[ind].slice(3).trim()
+            translateLine = paragraphs[ind+1].slice(3).trim()
+
+            console.log(sourceLine)
+            console.log(translateLine)
+            
+            // if (sourceArr[i].trim() !== translateArr[i].trim() ) {
+            if (sourceLine != translateLine){
+               // vietReadArr.push(sourceArr[i])
+               vietReadArr.push(sourceLine)
+               englishReadArr.push(translateLine)
+               // str += `<span> ${sourceArr[i]} </span>`
+               str += `<span> ${sourceLine} </span>`
+               // str += `<span style="color: blue"> ${translateArr[i]} </span>`
+               str += `<span style="color: blue"> ${translateLine} </span>`
+            // } else if (sourceArr[i].trim() === translateArr[i].trim() && !isFinite(sourceArr[i].trim())) {
+            } else if (sourceLine === translateLine && !isFinite(sourceLine)) { // if text both s and d are the same 
+               // diplay and read only one
                vietReadArr.push(' ')
-               englishReadArr.push(translateArr[i])
+               // englishReadArr.push(translateArr[i])
+               englishReadArr.push(translateLine)
                str += `<span> </span>`
-               str += `<span style="color: blue"> ${translateArr[i]} </span>`
+               // str += `<span style="color: blue"> ${translateArr[i]} </span>`
+               str += `<span style="color: blue"> ${translateLine} </span>`
             }
-            if (p == Number(sourceArr[i])){
+            // if (p == Number(sourceArr[i])){
+            if (paragraphNum == Number(sourceLine)){
                str += "</p>\n<p>"
-               p++
+               paragraphNum++
             }
-            i++
-         } while (i < sourceArr.length-1)
+            ind+=2
+         } while (ind < paragraphs.length)
          str += "</p>"
          vietEng.innerHTML = str
 
