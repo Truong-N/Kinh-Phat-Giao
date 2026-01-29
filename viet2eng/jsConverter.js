@@ -85,6 +85,7 @@ separateBtn.addEventListener('click', function () {
       .replaceAll('. " ', '." ')
       .replaceAll(". ", ".. ")
       .replaceAll('." ', '.". ')
+      .replaceAll('?" ', '?". ')
       .replaceAll(": ", ":: ")
       .replaceAll("; ", ";; ")
       .replaceAll("? ", "?? ")
@@ -223,6 +224,7 @@ removeEmptyLinesTranslateTABtn.addEventListener('click', () =>{
          translateTAErrorDiv.innerHTML += `${found3[i-1]} to ${found3[i]}; `
       }
    }
+   translateTA.focus()
 })
 //////////////////////// append clipboard to translate texteara
 if (!pasteBtn){
@@ -236,13 +238,14 @@ pasteBtn.addEventListener("click", async() => {
       try {
         // Request clipboard text
         const text = await navigator.clipboard.readText();
-        console.log("text:", text)
+      //   console.log("text:", text)
         translateTA.value += '\n' + text; // Paste into textarea
       } catch (err) {
         console.error("Failed to read clipboard: ", err);
         alert("Unable to access clipboard. Please allow permissions.");
       }
    }
+   translateTA.focus()
 })
 ////////////////////////
 //////////////////////// Combine Button
@@ -294,10 +297,35 @@ combineBtn.addEventListener('click', () =>{
    
 })
 ////////////////////////
+const combineLine = (str1, str2) => "s: "+ str1 + '\nt: ' + str2 + '\n'
+////////////////////////
 if (!output2FileBtn){
    console.log("output2FileBtn not found")
 }
+function simplifiedCombine(){
+   let sourceArr = separateTA.value.trim().split('\n')
+   let translateArr = translateTA.value.trim().split('\n')
+   let simplifiedArr = []
+   let paragraphNum = Number(sourceArr[0])
+   let i = 0;
+   let str = ''
+   do {
+      if( sourceArr[i] != translateArr[i]) {
+         str += combineLine(sourceArr[i], translateArr[i])
+      }
+      if( sourceArr[i] === translateArr[i] && !isNumberLine(sourceArr[i])) {
+         str += combineLine(sourceArr[i], translateArr[i])
+      }
+      if( Number(sourceArr[i]) === paragraphNum){
+         str += combineLine(sourceArr[i], translateArr[i])
+         paragraphNum++
+      }
+      i++
+   } while (i < sourceArr.length)
+   return str
+}
 output2FileBtn.addEventListener('click', () =>{
+   let text= simplifiedCombine()
    let n = prompt("enter a number", "10")
 
    if (isNumberLine(n)){
@@ -327,7 +355,7 @@ output2FileBtn.addEventListener('click', () =>{
       &lt;/div\>
       &lt;div \>
          &lt;pre id="engP" style="display:none"\>
-${combineTA.value}
+${text}
          &lt;/pre\>
       &lt;/div\>
       &lt;script src="./ktb1.js"\>&lt;/script\>
