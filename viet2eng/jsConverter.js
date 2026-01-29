@@ -294,7 +294,7 @@ combineBtn.addEventListener('click', () =>{
       }
    }
    combineTA.value = txt
-   
+   combineTA.focus()
 })
 ////////////////////////
 const combineLine = (str1, str2) => "s: "+ str1 + '\nt: ' + str2 + '\n'
