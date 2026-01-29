@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unordered List with Favorite Icons</title>
+    <style>
+        /* Style for the unordered list */
+        .item-list {
+            list-style-type: none; /* Remove default bullets */
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Style for list items */
+        .item-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid #ccc;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style for the favorite button */
+        .favorite-icon {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+
+        /* Filled heart style */
+        .filled {
+            color: red;
+            font-weight: bold;
+            fill: red;
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="item-list">
+        <li>
+            Item 1
+            <button class="favorite-icon">&#9825;</button>
+        </li>
+        <li>
+            Item 2
+            <button class="favorite-icon">&#9825;</button>
+        </li>
+        <li>
+            Item 3
+            <button class="favorite-icon">&#9825;</button>
+        </li>
+    </ul>
+   <script>
+      const btns = document.querySelectorAll(".favorite-icon")
+      btns.forEach(btn =>{
+         btn.addEventListener("click", () => {
+            btn.classList.toggle("filled")
+            if (btn.classList.contains("filled")) {
+               btn.innerHTML = "&#10084;"
+            } else {
+               btn.innerHTML = "&#9825;"
+            }
+         })
+      })
+   </script>
+</body>
+</html>

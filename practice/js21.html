@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js21</title>
+   </head>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js20.html">Prev</a>
+         
+         <a href="./js22.html">Next</a>
+      </div>
+
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      </div>
+      <pre>&lt;p>
+  &lt;span>Click me~!&lt;/span>
+&lt;/p></pre>
+      <div class="vietEng">
+      </div>
+      <pre>const p = document.querySelector("p");
+p.addEventListener("click", (event) => {
+  console.log(event.target);
+});</pre>
+      <div class="vietEng">
+      </div>
+      <pre>const p = document.querySelector("p");
+const span = document.querySelector("span");
+p.addEventListener("click", (event) => {
+  console.log("P listener: ");
+  console.log(event.target);
+});
+span.addEventListener("click", (event) => {
+  console.log("Span listener: ");
+  console.log(event.target);
+});</pre>
+      <div class="vietEng">
+      </div>
+      <pre>"Span listener: "
+&lt;span>Click me~!&lt;/span>
+"P listener: "
+&lt;span>Click me~!&lt;/span></pre>
+      <div class="vietEng">
+      </div>
+      <pre>const p = document.querySelector("p");
+const span = document.querySelector("span");
+p.addEventListener("click", (event) => {
+  console.log("P listener: ");
+  console.log(event.target);
+});
+span.addEventListener("click", (event) => {
+  console.log("Span listener: ");
+  console.log(event.target);
+  event.stopPropagation();
+});</pre>
+      <div class="vietEng">
+      </div>
+      <pre>"Span listener: "
+&lt;span>Click me~!&lt;/span></pre>
+      <div class="vietEng">
+      </div>
+      <pre>const p = document.querySelector("p");
+const span = document.querySelector("span");
+p.addEventListener("click", (event) => {});
+span.addEventListener("click", (event) => {
+  event.target.style.color = "red";
+});</pre>
+      <div class="vietEng">
+      </div>
+      <pre>const p = document.querySelector("p");
+p.addEventListener("click", (event) => {
+  event.target.style.color = "red";
+});</pre>
+      <div class="vietEng">
+      </div>
+      <pre>&lt;p>
+  &lt;span>Click me~!&lt;/span>
+  &lt;span>Click me~!&lt;/span>
+  &lt;span>Click me~!&lt;/span>
+  &lt;span>Click me~!&lt;/span>
+&lt;/p></pre>
+      <div class="vietEng">
+      </div>
+      
+      <div >
+         <pre class="engP" style="display:none">
+s: 0
+t: 0
+s: 0
+t: 0
+s: 49
+t: 49
+s: How Do Event Bubbling, and Event Delegation Work?
+t: Cơ chế lan truyền sự kiện và ủy quyền sự kiện hoạt động như thế nào?
+s: 1
+t: 1
+s: 0
+t: 0
+s: 184
+t: 184
+s: Event bubbling, or propagation, refers to how an event "bubbles up" to parent objects when triggered.
+t: Lan truyền sự kiện, hay sự lan truyền ngược, đề cập đến cách một sự kiện "lan truyền ngược" đến các đối tượng cha khi được kích hoạt.
+s: For example, consider this code:
+t: Ví dụ, hãy xem xét đoạn mã này:
+s: 2
+t: 2
+s: 0
+t: 0
+s: 189
+t: 189
+         </pre><pre class="engP" style="display:none">
+s: 3
+t: 3
+s: 0
+t: 0
+s: 259
+t: 259
+s: The p element here would be considered the parent of the span element.
+t: Phần tử p ở đây sẽ được coi là phần tử cha của phần tử span.
+s: 4
+t: 4
+s: 0
+t: 0
+s: 490
+t: 490
+s: When you click on the span element, like you are instructed to, the span element becomes the target of a click event.
+t: Khi bạn nhấp vào phần tử span, như bạn được hướng dẫn, phần tử span sẽ trở thành mục tiêu của sự kiện nhấp chuột.
+s: That event, however, also bubbles up to the parent – the p element can receive and consume that event as needed.
+t: Tuy nhiên, sự kiện đó cũng lan truyền ngược lên phần tử cha - phần tử p có thể nhận và xử lý sự kiện đó khi cần.
+s: 5
+t: 5
+s: 0
+t: 0
+s: 583
+t: 583
+s: But what does this actually mean?
+t: Nhưng điều này thực sự có nghĩa là gì?
+s: Well, you could attach an event listener to the p element:
+t: Bạn có thể gắn trình lắng nghe sự kiện vào phần tử p:
+s: 6
+t: 6
+s: 0
+t: 0
+s: 588
+t: 588
+         </pre><pre class="engP" style="display:none">
+s: 7
+t: 7
+s: 0
+t: 0
+s: 685
+t: 685
+s: Then, when you click on the span element you will see the text Click me~!
+t: Sau đó, khi bạn nhấp vào phần tử span, bạn sẽ thấy văn bản "Nhấp vào tôi!"
+s: logged to the console.
+t: được ghi vào bảng điều khiển. 
+s: 8
+t: 8
+s: 0
+t: 0
+s: 805
+t: 805
+s: The event propagates to the parent p element, which consumes it in an event listener to display the target of the event.
+t: Sự kiện lan truyền đến phần tử cha p, phần tử này sẽ sử dụng trình lắng nghe sự kiện để hiển thị mục tiêu của sự kiện.
+s: 9
+t: 9
+s: 0
+t: 0
+s: 915
+t: 915
+s: Notice how the target is still the span element.
+t: Hãy chú ý cách mục tiêu vẫn là phần tử span.
+s: This is because the span element received the initial click.
+t: Điều này là do phần tử span đã nhận được cú nhấp chuột ban đầu.
+s: 10
+t: 10
+s: 0
+t: 0
+s: 977
+t: 977
+s: Just to be sure how things are working, let's expand our code:
+t: Để chắc chắn mọi thứ hoạt động như thế nào, hãy mở rộng mã của chúng ta:
+s: 11
+t: 11
+s: 0
+t: 0
+s: 982
+t: 982
+</pre><pre class="engP" style="display:none">
+s: 12
+t: 12
+s: 0
+t: 0
+s: 1101
+t: 1101
+s: To give you an idea of how the event bubbles up, here's what you'll see in the console after clicking the span element:
+t: Để bạn hình dung cách sự kiện lan truyền, đây là những gì bạn sẽ thấy trong bảng điều khiển sau khi nhấp vào phần tử span:
+s: 13
+t: 13
+s: 0
+t: 0
+s: 1106
+t: 1106
+</pre><pre class="engP" style="display:none">
+s: 14
+t: 14
+s: 0
+t: 0
+s: 1246
+t: 1246
+s: Now let's see what happens when you prevent the propagation of an event with stopPropagation().
+t: Bây giờ hãy xem điều gì xảy ra khi bạn ngăn chặn sự lan truyền của một sự kiện bằng stopPropagation(). 
+s: We'll call it in our span's event listener:
+t: Chúng ta sẽ gọi nó trong trình lắng nghe sự kiện của thẻ span:
+s: 15
+t: 15
+s: 0
+t: 0
+s: 1251
+t: 1251
+</pre><pre class="engP" style="display:none">
+s: 16
+t: 16
+s: 0
+t: 0
+s: 1281
+t: 1281
+s: And then click our span again:
+t: Và sau đó nhấp vào thẻ span một lần nữa:
+s: 17
+t: 17
+s: 0
+t: 0
+s: 1286
+t: 1286
+</pre><pre class="engP" style="display:none">
+s: 18
+t: 18
+s: 0
+t: 0
+s: 1471
+t: 1471
+s: This time, we don't see our p listener trigger.
+t: Lần này, chúng ta không thấy trình lắng nghe của thẻ p được kích hoạt.
+s: The event never fires for the p element, because we told it to stop propagation while it was being processed for the child span element.
+t: Sự kiện không bao giờ được kích hoạt cho phần tử p, bởi vì chúng ta đã yêu cầu nó dừng lan truyền trong khi nó đang được xử lý cho phần tử span con.
+s: 19
+t: 19
+s: 0
+t: 0
+s: 1606
+t: 1606
+s: Event delegation can be thought of as the opposite.
+t: Ủy quyền sự kiện có thể được coi là ngược lại.
+s: It's the process of taking a captured event, and delegating it to another element.
+t: Đó là quá trình lấy một sự kiện đã được bắt và ủy quyền nó cho một phần tử khác.
+s: 20
+t: 20
+s: 0
+t: 0
+s: 1694
+t: 1694
+s: Going back to our code, let's update it so clicking on a span element changes it to red:
+t: Quay lại mã của chúng ta, hãy cập nhật nó để khi nhấp vào một phần tử span sẽ làm cho nó chuyển sang màu đỏ:
+s: 21
+t: 21
+s: 0
+t: 0
+s: 1699
+t: 1699
+</pre><pre class="engP" style="display:none">
+s: 22
+t: 22
+s: 0
+t: 0
+s: 1811
+t: 1811
+s: But what if you have twenty span elements?
+t: Nhưng nếu bạn có hai mươi phần tử span thì sao?
+s: Or maybe you use JavaScript to create more span elements on the fly?
+t: Hoặc có thể bạn sử dụng JavaScript để tạo thêm các phần tử span một cách nhanh chóng? 
+s: 23
+t: 23
+s: 0
+t: 0
+s: 2046
+t: 2046
+s: Rather than having to attach an event listener to every single span element, you can actually use the listener on the p element for all of them.
+t: Thay vì phải gắn trình lắng nghe sự kiện vào từng phần tử span riêng lẻ, bạn thực sự có thể sử dụng trình lắng nghe trên phần tử p cho tất cả chúng.
+s: In other words, you can delegate the handling of the span clicks to the parent p element.
+t: Nói cách khác, bạn có thể ủy thác việc xử lý các lần nhấp chuột vào span cho phần tử p cha.
+s: 24
+t: 24
+s: 0
+t: 0
+s: 2090
+t: 2090
+s: Our code might now look something like this:
+t: Mã của chúng ta bây giờ có thể trông giống như thế này:
+s: 25
+t: 25
+s: 0
+t: 0
+s: 2095
+t: 2095
+</pre><pre class="engP" style="display:none">
+s: 26
+t: 26
+s: 0
+t: 0
+s: 2258
+t: 2258
+s: Notice how we no longer have any listener attached to the span element at all.
+t: Hãy chú ý rằng chúng ta không còn bất kỳ trình lắng nghe nào được gắn vào phần tử span nữa.
+s: You have properly delegated the event handling to the p element.
+t: Bạn đã ủy thác việc xử lý sự kiện cho phần tử p một cách chính xác.
+s: But does it work?
+t: Nhưng liệu nó có hoạt động không?
+s: 27
+t: 27
+s: 0
+t: 0
+s: 2307
+t: 2307
+s: Let's generate a few extra span elements and see:
+t: Hãy tạo thêm một vài phần tử span và xem:
+s: 28
+t: 28
+s: 0
+t: 0
+s: 2312
+t: 2312
+</pre><pre class="engP" style="display:none">
+s: 29
+t: 29
+s: 0
+t: 0
+s: 2383
+t: 2383
+s: Now, each time we click on a span, that element's text will become red.
+t: Bây giờ, mỗi khi chúng ta nhấp vào một span, văn bản của phần tử đó sẽ chuyển sang màu đỏ. 
+s: 30
+t: 30
+s: 0
+t: 0
+s: 2580
+t: 2580
+s: And just like that, with a single event listener we've properly allowed a click event to bubble up from span elements to the parent p, and delegated the logic for that click event to the p element.
+t: Và cứ như vậy, chỉ với một trình lắng nghe sự kiện duy nhất, chúng ta đã cho phép sự kiện click lan truyền từ các phần tử span lên phần tử cha p một cách chính xác, và ủy thác logic cho sự kiện click đó cho phần tử p.
+s: 31
+t: 31
+s: 0
+t: 0
+s: 2801
+t: 2801
+s: Event propagation and delegation can be a complex topic, especially as you get into heavily nested elements like tables.
+t: Lan truyền và ủy thác sự kiện có thể là một chủ đề phức tạp, đặc biệt là khi bạn làm việc với các phần tử lồng nhau nhiều như bảng.
+s: You are encouraged to explore this further and experiment with some of the code we've written here.
+t: Bạn được khuyến khích tìm hiểu thêm về điều này và thử nghiệm với một số đoạn mã chúng tôi đã viết ở đây.
+s: 32
+t: 32
+s: 0
+t: 0
+s: 2810
+t: 2810
+s: Questions
+t: Câu hỏi
+s: 33
+t: 33
+s: 0
+t: 0
+s: 2847
+t: 2847
+s: What is event bubbling in JavaScript?
+t: Lan truyền sự kiện trong JavaScript là gì?
+s: 34
+t: 34
+s: 0
+t: 0
+s: 2882
+t: 2882
+s: The process of creating new events.
+t: Quá trình tạo ra các sự kiện mới.
+s: 35
+t: 35
+s: 0
+t: 0
+s: 2946
+t: 2946
+s: The way an event travels from child elements to parent elements.
+t: Cách một sự kiện di chuyển từ các phần tử con đến các phần tử cha.
+s: 36
+t: 36
+s: 0
+t: 0
+s: 2993
+t: 2993
+s: A method to prevent default behavior of events.
+t: Một phương pháp để ngăn chặn hành vi mặc định của các sự kiện.
+s: 37
+t: 37
+s: 0
+t: 0
+s: 3063
+t: 3063
+s: The process of attaching multiple event listeners to a single element.
+t: Quá trình gắn nhiều trình lắng nghe sự kiện vào một phần tử duy nhất.
+s: 38
+t: 38
+s: 0
+t: 0
+s: 3115
+t: 3115
+s: What is the purpose of the stopPropagation() method?
+t: Mục đích của phương thức stopPropagation() là gì?
+s: 39
+t: 39
+s: 0
+t: 0
+s: 3159
+t: 3159
+s: To prevent the default behavior of an event.
+t: Để ngăn chặn hành vi mặc định của một sự kiện.
+s: 40
+t: 40
+s: 0
+t: 0
+s: 3205
+t: 3205
+s: To remove all event listeners from an element.
+t: Để loại bỏ tất cả các trình lắng nghe sự kiện khỏi một phần tử.
+s: 41
+t: 41
+s: 0
+t: 0
+s: 3258
+t: 3258
+s: To stop an event from bubbling up to parent elements.
+t: Để ngăn một sự kiện lan truyền lên các phần tử cha.
+s: 42
+t: 42
+s: 0
+t: 0
+s: 3303
+t: 3303
+s: To delegate event handling to child elements.
+t: Để ủy quyền xử lý sự kiện cho các phần tử con.
+s: 43
+t: 43
+s: 0
+t: 0
+s: 3356
+t: 3356
+s: What is the main advantage of using event delegation?
+t: Ưu điểm chính của việc sử dụng ủy quyền sự kiện là gì?
+s: 44
+t: 44
+s: 0
+t: 0
+s: 3405
+t: 3405
+s: It allows events to bubble up to parent elements.
+t: Nó cho phép các sự kiện lan truyền lên các phần tử cha.
+s: 45
+t: 45
+s: 0
+t: 0
+s: 3448
+t: 3448
+s: It prevents the default behavior of events.
+t: Nó ngăn chặn hành vi mặc định của các sự kiện.
+s: 46
+t: 46
+s: 0
+t: 0
+s: 3518
+t: 3518
+s: It reduces the number of event listeners needed for multiple elements.
+t: Nó giảm số lượng trình lắng nghe sự kiện cần thiết cho nhiều phần tử.
+s: 47
+t: 47
+s: 0
+t: 0
+s: 3559
+t: 3559
+s: It stops event propagation automatically.
+t: Nó tự động dừng sự lan truyền sự kiện.
+
+         </pre>
+      </div>
+      <script src="./ktb1.js"></script>
+   </body>
+</html>

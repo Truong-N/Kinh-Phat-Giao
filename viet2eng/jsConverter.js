@@ -81,7 +81,8 @@ separateBtn.addEventListener('click', function () {
    let sumLength = 0
    let groupNumber = 0
    let txt = rawTA.value
-      .replaceAll('. "', '."')
+      .replaceAll('. "\n', '."\n')
+      .replaceAll('. " ', '." ')
       .replaceAll(". ", ".. ")
       .replaceAll('." ', '.". ')
       .replaceAll(": ", ":: ")

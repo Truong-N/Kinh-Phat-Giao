@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>js20</title>
+   </head>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./js19.html">Prev</a>
+         
+         <a href="./js21.html">Next</a>
+      </div>
+      Source: //www.budsas.org/uni/u-kinh-trungbo/trung20.htm and Google translate
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      </div>
+      <pre>&lt;select id="select-menu">
+  &lt;option value="option1">Option 1&lt;/option>
+  &lt;option value="option2">Option 2&lt;/option>
+  &lt;option value="option3">Option 3&lt;/option>
+&lt;/select>
+&lt;script src="index.js">&lt;/script>
+const selectMenu = document.getElementById("select-menu");
+selectMenu.addEventListener("change", (event) => {
+  console.log(`You selected: ${event.target.value}`);
+});
+</pre>
+      <div class="vietEng">
+      </div>
+      <div >
+         <pre class="engP" style="display:none">
+s: 0
+t: 0
+s: 0
+t: 0
+s: 47
+t: 47
+s: What Is the Change Event, and How Does It Work?
+t: Sự kiện Change là gì và hoạt động như thế nào?
+s: 1
+t: 1
+s: 0
+t: 0
+s: 177
+t: 177
+s: The change event is a special event which is fired when the user modifies the value of certain input elements.
+t: Sự kiện Change là một sự kiện đặc biệt được kích hoạt khi người dùng sửa đổi giá trị của một số phần tử nhập liệu nhất định.
+s: More specifically:
+t: Cụ thể hơn:
+s: 2
+t: 2
+s: 0
+t: 0
+s: 215
+t: 215
+s: When a checkbox is ticked or unticked.
+t: Khi hộp kiểm được chọn hoặc bỏ chọn.
+s: 3
+t: 3
+s: 0
+t: 0
+s: 245
+t: 245
+s: When a radio button is ticked.
+t: Khi nút radio được chọn.
+s: 4
+t: 4
+s: 0
+t: 0
+s: 328
+t: 328
+s: When the user makes a selection from something like a date picker or dropdown menu.
+t: Khi người dùng chọn một mục từ bộ chọn ngày hoặc menu thả xuống.
+s: 5
+t: 5
+s: 0
+t: 0
+s: 452
+t: 452
+s: When an input loses focus (the user tabs to the next field, or clicks out of the form) after the user has changed the value.
+t: Khi một ô nhập liệu mất tiêu điểm (người dùng nhấn phím Tab để chuyển sang trường tiếp theo hoặc nhấp chuột ra khỏi biểu mẫu) sau khi người dùng đã thay đổi giá trị.
+s: 6
+t: 6
+s: 0
+t: 0
+s: 544
+t: 544
+s: When the user otherwise confirms the value, such as by hitting enter after typing some text.
+t: Khi người dùng xác nhận giá trị bằng cách khác, chẳng hạn như nhấn Enter sau khi nhập văn bản.
+s: 7
+t: 7
+s: 0
+t: 0
+s: 695
+t: 695
+s: Note that the change event does NOT fire when your user types in an input.
+t: Lưu ý rằng sự kiện Change KHÔNG được kích hoạt khi người dùng nhập liệu vào ô nhập liệu.
+s: The change event will only fire after they have focused on another element.
+t: Sự kiện Change chỉ được kích hoạt sau khi người dùng đã tập trung vào một phần tử khác. 
+s: 8
+t: 8
+s: 0
+t: 0
+s: 761
+t: 761
+s: Here is an example of using the change event with a dropdown menu:
+t: Đây là một ví dụ về việc sử dụng sự kiện thay đổi với menu thả xuống:
+s: 9
+t: 9
+s: 0
+t: 0
+s: 766
+t: 766
+</pre>
+<pre class="engP" style="display: none;">
+s: 10
+t: 10
+s: 0
+t: 0
+s: 917
+t: 917
+s: Each time the user selects a different option from the dropdown menu, the change event will fire, and the selected value will be logged to the console.
+t: Mỗi khi người dùng chọn một tùy chọn khác nhau từ menu thả xuống, sự kiện thay đổi sẽ được kích hoạt và giá trị đã chọn sẽ được ghi vào bảng điều khiển.
+s: 11
+t: 11
+s: 0
+t: 0
+s: 1134
+t: 1134
+s: The change event still generates an Event object, but unlike most other events it does not generate a custom implementation – the only properties and methods you will have access to are those on the base Event object.
+t: Sự kiện thay đổi vẫn tạo ra một đối tượng Sự kiện, nhưng không giống như hầu hết các sự kiện khác, nó không tạo ra một triển khai tùy chỉnh - các thuộc tính và phương thức duy nhất bạn có thể truy cập là những thuộc tính và phương thức trên đối tượng Sự kiện cơ bản.
+s: 12
+t: 12
+s: 0
+t: 0
+s: 1343
+t: 1343
+s: This differs from the input event, which generates a dedicated InputEvent object.
+t: Điều này khác với sự kiện nhập liệu, sự kiện này tạo ra một đối tượng InputEvent chuyên dụng.
+s: The change event also differs in a few ways.
+t: Sự kiện thay đổi cũng khác ở một vài điểm.
+s: An input event WILL trigger when a user types content into a field, for example.
+t: Ví dụ, sự kiện nhập liệu SẼ được kích hoạt khi người dùng nhập nội dung vào một trường.
+s: 13
+t: 13
+s: 0
+t: 0
+s: 1453
+t: 1453
+s: These differences are important to remember, as you might get tripped up by the timing of these events firing.
+t: Những khác biệt này rất quan trọng cần ghi nhớ, vì bạn có thể bị nhầm lẫn về thời điểm kích hoạt của các sự kiện này. 
+s: 14
+t: 14
+s: 0
+t: 0
+s: 1462
+t: 1462
+s: Questions
+t: Câu hỏi
+s: 15
+t: 15
+s: 0
+t: 0
+s: 1519
+t: 1519
+s: When does the change event fire for a text input element?
+t: Sự kiện thay đổi được kích hoạt khi nào đối với phần tử nhập văn bản?
+s: 16
+t: 16
+s: 0
+t: 0
+s: 1553
+t: 1553
+s: As soon as the user starts typing.
+t: Ngay khi người dùng bắt đầu nhập.
+s: 17
+t: 17
+s: 0
+t: 0
+s: 1585
+t: 1585
+s: Every time a character is typed.
+t: Mỗi khi một ký tự được nhập.
+s: 18
+t: 18
+s: 0
+t: 0
+s: 1646
+t: 1646
+s: When the input loses focus after its value has been modified.
+t: Khi ô nhập liệu mất tiêu điểm sau khi giá trị của nó đã được sửa đổi.
+s: 19
+t: 19
+s: 0
+t: 0
+s: 1687
+t: 1687
+s: Only when the user presses the Enter key.
+t: Chỉ khi người dùng nhấn phím Enter.
+s: 20
+t: 20
+s: 0
+t: 0
+s: 1742
+t: 1742
+s: Which of the following will NOT trigger a change event?
+t: Điều nào sau đây sẽ KHÔNG kích hoạt sự kiện thay đổi?
+s: 21
+t: 21
+s: 0
+t: 0
+s: 1783
+t: 1783
+s: Selecting an option from a dropdown menu.
+t: Chọn một tùy chọn từ menu thả xuống.
+s: 22
+t: 22
+s: 0
+t: 0
+s: 1834
+t: 1834
+s: Typing text into an input field without leaving it.
+t: Nhập văn bản vào trường nhập liệu mà không rời khỏi nó.
+s: 23
+t: 23
+s: 0
+t: 0
+s: 1853
+t: 1853
+s: Ticking a checkbox.
+t: Đánh dấu vào hộp kiểm.
+s: 24
+t: 24
+s: 0
+t: 0
+s: 1889
+t: 1889
+s: Selecting a date from a date picker.
+t: Chọn ngày từ bộ chọn ngày. 
+s: 25
+t: 25
+s: 0
+t: 0
+s: 1985
+t: 1985
+s: How does the Event object for the change event differ from the Event object for the input event?
+t: Đối tượng Sự kiện cho sự kiện thay đổi khác với đối tượng Sự kiện cho sự kiện nhập liệu như thế nào?
+s: 26
+t: 26
+s: 0
+t: 0
+s: 2043
+t: 2043
+s: The change event has more properties than the input event.
+t: Sự kiện thay đổi có nhiều thuộc tính hơn sự kiện nhập liệu.
+s: 27
+t: 27
+s: 0
+t: 0
+s: 2108
+t: 2108
+s: The change event uses a custom implementation of the Event object
+t: Sự kiện thay đổi sử dụng một triển khai tùy chỉnh của đối tượng Sự kiện
+s: 28
+t: 28
+s: 0
+t: 0
+s: 2209
+t: 2209
+s: The input event uses a dedicated InputEvent object, while the change event uses the base Event object
+t: Sự kiện nhập liệu sử dụng một đối tượng InputEvent chuyên dụng, trong khi sự kiện thay đổi sử dụng đối tượng Sự kiện cơ bản
+s: 29
+t: 29
+s: 0
+t: 0
+s: 2262
+t: 2262
+s: There is no difference between the two Event objects.
+t: Không có sự khác biệt giữa hai đối tượng Sự kiện.
+
+         </pre>
+      </div>
+      <script src="./ktb1.js"></script>
+   </body>
+</html>
