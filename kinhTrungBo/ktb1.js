@@ -19,8 +19,8 @@ const isNumberLine = line => /^\d+$/.test(line);
             sourceLine = paragraphs[ind].slice(3).trim()
             translateLine = paragraphs[ind+1].slice(3).trim()
 
-            console.log(sourceLine)
-            console.log(translateLine)
+            // console.log(sourceLine)
+            // console.log(translateLine)
             
             // if (sourceArr[i].trim() !== translateArr[i].trim() ) {
             if (sourceLine != translateLine){
@@ -94,6 +94,11 @@ const isNumberLine = line => /^\d+$/.test(line);
 
             }
          }
+         const largeText = (txt, txt1) => {
+            let txt2 = '<span style="color:red"> '+txt1+' </span>'
+            document.querySelector(".read").innerHTML = ""
+            document.querySelector(".read").innerHTML = "<h2>"+txt+"<br>"+txt2+"</h2>"
+         }
          function speakMinutes_eng() {
 
             if (englishReadArr.length > 0) {
@@ -128,3 +133,14 @@ const isNumberLine = line => /^\d+$/.test(line);
          }
          speakButton.addEventListener('click', readEV);
          stopButton.addEventListener('click', readEV.bind(null, false));
+         const lineReadBtn = document.querySelector("#line")
+         
+         lineReadBtn.addEventListener("click", () => {
+            // let srcTxt = lineSpan[0].textContent
+            let srcTxt = vietEng.querySelectorAll("span")[0].textContent
+            let trslTxt = vietEng.querySelectorAll("span")[1].textContent
+            // let trslTxt = lineSpan[1].textContent
+            largeText(srcTxt, trslTxt)
+            vietEng.querySelector("span").remove()
+            vietEng.querySelector("span").remove()
+         })

@@ -246,6 +246,7 @@ pasteBtn.addEventListener("click", async() => {
       }
    }
    translateTA.focus()
+   removeEmptyLinesTranslateTABtn.click()
 })
 ////////////////////////
 //////////////////////// Combine Button
@@ -343,6 +344,7 @@ output2FileBtn.addEventListener('click', () =>{
          &lt;div\>
             &lt;button id="stop"\>Stop!&lt;/button\>
             &lt;button id="speak"\>Speak&lt;/button\>
+            &lt;button id="line">Line by Line&lt;/button>
          &lt;/div\>
          &lt;label\>&lt;input type="checkbox" id="readeng" name="pencil" \>read English only&lt;/label\>&lt;br\>
          &lt;a href="./kinhTrungBo${fileNum-1}.html"\>Prev&lt;/a\>

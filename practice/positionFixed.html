@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Two Divs Button Interaction</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Layout for the two divs */
+    .container {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    .box {
+        padding: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    /* Second div's button normal state */
+    #secondBtn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1;
+    }
+
+    /* Fullscreen overlay style */
+    .fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        font-size: 2rem;
+        z-index: 9999;
+        background-color: rgba(0, 123, 255, 0.9);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- First div -->
+    <div class="box">
+        <h3>First Div</h3>
+        <button id="firstBtn">Click to Expand Second Button</button>
+    </div>
+
+    <!-- Second div -->
+    <div class="box">
+        <h3>Second Div</h3>
+        <button id="lightbox-image">Second Button</button>
+    </div>
+</div>
+
+<script>
+    const firstBtn = document.getElementById('firstBtn');
+    const lightboxImageBtn = document.getElementById('lightbox-image');
+
+    // When first button is clicked, make lightboxImage button fullscreen
+    firstBtn.addEventListener('click', () => {
+        lightboxImageBtn.classList.add('fullscreen');
+        lightboxImageBtn.textContent = 'I am Fullscreen Now! (Click to Close)';
+    });
+
+    // Clicking the fullscreen button will restore it
+    lightboxImageBtn.addEventListener('click', () => {
+        if (lightboxImageBtn.classList.contains('fullscreen')) {
+            lightboxImageBtn.classList.remove('fullscreen');
+            lightboxImageBtn.textContent = 'Second Button';
+        }
+    });
+</script>
+
+</body>
+</html>

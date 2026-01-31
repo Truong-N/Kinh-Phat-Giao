@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   
+   .gallery {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1;
+   }
+   
+   .gallery-item {
+      width: 250px;
+      height: 300px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s;
+   }
+   
+   .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: red;
+      align-items: center;
+      display: flex;
+      z-index: 1000;
+      border: 1px solid black;
+   }
+</style>
+<body>
+   <div class="gallery">
+      <img src="https://cdn.freecodecamp.org/curriculum/labs/stonehenge-thumbnail.jpg" class="gallery-item">
+      <img src="https://cdn.freecodecamp.org/curriculum/labs/storm-thumbnail.jpg" class="gallery-item">
+      <img src="https://cdn.freecodecamp.org/curriculum/labs/trees-thumbnail.jpg" class="gallery-item">
+   </div>
+   <div id="lightbox" class="lightbox" style="display: none;">
+    <button type="button" id="close-btn">close</button>
+    <img id="lightbox-image">
+   </div>
+   
+   <script>
+      const lightbox = document.getElementById("lightbox");
+      const lbImage = document.getElementById("lightbox-image")
+      const closeBtn = document.getElementById("close-btn");
+      const galleryItems = document.querySelectorAll(".gallery-item")
+
+      const openLightbox = (s) => {
+         lbImage.src = s;
+         lightbox.style.display = "flex"
+      }
+      const closeLightbox = () => {
+         lightbox.style.display = "none"
+      }
+      closeBtn.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", btn => {
+         if (btn.target === lightbox){
+            closeLightbox();
+         }
+      })
+      galleryItems.forEach( item => {
+         item.addEventListener("click", () => {
+
+            openLightbox(item.src.replace("-thumbnail", ""))
+         })
+      })
+   </script>
+</body>
+</html>
