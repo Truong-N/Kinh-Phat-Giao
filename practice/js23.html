@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>KinhTrungBo10</title>
+   </head>
+   <body>
+      <div>
+         <div>
+            <button id="stop">Stop!</button>
+            <button id="speak">Speak</button>
+            <button id="line">Line by Line</button>
+         </div>
+         <label><input type="checkbox" id="readeng" name="pencil" >read English only</label><br>
+         <a href="./kinhTrungBo9.html">Prev</a>
+         <a href="./kinhTrungBo.html">Index</a>
+         <a href="./kinhTrungBo11.html">Next</a>
+      </div>
+      
+      <div style="font-size: larger;" class="read"></div>
+      <div class="vietEng">
+      </div>
+      <pre>
+&lt;button id="menuButton" aria-expanded="false" aria-controls="menuList">
+  Menu
+&lt;/button>
+
+&lt;ul id="menuList" hidden>
+  &lt;li>List item 1&lt;/li>
+  &lt;li>List item 2&lt;/li>
+&lt;/ul>
+&lt;script src="index.js">&lt;/script>
+const button = document.getElementById("menuButton");
+const menu = document.getElementById("menuList");
+
+button.addEventListener("click", () => {
+  const expanded = button.getAttribute("aria-expanded") === "true";
+  button.setAttribute("aria-expanded", String(!expanded));
+  menu.hidden = expanded;
+});
+      </pre>
+      <div class="vietEng">
+      </div>
+      <hr>
+      <div class="vietEng">
+      </div>
+      <pre>&lt;button aria-expanded="true">Menu&lt;/button></pre>
+      <div class="vietEng">
+      </div>
+      <div >
+         <pre class="engP" style="display:none">
+s: 0
+t: 0
+s: How Do You Make Dynamic and Interactive Content Accessible?
+t: Làm thế nào để nội dung động và tương tác trở nên dễ tiếp cận?
+s: 1
+t: 1
+s: You previously learned how semantic markup and ARIA attributes make content accessible.
+t: Trước đây bạn đã học cách đánh dấu ngữ nghĩa và thuộc tính ARIA giúp nội dung dễ tiếp cận.
+s: In real-world apps, content is rarely static, and pages often update dynamically through JavaScript.
+t: Trong các ứng dụng thực tế, nội dung hiếm khi tĩnh và các trang thường được cập nhật động thông qua JavaScript.
+s: When this happens, it's important to make sure these changes also are reflected in the HTML.
+t: Khi điều này xảy ra, điều quan trọng là phải đảm bảo những thay đổi này cũng được phản ánh trong HTML.
+s: This allows screen readers to accurately convey the updated state to users.
+t: Điều này cho phép trình đọc màn hình truyền đạt chính xác trạng thái đã cập nhật cho người dùng.
+s: Without this, people relying on assistive tools might never know that something changed, or could be given outdated or misleading information.
+t: Nếu không có điều này, những người dựa vào các công cụ hỗ trợ có thể không bao giờ biết rằng có điều gì đó đã thay đổi hoặc có thể nhận được thông tin lỗi thời hoặc gây hiểu nhầm.
+s: 2
+t: 2
+s: Let's look at a common scenario where JavaScript changes the state of an element, and how you can keep your HTML accessible by updating ARIA attributes.
+t: Hãy xem xét một kịch bản phổ biến trong đó JavaScript thay đổi trạng thái của một phần tử và cách bạn có thể giữ cho HTML của mình dễ tiếp cận bằng cách cập nhật các thuộc tính ARIA.
+s: 3
+t: 3
+s: Suppose you have a button that opens and closes a dropdown menu:
+t: Giả sử bạn có một nút mở và đóng menu thả xuống:
+         </pre>
+         <pre class="engP" style="display:none">
+s: 0
+t: 0
+s: The HTML sets up a button that controls a dropdown menu.
+t: Mã HTML thiết lập một nút điều khiển menu thả xuống.
+s: The button uses aria-expanded to indicate whether the menu is open, and aria-controls to link it to the menu by referencing the menu's id.
+t: Nút sử dụng thuộc tính aria-expanded để cho biết menu có đang mở hay không, và thuộc tính aria-controls để liên kết nó với menu bằng cách tham chiếu đến id của menu.
+s: 1
+t: 1
+s: The JavaScript listens for clicks on the menu button.
+t: Mã JavaScript lắng nghe các lần nhấp chuột vào nút menu.
+s: When clicked, it toggles the value of aria-expanded and updates the hidden property on the menu.
+t: Khi được nhấp, nó sẽ thay đổi giá trị của aria-expanded và cập nhật thuộc tính hidden trên menu.
+s: This keeps the menu's visibility and the accessibility information in sync, so both sighted users and screen reader users know whether the menu is open or closed.
+t: Điều này giúp giữ cho khả năng hiển thị của menu và thông tin hỗ trợ được đồng bộ, để cả người dùng có thị lực bình thường và người dùng trình đọc màn hình đều biết menu đang mở hay đóng.
+s: 2
+t: 2
+s: You will learn more about those ARIA attributes in the upcoming lessons.
+t: Bạn sẽ tìm hiểu thêm về các thuộc tính ARIA này trong các bài học sắp tới.
+s: For now, just remember that when your JavaScript changes the state of an element, you should also update the relevant ARIA attributes so assistive technologies accurately reflect what's actually on the screen.
+t: Hiện tại, chỉ cần nhớ rằng khi JavaScript của bạn thay đổi trạng thái của một phần tử, bạn cũng nên cập nhật các thuộc tính ARIA có liên quan để các công nghệ hỗ trợ phản ánh chính xác những gì thực sự hiển thị trên màn hình. 
+s: 3
+t: 3
+s: Questions
+t: Câu hỏi
+s: 4
+t: 4
+s: Why is it important to update the HTML when JavaScript changes the state of a page element?
+t: Tại sao việc cập nhật HTML khi JavaScript thay đổi trạng thái của một phần tử trang lại quan trọng?
+s: 5
+t: 5
+s: So assistive technologies can accurately communicate the current state to users.
+t: Để các công nghệ hỗ trợ có thể truyền đạt chính xác trạng thái hiện tại cho người dùng.
+s: 6
+t: 6
+s: So users with assistive technologies can interact with the element.
+t: Để người dùng sử dụng công nghệ hỗ trợ có thể tương tác với phần tử.
+s: 7
+t: 7
+s: So the page doesn't crash upon state change.
+t: Để trang không bị lỗi khi trạng thái thay đổi.
+s: 8
+t: 8
+s: So the element's state can be saved automatically between page loads.
+t: Để trạng thái của phần tử có thể được lưu tự động giữa các lần tải trang.
+s: 9
+t: 9
+s: What does the aria-controls attribute on the menu button specify?
+t: Thuộc tính aria-controls trên nút menu chỉ định điều gì?
+s: 10
+t: 10
+s: The default state of the menu when the page loads.
+t: Trạng thái mặc định của menu khi trang tải.
+s: 11
+t: 11
+s: The keyboard shortcut used to activate the menu.
+t: Phím tắt được sử dụng để kích hoạt menu.
+s: 12
+t: 12
+s: The class name of the element that the button controls.
+t: Tên lớp của phần tử mà nút điều khiển. 
+s: 13
+t: 13
+s: The ID of the element that the button controls.
+t: ID của phần tử mà nút điều khiển.
+s: 14
+t: 14
+s: What does the aria-expanded attribute on the menu button indicate?
+t: Thuộc tính aria-expanded trên nút menu cho biết điều gì?
+s: 15
+t: 15
+s: Whether the menu button has been clicked.
+t: Nút menu đã được nhấp chuột hay chưa.
+s: 16
+t: 16
+s: Whether the menu button is enabled or disabled.
+t: Nút menu được bật hay tắt.
+s: 17
+t: 17
+s: Whether the menu is open or closed.
+t: Menu đang mở hay đóng.
+s: 18
+t: 18
+s: Whether the menu contains a submenu.
+t: Menu có chứa menu con hay không.
+         </pre>
+                  <pre class="engP" style="display:none">
+s: 0
+t: 0
+s: What Is the aria-expanded Attribute, and How Does It Work?
+t: Thuộc tính aria-expanded là gì và hoạt động như thế nào?
+s: 1
+t: 1
+s: The aria-expanded attribute is used for accessibility purposes to indicate if a control is expanded or collapsed.
+t: Thuộc tính aria-expanded được sử dụng cho mục đích trợ năng để chỉ ra xem một điều khiển có được mở rộng hay thu gọn.
+s: It's used in conjunction with collapsible widgets like menus, accordions and other disclosure widgets that control the visibility of content.
+t: Nó được sử dụng kết hợp với các tiện ích có thể thu gọn như menu, accordion và các tiện ích hiển thị khác kiểm soát khả năng hiển thị của nội dung.
+s: The aria-expanded attribute is set to true if the control is expanded, or false if it is collapsed.
+t: Thuộc tính aria-expanded được đặt thành true nếu điều khiển được mở rộng hoặc false nếu nó được thu gọn.
+s: 2
+t: 2
+s: The information provided by aria-expanded allows people using screen readers to understand the current state of the control (whether it is expanded or collapsed).
+t: Thông tin do aria-expanded cung cấp cho phép những người sử dụng trình đọc màn hình hiểu được trạng thái hiện tại của điều khiển (cho dù nó được mở rộng hay thu gọn).
+s: 3
+t: 3
+s: The aria-expanded attribute is applied to the interactive element that toggles the visibility of a collapsible widget.
+t: Thuộc tính aria-expanded được áp dụng cho phần tử tương tác chuyển đổi khả năng hiển thị của một tiện ích có thể thu gọn.
+s: For example, if a button toggles an expandable menu, the aria-expanded attribute is placed on the button.
+t: Ví dụ, nếu một nút chuyển đổi một menu có thể mở rộng, thuộc tính aria-expanded sẽ được đặt trên nút đó. 
+s: 4
+t: 4
+s: When the menu is expanded, the aria-expanded attribute should be set to true like in this example:
+t: Khi menu được mở rộng, thuộc tính aria-expanded nên được đặt thành true như trong ví dụ này:
+         </pre>
+<pre id="engP" style="display:none">
+s: 0
+t: 0
+s: When the menu is collapsed, it should be set to false instead.
+t: Khi menu bị thu gọn, thuộc tính này nên được đặt thành false.
+s: 1
+t: 1
+s: Fig 1
+t: Hình 1
+s: 2
+t: 2
+s: You must always have the aria-expanded attribute set to either true or false on the controlling element.
+t: Bạn phải luôn đặt thuộc tính aria-expanded thành true hoặc false trên phần tử điều khiển.
+s: For example, if a button toggles the visibility of a menu, the default value for aria-expanded should be based on the default visibility of the menu.
+t: Ví dụ, nếu một nút chuyển đổi khả năng hiển thị của menu, giá trị mặc định cho aria-expanded nên dựa trên khả năng hiển thị mặc định của menu.
+s: 3
+t: 3
+s: If the menu is expanded by default, aria-expanded should initially be set to true.
+t: Nếu menu được mở rộng theo mặc định, aria-expanded ban đầu nên được đặt thành true.
+s: If the menu is collapsed by default, aria-expanded should initially be set of false.
+t: Nếu menu bị thu gọn theo mặc định, aria-expanded ban đầu nên được đặt thành false.
+s: 4
+t: 4
+s: The value of aria-expanded should be updated dynamically using JavaScript as the user interacts with the element.
+t: Giá trị của aria-expanded nên được cập nhật động bằng JavaScript khi người dùng tương tác với phần tử.
+s: 5
+t: 5
+s: Additionally, the properties, aria-controls and aria-owns can be used in combination with aria-expanded to establish a programmatic connection between the controlling element and the element it controls.
+t: Ngoài ra, các thuộc tính aria-controls và aria-owns có thể được sử dụng kết hợp với aria-expanded để thiết lập kết nối lập trình giữa phần tử điều khiển và phần tử mà nó điều khiển.
+s: 6
+t: 6
+s: Let's start with aria-controls.
+t: Hãy bắt đầu với aria-controls.
+s: When used with aria-expanded, the aria-controls attribute is used to specify the element being controlled.
+t: Khi được sử dụng với aria-expanded, thuộc tính aria-controls được dùng để chỉ định phần tử đang được điều khiển.
+s: For example, a button might expand or collapse a list acting as a menu.
+t: Ví dụ, một nút có thể mở rộng hoặc thu gọn một danh sách hoạt động như một menu.
+s: The value of aria-controls will be the id of the controlled element (the menu list in this example).
+t: Giá trị của aria-controls sẽ là id của phần tử được điều khiển (danh sách menu trong ví dụ này).
+         </pre>
+      </div>
+      <script src="./ktb1.js"></script>
+   </body>
+</html>

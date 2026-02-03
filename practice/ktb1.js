@@ -7,55 +7,50 @@ let vietReadArr = []
 let englishReadArr = []
 
 let engP = document.querySelectorAll(".engP")
-
+console.log(engP)
 engP.forEach((sect, s) =>{
    let paragraphs = sect.textContent.trim().split('\n');
    // paragraphs
+   // remove paragraph number, remove paragraph length, remove sum length
+   
+   let ind = 0
+   let paragraphNum = Number(paragraphs[0].slice(3))
+   console.log(paragraphNum)
+   let str = '<p>';
+   let sourceLine = ''
+   let translateLine = ''
+   do {
+      sourceLine = paragraphs[ind].slice(3).trim()
+      translateLine = paragraphs[ind+1].slice(3).trim()
 
-
-
-
-
-         // remove paragraph number, remove paragraph length, remove sum length
-         
-         let ind = 0
-         let paragraphNum = Number(paragraphs[0].slice(3))
-         console.log(paragraphNum)
-         let str = '<p>';
-         let sourceLine = ''
-         let translateLine = ''
-         do {
-            sourceLine = paragraphs[ind].slice(3).trim()
-            translateLine = paragraphs[ind+1].slice(3).trim()
-
-            // if (sourceArr[i].trim() !== translateArr[i].trim() ) {
-            if (sourceLine != translateLine){
-               // vietReadArr.push(sourceArr[i])
-               vietReadArr.push(sourceLine)
-               englishReadArr.push(translateLine)
-               // str += `<span> ${sourceArr[i]} </span>`
-               str += `<span> ${sourceLine} </span>`
-               // str += `<span style="color: blue"> ${translateArr[i]} </span>`
-               str += `<span style="color: blue"> ${translateLine} </span>`
-            // } else if (sourceArr[i].trim() === translateArr[i].trim() && !isFinite(sourceArr[i].trim())) {
-            } else if (sourceLine === translateLine && !isFinite(sourceLine)) { // if text both s and d are the same 
-               // diplay and read only one
-               vietReadArr.push(' ')
-               // englishReadArr.push(translateArr[i])
-               englishReadArr.push(translateLine)
-               str += `<span> </span>`
-               // str += `<span style="color: blue"> ${translateArr[i]} </span>`
-               str += `<span style="color: blue"> ${translateLine} </span>`
-            }
-            // if (p == Number(sourceArr[i])){
-            if (paragraphNum == Number(sourceLine)){
-               str += "</p>\n<p>"
-               paragraphNum++
-            }
-            ind+=2
-         } while (ind < paragraphs.length)
-         str += "</p>"
-         vietEng[s].innerHTML = str
+      // if (sourceArr[i].trim() !== translateArr[i].trim() ) {
+      if (sourceLine != translateLine){
+         // vietReadArr.push(sourceArr[i])
+         vietReadArr.push(sourceLine)
+         englishReadArr.push(translateLine)
+         // str += `<span> ${sourceArr[i]} </span>`
+         str += `<span> ${sourceLine} </span>`
+         // str += `<span style="color: blue"> ${translateArr[i]} </span>`
+         str += `<span style="color: blue"> ${translateLine} </span>`
+      // } else if (sourceArr[i].trim() === translateArr[i].trim() && !isFinite(sourceArr[i].trim())) {
+      } else if (sourceLine === translateLine && !isFinite(sourceLine)) { // if text both s and d are the same 
+         // diplay and read only one
+         vietReadArr.push(' ')
+         // englishReadArr.push(translateArr[i])
+         englishReadArr.push(translateLine)
+         str += `<span> </span>`
+         // str += `<span style="color: blue"> ${translateArr[i]} </span>`
+         str += `<span style="color: blue"> ${translateLine} </span>`
+      }
+      // if (p == Number(sourceArr[i])){
+      if (paragraphNum == Number(sourceLine)){
+         str += "</p>\n<p>"
+         paragraphNum++
+      }
+      ind+=2
+   } while (ind < paragraphs.length)
+   str += "</p>"
+   vietEng[s].innerHTML = str
 })
          const readeng = document.querySelector("#readeng")
          let pre_txt = ' '

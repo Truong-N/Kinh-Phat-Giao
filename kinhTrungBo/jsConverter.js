@@ -86,6 +86,7 @@ separateBtn.addEventListener('click', function () {
       .replaceAll(". ", ".. ")
       .replaceAll('." ', '.". ')
       .replaceAll('?" ', '?". ')
+      .replaceAll('!" ', '!". ')
       .replaceAll(": ", ":: ")
       .replaceAll("; ", ";; ")
       .replaceAll("? ", "?? ")

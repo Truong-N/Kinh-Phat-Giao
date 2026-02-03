@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>myMenu2</title>
+</head>
+<style>
+   button {
+      background-color: #0078d4;
+      color: white;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+   }
+</style>
+<body>
+   <button aria-owns="menu1" aria-expanded="false">Menu</button>
+   <main>
+      If it is not possible to place the expanded content immediately after the controlling element, the aria-owns attribute allows you to virtually move it after the control in the accessibility tree. This allows assistive technology like screen readers to pretend the expanded content is placed directly after the control in the DOM.
+   </main>
+   <ul id="menu1" hidden>
+      <li>Item 1</li>
+      <li>Item 2</li>
+   </ul>
+   <script>
+      const button = document.querySelector("button")
+      const menu = document.getElementById(button.getAttribute("aria-owns"));
+      button.addEventListener("click", () => {
+         const expanded = button.getAttribute("aria-expanded") ==="true";
+         button.setAttribute("aria-expanded", String(!expanded));
+         menu.hidden = expanded;
+      })
+      document.addEventListener("click", (e) => {
+         if (!button.contains(e.target) && !menu.contains(e.target)) {
+            button.setAttribute("aria-expanded", "false");
+            menu.hidden = true;
+         }
+      })
+   </script>
+</body>
+</html>
