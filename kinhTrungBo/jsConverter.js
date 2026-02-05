@@ -19,6 +19,8 @@ const paragraphBtn = document.getElementById("paragraphBtn")
 const saveRawBtn = document.getElementById("saveRawBtn")
 const retrieveRawBtn = document.getElementById("retrieveRawBtn")
 const separateBtn = document.getElementById("separateBtn")
+const saveSeparateBtn = document.getElementById("saveSeparateBtn")
+const retrieveSeparateBtn = document.getElementById("retrieveSeparateBtn")
 const divideBtn = document.getElementById("divideBtn")
 const removeEmptyLinesTranslateTABtn = document.getElementById("removeEmptyLinesTranslateTABtn")
 const saveTranslateBtn = document.getElementById("saveTranslateBtn")
@@ -26,6 +28,9 @@ const retrieveTranslateBtn = document.getElementById("retrieveTranslateBtn")
 const translate2ClipboardBtn = document.getElementById("translate2ClipboardBtn")
 const pasteBtn = document.getElementById("paste-btn")
 const combineBtn = document.getElementById("combineBtn")
+const saveCombineBtn = document.getElementById("saveCombineBtn")
+const retrieveCombineBtn = document.getElementById("retrieveCombineBtn")
+
 const combine2ClipboardBtn = document.getElementById("combine2ClipboardBtn")
 const output2FileBtn = document.getElementById("output2FileBtn")
 
@@ -108,6 +113,19 @@ separateBtn.addEventListener('click', function () {
    separateTA.value = array.join("\n")
    }
 )
+////////////////////////
+saveSeparateBtn.addEventListener('click', function (){
+   if (separateTA.value.length > 0){
+      separateTA.select()
+      localStorage.setItem("separate", separateTA.value)
+   } else {console.log("Separate text area is empty")}
+})
+////////////////////////
+retrieveSeparateBtn.addEventListener('click', function (){
+   separateTA.value = ''
+   separateTA.value = localStorage.getItem("separate")
+})
+
 //////////////////////// Google translate can handle max 5000 / page, if text in separate
 // textarea is too long, a list of buttons appears here in sequencial order
 // eadh button contain up to 5000 characters, 
@@ -299,10 +317,47 @@ combineBtn.addEventListener('click', () =>{
    combineTA.focus()
 })
 ////////////////////////
+saveCombineBtn.addEventListener('click', function (){
+   if (combineTA.value.length > 0){
+      combineTA.select()
+      localStorage.setItem("combine", combineTA.value)
+   } else {console.log("Separate text area is empty")}
+})
+
+retrieveCombineBtn.addEventListener('click', function (){
+   combineTA.value = ''
+   combineTA.value = localStorage.getItem("combine")
+})
+
+////////////////////////
 const combineLine = (str1, str2) => "s: "+ str1 + '\nt: ' + str2 + '\n'
 ////////////////////////
 if (!output2FileBtn){
    console.log("output2FileBtn not found")
+}
+let combineArr = []
+let separateArray1 = []
+let translateArray1 = []
+function combineArrays(){
+   let separateText = separateTA.value;
+   let translateText = translateTA.value;
+   let separateArray = separateText.split('\n');
+   let translateArray = translateText.split('\n');
+   let arr = []
+   let i = 0;
+   do {
+      if(isNumberLine(separateArray[i].trim()) && isNumberLine(separateArray[i+1].trim()) && isNumberLine(separateArray[i].trim())){
+         separateArray1.push([])
+         translateArray1.push([])
+         i++
+         i++
+      } else {
+         separateArray1[separateArray1.length-1].push(separateArray[i].trim())
+         translateArray1[translateArray1.length-1].push(translateArray[i].trim())
+         
+      }
+      i++
+   } while (i < separateArray.length)
 }
 function simplifiedCombine(){
    let sourceArr = separateTA.value.trim().split('\n')
@@ -311,23 +366,31 @@ function simplifiedCombine(){
    let paragraphNum = Number(sourceArr[0])
    let i = 0;
    let str = ''
+   combineArr = []
    do {
       if( sourceArr[i] != translateArr[i]) {
          str += combineLine(sourceArr[i], translateArr[i])
+         combineArr[combineArr.length-1].push(sourceArr[i])
+         combineArr[combineArr.length-1].push(translateArr[i])
       }
       if( sourceArr[i] === translateArr[i] && !isNumberLine(sourceArr[i])) {
          str += combineLine(sourceArr[i], translateArr[i])
+         combineArr[combineArr.length-1].push(sourceArr[i])
+         combineArr[combineArr.length-1].push(translateArr[i])
       }
       if( Number(sourceArr[i]) === paragraphNum){
          str += combineLine(sourceArr[i], translateArr[i])
          paragraphNum++
+         combineArr.push([])
       }
       i++
    } while (i < sourceArr.length)
+      console.log(combineArr)
    return str
 }
 output2FileBtn.addEventListener('click', () =>{
-   let text= simplifiedCombine()
+   // let text= simplifiedCombine()
+   combineArrays()
    let n = prompt("enter a number", "10")
 
    if (isNumberLine(n)){
@@ -356,10 +419,11 @@ output2FileBtn.addEventListener('click', () =>{
       &lt;div style="font-size: larger;" class="read"\>&lt;/div\>
       &lt;div class="vietEng"\>
       &lt;/div\>
-      &lt;div \>
-         &lt;pre id="engP" style="display:none"\>
-${text}
-         &lt;/pre\>
+      &lt;div class="arr" \>
+${JSON.stringify(separateArray1)}
+      &lt;/div\>
+      &lt;div class="arr" \>
+${JSON.stringify(translateArray1)}
       &lt;/div\>
       &lt;script src="./ktb1.js"\>&lt;/script\>
    &lt;/body\>
