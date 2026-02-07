@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kintTrungBo51</title>
+</head>
+<style>
+* {
+    cursor: pointer;
+}
+
+.english {
+    color: blue;
+}
+img { width: 75%;}
+.floating-checkbox {
+      position: fixed; /* Keeps it fixed to the viewport */
+      top: 20px; /* Distance from the top of the viewport */
+      right: 20px; /* Distance from the right of the viewport */
+      z-index: 1000; /* Ensures it stays above other elements */
+    }
+
+</style>
+<body>
+<div>
+       <button id="stop">Stop!</button>
+       <button id="speak">Speak</button>
+      <label> <input type="checkbox" id="showviet" name="pencil" >show Vietnamese</label>
+      'control +' to enlarge font size, bấm 2 key Control và + cho chữ lớn.
+</div>
+    <p> <span class="viet"> Như vầy tôi nghe. </span>  <span class="english">Thus I have heard.</span> </p>
+<p> <span class="viet"> Một thời Thế Tôn ở tại Campa, trên bờ hồ Gaggara cùng với đại chúng Tỷ-kheo. </span>  <span class="english">At one time the Blessed One was residing in Campa, on the shore of Lake Gaggara, with a large assembly of monks.</span>
+ <span class="viet">  Rồi Pessa, con trai người huấn luyện voi và Du sĩ Kandaraka đi đến chỗ Thế Tôn ở Pessa, con trai người huấn luyện voi sau khi đến, đảnh lễ Thế Tôn rồi ngồi xuống một bên. </span>  <span class="english">Then Pessa, the son of the elephant trainer, and the ascetic Kandaraka came to where the Blessed One was. Pessa, the son of the elephant trainer, after arriving, paid homage to the Blessed One and sat down to one side.</span>
+ <span class="viet">  Còn du sĩ Kandaraka nói lên với Thế Tôn những lời hỏi thăm, sau khi nói lên những lời hỏi thăm thân hữu rồi đứng một bên. </span>  <span class="english">And the ascetic Kandaraka greeted the Blessed One with words of greeting. After exchanging friendly greetings, he stood to one side.</span>
+ <span class="viet">  Du sĩ Kandaraka đứng một bên, sau khi nhìn quanh chúng Tỷ-kheo đang giữ im lặng, thật im lặng, liền bạch Thế Tôn: </span>  <span class="english">The ascetic Kandaraka stood to one side, and after looking around at the monks who were silent, very silent, he said to the Blessed One:</span> </p>
+<p> <span class="viet"> -- Thật vi diệu thay, Tôn giả Gotama! </span>  <span class="english">--How wonderful, Venerable Gotama! </span>
+ <span class="viet">  Thật hy hữu thay, Tôn giả Gotama! </span>  <span class="english"> How extraordinary, Venerable Gotama!</span>
+ <span class="viet">  Chúng Tỷ-kheo này được Tôn giả Gotama chơn chánh hướng dẫn. </span>  <span class="english"> These monks are truly guided by Venerable Gotama.</span>
+ <span class="viet">  Tôn giả Gotama, các vị A-la-hán, Chánh Ðẳng Giác trong thời quá khứ, không biết quý vị Thế Tôn ấy đã có một chúng Tỷ-kheo tuyệt diệu như vậy, mà quý vị ấy chơn chánh hướng dẫn, như nay chúng Tỷ-kheo được Tôn giả Gotama chơn chánh hướng dẫn? </span>  <span class="english"> Venerable Gotama, did the Arahants and Perfectly Enlightened Ones of the past know that those Buddhas had such a wonderful community of monks, whom they truly guided, as these monks are now truly guided by Venerable Gotama?</span>
+ <span class="viet">  Tôn giả Gotama, các vị A-la-hán, Chánh Ðẳng Giác trong tương lai, không biết quý vị Thế Tôn ấy sẽ có một chúng Tỷ-kheo tuyệt diệu như vậy, mà quý vị ấy sẽ chơn chánh hướng dẫn, như nay chúng Tỷ-kheo được Tôn giả Gotama chơn chánh hướng dẫn? </span>  <span class="english"> Venerable Gotama, did the Arahants and Perfectly Enlightened Ones of the future know that those Buddhas will have such a wonderful community of monks, whom they will truly guide, as these monks are now truly guided by Venerable Gotama?</span>  </p>
+<p> <span class="viet"> -- Thật sự là vậy, này Kandaraka! </span>  <span class="english"> -- Truly so, Kandaraka! </span>
+ <span class="viet">  Thật sự là vậy, này Kandaraka! </span>  <span class="english"> Truly so, Kandaraka! </span>
+ <span class="viet">  Này Kandaraka, các vị A-la-hán, Chánh Ðẳng Giác trong thời quá khứ, những vị Thế Tôn ấy đã có một chúng Tỷ-kheo tuyệt diệu như vậy, mà quý vị ấy chơn chánh hướng dẫn, như nay chúng Tỷ-kheo được Ta chơn chánh hướng dẫn. </span>  <span class="english"> Kandaraka, the Arahants, the Perfectly Enlightened Ones of the past, those Buddhas had such a wonderful community of monks, whom they truly guided, just as the monks I guide now truly. </span>
+ <span class="viet">  Này Kandaraka, các vị A-la-hán, Chánh Ðẳng Giác trong thời tương lai, những vị Thế Tôn ấy sẽ có một chúng Tỷ-kheo tuyệt diệu như vậy, mà quý vị ấy chơn chánh hướng dẫn, như nay chúng Tỷ-kheo được Ta chơn chánh hướng dẫn. </span>  <span class="english"> Kandaraka, the Arahants, the Perfectly Enlightened Ones of the future, those Buddhas will have such a wonderful community of monks, whom they truly guide, just as the monks I guide now truly. <span> </span></span></p>
+<p> <span class="viet"> Này Kandaraka, trong chúng Tỷ-kheo này, có những vị Tỷ-kheo là bậc A-la-hán, các lậu đã tận, tu hành thành mãn, các việc nên làm đã làm, đã đặt gánh nặng xuống, đã thành đạt lý tưởng, đã tận trừ hữu kiết sử, đã được giải thoát nhờ chánh trí. </span>  <span class="english"> O Kandaraka, among these monks, there are those who are Arhats, whose defilements have been eradicated, whose practice is complete, who have done what needed to be done, who have laid down their burdens, who have attained their ideals, who have eradicated the fetters of existence, and who have been liberated through right knowledge.</span>
+ <span class="viet">  Này Kandaraka, trong chúng Tỷ-kheo này, có những Tỷ-kheo là bậc hữu học, giới luật kiên trì, giới hạnh kiên trì, sáng suốt, hạnh nghiệp sáng suốt, sống với tâm khéo an trú Bốn Niệm xứ. </span>  <span class="english"> O Kandaraka, among these monks, there are those who are still learning, who are steadfast in their precepts, steadfast in their conduct, who are clear-sighted, whose actions are clear-sighted, and who live with their minds well established in the Four Foundations of Mindfulness.</span>
+ <span class="viet">  Thế nào là bốn? </span>  <span class="english"> What are the four?</span>
+ <span class="viet">  Ở đây này Kandaraka, Tỷ-kheo sống quán thân trên thân, nhiệt tâm tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời; </span>  <span class="english"> Here, O Kandaraka, a monk dwells contemplating the body in the body, ardently aware, mindful, to subdue worldly desires and anxieties; </span>
+ <span class="viet">  sống quán thọ trên các cảm thọ, nhiệt tâm tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời; </span>  <span class="english"> Living in contemplation of sensations, diligently mindful, to subdue worldly desires and anxieties; </span>
+ <span class="viet">  sống quán tâm trên tâm, nhiệt tâm, tỉnh giác, chánh niệm để nhiếp phục tham ưu trên đời; </span>  <span class="english"> Living in contemplation of the mind, diligently mindful, to subdue worldly desires and anxieties; </span>
+ <span class="viet">  sống quán pháp trên các pháp, nhiệt tâm, tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời. </span>  <span class="english"> Living in contemplation of phenomena, diligently mindful, to subdue worldly desires and anxieties. </span> </p>
+<p> <span class="viet"> Ðược nghe nói vậy, Pessa, con trai người huấn luyện voi bạch Thế Tôn: </span>  <span class="english"> Having heard this, Pessa, the son of the elephant trainer, said to the Buddha: </span> </p>
+<p> <span class="viet"> -- Thật vi diệu thay, bạch Thế Tôn! </span>  <span class="english"> -- How wonderful, Venerable Lord! </span>
+ <span class="viet">  Thật hy hữu thay, bạch Thế Tôn! </span>  <span class="english"> How rare, Venerable Lord! </span>
+ <span class="viet">  Bốn Niệm xứ này đã được Thế Tôn khéo trình bày, để chúng sanh được thanh tịnh, để sầu bi được vượt qua, để khổ ưu được diệt trừ, để chánh lý được thành đạt, để Niết-bàn được chứng ngộ. </span>  <span class="english"> These Four Foundations of Mindfulness were skillfully expounded by the Blessed One, so that sentient beings may be purified, so that sorrow and grief may be overcome, so that suffering and anxiety may be eradicated, so that right understanding may be attained, and so that Nirvana may be realized.</span>
+ <span class="viet">  Bạch Thế Tôn, chúng con là hàng tại gia, mặc đồ trắng, thỉnh thoảng chúng con sống khéo an trú tâm vào Bốn Niệm xứ này. </span>  <span class="english"> Blessed One, we are lay people, dressed in white, and occasionally we skillfully dwell our minds in these Four Foundations of Mindfulness.</span>
+ <span class="viet">  Ở đây, Bạch Thế Tôn, chúng con sống quán thân trên thân, nhiệt tâm, tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời; </span>  <span class="english"> Here, Blessed One, we live contemplating the body on the body, with zeal, awareness, and mindfulness, to subdue worldly desires and anxieties;</span>
+ <span class="viet">  chúng con sống quán thọ trên các cảm thọ, nhiệt tâm, tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời; </span>  <span class="english"> we live contemplating feelings on feelings, with zeal, awareness, and mindfulness, to subdue worldly desires and anxieties;</span>
+ <span class="viet">  chúng con sống quán tâm trên tâm, nhiệt tâm, tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời; </span>  <span class="english"> we live contemplating the mind on the mind, with zeal, awareness, and mindfulness, to subdue worldly desires and anxieties; </span>
+ <span class="viet">  chúng con sống quán pháp trên các pháp, nhiệt tâm, tỉnh giác, chánh niệm, để nhiếp phục tham ưu trên đời. </span>  <span class="english"> We live contemplating the Dharma, with zeal, awareness, and mindfulness, to subdue greed and sorrow in this world.</span>
+ <span class="viet">  Thật vi diệu thay, bạch Thế Tôn! </span>  <span class="english"> How wonderful, Venerable Lord!</span>
+ <span class="viet">  Thật hy hữu thay, bạch Thế Tôn! </span>  <span class="english"> How rare, Venerable Lord!</span>
+ <span class="viet">  Bạch Thế Tôn, Thế Tôn hiểu được hạnh phúc và sự bất hạnh của chúng sanh trong khi loài người sống trong sự rối ren như vậy, trong sự cặn bã như vậy, trong sự xảo quyệt như vậy. </span>  <span class="english"> Venerable Lord, you understand the happiness and unhappiness of beings while humankind lives in such turmoil, in such depravity, in such cunning.</span>
+ <span class="viet">  Bạch Thế Tôn, rối ren thay như loài người. </span>  <span class="english"> Venerable Lord, how turbulent are humankind!</span>
+ <span class="viet">  Bạch Thế Tôn, cởi mở thay như loài thú vật. </span>  <span class="english"> Venerable Lord, how open-minded are animals!</span>
+ <span class="viet">  Bạch Thế Tôn, con có thể nhiếp phục con voi, một cách khiến con voi ấy mỗi khi đi hay đến Campa, liền trình bày mọi sự gian dối, giả dối, xảo trá, xảo quyệt. </span>  <span class="english">Venerable Lord, I can subdue the elephant in such a way that whenever it goes to or comes to Campa, it immediately reveals all its deceit, falsehood, trickery, and cunning.</span>
+ <span class="viet">  Nhưng bạch Thế Tôn, những người đầy tớ của chúng con, những người phục dịch, những người làm công, thân hành họ làm một cách, khẩu hành họ làm một cách khác, ý hành họ làm một cách khác nữa. </span>  <span class="english">But Venerable Lord, our servants, our laborers, their actions are one way, their words are another, and their thoughts are yet another.</span>
+ <span class="viet">  Thật vi diệu thay, bạch Thế Tôn! </span>  <span class="english">How wonderful, Venerable Lord!</span>
+ <span class="viet">  Thật hy hữu thay, bạch Thế Tôn! </span>  <span class="english">How rare, Venerable Lord!</span>
+ <span class="viet">  Thế Tôn biết được hạnh phúc và sự bất hạnh của chúng sanh, trong khi loài người sống trong sự rối ren như vậy, trong sự cặn bã như vậy, trong sự xảo quyệt như vậy. </span>  <span class="english">The Venerable Lord knows the happiness and unhappiness of beings, while humankind lives in such confusion, in such filth, in such cunning.</span>
+ <span class="viet">  Bạch Thế Tôn, rối ren thay như loài người! </span>  <span class="english">Venerable Lord, how confused humankind is!</span> 
+ <span class="viet">  Bạch Thế Tôn, cởi mở thay, như loài thú vật! </span>  <span class="english"> Venerable Lord, how open-minded, like an animal!</span> </p>
+<p> <span class="viet"> -- Thật như vậy, này Pessa! </span>  <span class="english"> -- Indeed, Pessa!</span>
+ <span class="viet">  Thật như vậy, này Pessa! </span>  <span class="english"> Indeed, Pessa!</span>
+ <span class="viet">  Này Pessa, rối ren thay, như loài người! </span>  <span class="english"> Pessa, how troubled, like a human being!</span>
+ <span class="viet">  Cởi mở thay, như loài thú vật! </span>  <span class="english"> How open-minded, like an animal!</span>
+ <span class="viet">  Này Pessa, có bốn hạng người này có mặt ở trên đời. </span>  <span class="english"> Pessa, there are four kinds of people in the world.</span>
+ <span class="viet">  Thế nào là bốn? </span>  <span class="english"> What are the four?</span>
+ <span class="viet">  Ở đây, này Pessa, có người tự hành khổ mình, chuyên tâm tự hành khổ mình. </span>  <span class="english"> Here, Pessa, there are people who inflict suffering on themselves, wholeheartedly inflicting suffering on themselves.</span>
+ <span class="viet">  Ở đây, này Pessa, có người hành khổ người, chuyên tâm hành khổ người. </span>  <span class="english"> Here, Pessa, there are people who inflict suffering on others, wholeheartedly inflicting suffering on others. </span>
+ <span class="viet">  Ở đây, này Pessa, có người vừa tự hành khổ mình, chuyên tâm tự hành khổ mình, vừa hành khổ người, chuyên tâm hành khổ người. </span>  <span class="english"> Here, Pessa, there is a person who both inflicts suffering upon himself, wholeheartedly inflicting suffering upon himself, and inflicts suffering upon others, wholeheartedly inflicting suffering upon others.</span>
+ <span class="viet">  Ở đây, này Pessa, lại có người vừa không tự hành khổ mình, không chuyên tâm tự hành khổ mình, vừa không hành khổ người, không chuyên tâm hành khổ người. </span>  <span class="english"> Here, Pessa, there is also a person who neither inflicts suffering upon himself, nor wholeheartedly inflicts suffering upon himself, nor inflicts suffering upon others, nor wholeheartedly inflicts suffering upon others.</span>
+ <span class="viet">  Người ấy không tự hành khổ mình, không chuyên tâm tự hành khổ mình, không hành khổ người, không chuyên tâm hành khổ người, ngay trong hiện tại không tham dục, tịch tịnh, cảm thấy mát lạnh, cảm giác lạc thọ, tự ngã trú vào Phạm thể. </span>  <span class="english">That person neither inflicts suffering upon himself, nor wholeheartedly inflicts suffering upon himself, nor inflicts suffering upon others, nor wholeheartedly inflicts suffering upon others; in the present moment, he is free from desire, tranquil, feels coolness, experiences pleasant sensations, and his self dwells in the Brahma-nature.</span>
+ <span class="viet">  Này Pessa, bốn hạng người này, hạng người nào, được tâm Ông thích ý nhất? </span>  <span class="english">Pessa, of these four types of people, which type is most pleasing to your mind?</span> </p>
+<p> <span class="viet"> -- Bạch Thế Tôn, hạng người tự hành khổ mình, chuyên tâm tự hành khổ mình, hạng người này tâm con không thích ý. </span>  <span class="english"> -- Venerable Lord, the type of person who inflicts suffering upon himself, wholeheartedly inflicts suffering upon himself, this type is not pleasing to my mind. </span>
+ <span class="viet">  Bạch Thế Tôn, hạng người hành khổ người, chuyên tâm hành khổ người, hạng người này tâm con không thích ý. </span>  <span class="english">Venerable Lord, I do not like those who inflict suffering on others, who are wholeheartedly devoted to inflicting suffering on others.</span>
+ <span class="viet">  Bạch Thế Tôn, hạng người vừa tự hành khổ mình, chuyên tâm tự hành khổ mình, vừa hành khổ người, chuyên tâm hành khổ người, hạng người này tâm con không thích ý. </span>  <span class="english">Venerable Lord, I do not like those who inflict suffering on themselves, wholeheartedly devoted to inflicting suffering on themselves, and who inflict suffering on others, wholeheartedly devoted to inflicting suffering on others.</span>
+ <span class="viet">  Bạch Thế Tôn, hạng người vừa không tự hành khổ mình, không chuyên tâm tự hành khổ mình, vừa không hành khổ người, không chuyên tâm hành khổ người, hạng người không tự hành khổ mình, không hành khổ người, ngay trong hiện tại không có tham dục, tịch tịnh, cảm thấy mát lạnh, cảm giác lạc thọ, tự ngã trú vào Phạm thể, hạng người này, tâm con thích ý. </span>  <span class="english">Venerable Lord, I do not like those who neither inflict suffering on themselves, nor wholeheartedly devoted to inflicting suffering on themselves, nor inflict suffering on others, nor wholeheartedly devoted to inflicting suffering on others. Those who neither inflict suffering on themselves nor inflict suffering on others, who in the present moment are free from desire, tranquil, feeling coolness, feeling pleasure, their self dwelling in the Brahma-body, I like those.</span> </p>
+<p> <span class="viet"> -- Này Pessa, vì sao Ông không thích ý ba hạng người này? </span>  <span class="english"> -- Pessa, why do you not like these three types of people? </span> </p>
+<p> <span class="viet"> -- Bạch Thế Tôn, hạng người tự hành khổ mình, chuyên tâm tự hành khổ mình, hạng người này hành khổ mình, hành hạ mình, trong khi tự ao ước lạc, nhàm chán khổ; </span>  <span class="english"> -- Venerable Lord, those who inflict suffering upon themselves, who are solely focused on inflicting suffering upon themselves, who torment themselves, while yearning for pleasure and being weary of suffering; </span>
+ <span class="viet">  do vậy, tâm con không thích ý hạng người này. </span>  <span class="english"> Therefore, my mind does not like the thoughts of such people. </span>
+ <span class="viet">  Bạch Thế Tôn, hạng người hành khổ người, chuyên tâm hành khổ người, hạng người này, hành khổ người khác, hành hạ người khác, trong khi người khác ao ước lạc, nhàm chán khổ; </span>  <span class="english"> Venerable Lord, those who inflict suffering upon others, who are solely focused on inflicting suffering upon others, who inflict suffering upon others, who torment others, while others yearn for pleasure and are weary of suffering; </span>
+ <span class="viet">  do vậy, tâm con không thích ý hạng người này. </span>  <span class="english"> Therefore, my mind does not like the thoughts of such people. </span>
+ <span class="viet">  Bạch Thế Tôn, hạng người vừa tự hành khổ mình, chuyên tâm tự hành khổ mình, vừa hành khổ người, chuyên tâm hành khổ người, hạng người này hành khổ mình, hành hạ mình và người khác, trong khi mình và người khác ao ước lạc, nhàm chán khổ; </span>  <span class="english"> Venerable Lord, those who both inflict suffering upon themselves, who are solely focused on inflicting suffering upon themselves, and inflict suffering upon others, who are solely focused on inflicting suffering upon others, who inflict suffering upon themselves, who torment themselves and others, while they and others yearn for pleasure and are weary of suffering; </span>
+ <span class="viet">  do vậy, tâm con không thích ý hạng người này. </span>  <span class="english"> Therefore, my mind does not like this kind of person. </span>
+ <span class="viet">  Nhưng bạch Thế Tôn, người vừa không tự hành khổ mình, không chuyên tâm tự hành khổ mình, vừa không hành khổ người, không chuyên tâm hành khổ người, hạng người này không tự hành khổ mình, không hành khổ người, ngay trong hiện tại không tham dục, tịch tịnh, cảm thấy mát lạnh, cảm giác lạc thọ, tự ngã trú vào Phạm thể; </span>  <span class="english"> But, Venerable Lord, a person who neither inflicts suffering upon himself, nor is intent on inflicting suffering upon himself, nor inflicts suffering upon others, nor is intent on inflicting suffering upon others, this kind of person neither inflicts suffering upon himself nor upon others, in the present moment is free from desire, tranquil, feels coolness, feels pleasure, and his self dwells in the Brahma-body; </span>
+ <span class="viet">  do vậy, tâm con thích ý hạng người này. </span>  <span class="english"> Therefore, my mind likes this kind of person. </span>
+ <span class="viet">  Và này, bạch Thế Tôn, chúng con phải đi, chúng con có nhiều công vụ, có nhiều công việc phải làm. </span>  <span class="english"> And now, Venerable Lord, we must go, we have many duties, many tasks to do. </span> </p>
+<p> <span class="viet"> -- Này Pessa, Ông hãy làm những gì Ông nghĩ là hợp thời. </span>  <span class="english"> -- Pessa, do what you think is appropriate. </span> </p>
+<p> <span class="viet"> Rồi Pessa, con trai người huấn luyện voi hoan hỷ tín thọ lời Thế Tôn dạy, từ chỗ ngồi đứng dậy, đảnh lễ Thế Tôn, thân phía hữu hướng về Ngài rồi ra đi. </span>  <span class="english"> Then Pessa, the son of the elephant trainer, joyfully accepted the Buddha's teachings, rose from his seat, bowed to the Buddha, turned his right side toward Him, and departed. </span></p>
+<p> <span class="viet"> Rồi Thế Tôn, sau khi Pessa, con trai người huấn luyện voi ra đi không được bao lâu, liền nói với các Tỷ-kheo: </span>  <span class="english"> Then, not long after Pessa, the elephant trainer's son, had departed, the Blessed One said to the monks:</span> </p>
+<p> <span class="viet"> -- Này các Tỷ-kheo, Pessa, con trai người huấn luyện voi là bậc có trí; </span>  <span class="english"> -- Monks, Pessa, the elephant trainer's son, is a man of wisdom;</span>
+ <span class="viet">  Pessa, con trai người huấn luyện voi là người có đại trí tuệ. </span>  <span class="english"> Pessa, the elephant trainer's son, is a man of great wisdom.</span>
+ <span class="viet">  Này các Tỷ-kheo, nếu Pessa, con trai người huấn luyện voi ngồi thêm một chút nữa, cho đến khi Ta phân tích rộng rãi hơn bốn hạng người này, thời anh ta sẽ thâu đạt được nhiều lợi ích. </span>  <span class="english"> Monks, if Pessa, the elephant trainer's son, had sat a little longer, until I had analyzed these four types of people more extensively, he would have gained much benefit.</span>
+ <span class="viet">  Tuy vậy, này các Tỷ-kheo, Pessa, con trai người huấn luyện voi như vậy cũng đã thâu đạt được nhiều lợi ích. </span>  <span class="english"> Nevertheless, monks, Pessa, the elephant trainer's son, has already gained much benefit.</span> </p>
+<p> <span class="viet"> -- Bạch Thế Tôn, nay đã đến thời. </span>  <span class="english"> -- Blessed One, the time has come. </span>
+ <span class="viet">  Bạch Thiện Thệ, nay đã đến thời để Thế Tôn phân tích rộng rãi hơn bốn hạng người này. </span>  <span class="english">Venerable Master, the time has come for the Blessed One to elaborate further on these four types of people.</span>
+ <span class="viet">  Sau khi nghe Thế Tôn, các Tỷ-kheo sẽ thọ trì. </span>  <span class="english">After hearing the Blessed One, the monks will uphold it.</span> </p>
+<p> <span class="viet"> -- Vậy này các Tỷ-kheo, hãy nghe và khéo léo tác ý, Ta sẽ giảng. </span>  <span class="english">--So, monks, listen and pay careful attention, I will explain.</span> </p>
+<p> <span class="viet"> -- Thưa vâng, bạch Thế Tôn. </span>  <span class="english">--Yes, Blessed One.</span> </p>
+<p> <span class="viet"> Các Tỷ-kheo ấy vâng đáp Thế Tôn. </span>  <span class="english">The monks replied to the Blessed One.</span>
+ <span class="viet">  Thế Tôn nói như sau: </span>  <span class="english">The Blessed One spoke as follows:</span> </p>
+<p> <span class="viet"> -- Này các Tỷ-kheo, thế nào là hạng người tự hành khổ mình, chuyên tâm tự hành khổ mình? </span>  <span class="english">--Monks, what is the type of person who inflicts suffering upon themselves, who is intently focused on inflicting suffering upon themselves? </span>
+ <span class="viet">  Ở đây, này các Tỷ-kheo, có người sống lõa thể sống phóng túng không theo lễ nghi, liếm tay cho sạch, đi khất thực không chịu bước tới, đi khất thực không chịu đứng một chỗ, không nhận đồ ăn mang đến, không nhận đồ ăn dành riêng, không nhận mời đi ăn, không nhận từ nơi miệng nồi, không nhận từ nơi miệng chảo, không nhận tại ngưỡng cửa, không nhận giữa những cây gậy, không nhận giữa những cối giã gạo, không nhận từ hai người đang ăn, không nhận từ người đàn bà có thai, không nhận từ người đàn bà đang cho con bú, không nhận từ người đàn bà đang giao cấu người đàn ông, không nhận đồ ăn đi quyên, không nhận tại chỗ có chó đứng, không nhận tại chỗ có ruồi bu, không ăn cá, ăn thịt, không uống rượu nấu, rượu men. </span>  <span class="english"> Here, monks, there are people who live naked and unrestrainedly, without following rituals, licking their hands clean, refusing to walk while begging for alms, refusing to stand in one place while begging for alms, refusing to accept food brought to them, refusing to accept food set aside, refusing to accept invitations to eat, refusing to accept from the mouth of a pot, refusing to accept from the mouth of a pan, refusing to accept at the doorstep, refusing to accept between sticks, refusing to accept between rice mortars, refusing to accept from two people eating together, refusing to accept from a pregnant woman, refusing to accept from a woman breastfeeding, refusing to accept from a woman having intercourse with a man, refusing donated food, refusing to accept where dogs stand, refusing to accept where flies swarm, refusing to eat fish, eating meat, drinking distilled liquor, or fermented liquor. </span>
+ <span class="viet">  Vị ấy chỉ nhận ăn tại một nhà, hay chỉ nhận ăn một miếng, hay vị ấy chỉ nhận ăn tại hai nhà, hay chỉ nhận ăn hai miếng... </span>  <span class="english"> He only accepts food at one house, or only accepts one piece of food, or he only accepts food at two houses, or only accepts two pieces of food... </span>
+ <span class="viet">  hay vị ấy chỉ nhận ăn bảy nhà, hay vị ấy chỉ nhận ăn bảy miếng. </span>  <span class="english"> Or he only accepts food at seven houses, or he only accepts seven pieces of food. </span>
+ <span class="viet">  Vị ấy nuôi sống chỉ với một bát, nuôi sống chỉ với hai bát,... </span>  <span class="english"> He sustains himself with only one bowl, sustains himself with only two bowls,... </span>
+ <span class="viet">  nuôi sống chỉ với bảy bát. </span>  <span class="english"> sustains himself with only seven bowls. </span>
+ <span class="viet">  Vị ấy chỉ ăn một ngày một bữa, hai ngày một bữa,... </span>  <span class="english"> He only eats one meal a day, one meal every two days,... </span>
+ <span class="viet">  bảy ngày một bữa. </span>  <span class="english"> one meal every seven days. </span>
+ <span class="viet">  Như vậy vị ấy sống theo hạnh tiết chế ăn uống cho đến nửa tháng mới ăn một lần. </span>  <span class="english"> Thus he lives according to the practice of moderation in eating until half a month before eating once. </span>
+ <span class="viet">  Vị ấy chỉ ăn cỏ hoang, ăn lúa tắc, ăn lúa hoang, ăn da vụn, ăn rong nước, ăn bột tấm, ăn váng gạo, ăn bột vừng, ăn cỏ hay ăn phân bò. </span>  <span class="english"> He only eats wild grass, wild rice, scraps of skin, seaweed, broken rice flour, rice bran, sesame flour, grass, or cow dung.</span>
+ <span class="viet">  Vị ấy ăn trái cây, ăn rễ cây trong rừng, ăn trái cây rụng để sống. </span>  <span class="english"> He eats fruit, roots of trees in the forest, and fallen fruit to survive.</span>
+ <span class="viet">  Vị ấy mặc vải gai thô, mặc vải gai thô lẫn với các vải khác, mặc vải tẩm liệm rồi quăng đi, mặc vải phấn tảo y, mặc vỏ cây tirita làm áo, mặc da con sơn dương đen, mặc áo bện bằng từng mảnh da con sơn dương đen, mặc áo bằng cỏ cát tường, mặc áo vỏ cây, mặc áo bằng tấm gỗ nhỏ, mặc áo bằng tóc bện lại thành mền, mặc áo bằng đuôi ngựa bện lại, mặc áo bằng lông cừu. </span>  <span class="english"> He wears coarse linen, coarse linen mixed with other fabrics, burial cloth that is thrown away, woven cloth, tirita bark, black goatskin, woven robes made of pieces of black goatskin, robes made of auspicious grass, bark, small pieces of wood, braided hair, woven horsehair, and sheep wool. </span>
+ <span class="viet">  Vị ấy là người sống nhổ râu tóc, là người chuyên sống theo hạnh nhổ râu tóc, là người theo hạnh thường đứng, từ bỏ chỗ ngồi, là người ngồi chõ hỏ, chuyên sống theo hạnh ngồi chõ hỏ, một cách tinh tấn, là người dùng gai làm giường, thường ngủ nằm trên giường gai, sống một đêm tắm ba lần, theo hạnh xuống nước tắm (để gột sạch tội lỗi). </span>  <span class="english"> He is one who lives by plucking his hair, one who habitually practices plucking his hair, one who always stands, abandoning sitting, one who sits with his head bowed, diligently practicing sitting with his head bowed, one who uses thorns to make a bed, often sleeps on a bed of thorns, lives bathing three times a night, following the practice of bathing in water (to cleanse sins). </span>
+ <span class="viet">  Như vậy dưới nhiều hình thức, vị ấy sống tự hành khổ mình, chuyên tâm tự hành khổ mình. </span>  <span class="english"> Thus, in many forms, he lives by self-mortification, wholeheartedly practicing self-mortification. </span>
+ <span class="viet">  Như vậy, này các Tỷ-kheo, được gọi là hạng người tự hành khổ mình, chuyên tâm tự hành khổ mình. </span>  <span class="english"> Thus, O monks, is called the kind of person who self-mortification, wholeheartedly practicing self-mortification. </span> </p>
+<p> <span class="viet"> Và này các Tỷ-kheo, thế nào là hạng người tự hành khổ người, chuyên tâm hành khổ người? </span>  <span class="english"> And, O monks, what is the kind of person who self-mortification, wholeheartedly practicing self-mortification? </span>
+ <span class="viet">  Ở đây, các Tỷ-kheo, có người giết trâu bò, là người giết heo, là người giết vịt, săn thú, là thợ săn, thợ đánh cá, ăn trộm, người xử tử các người ăn trộm, cai ngục và những người làm các nghề độc ác khác. </span>  <span class="english"> Here, monks, there are those who kill cattle, those who kill pigs, those who kill ducks, those who hunt animals, those who are hunters, fishermen, thieves, those who execute thieves, jailers, and those who practice other wicked trades.</span>
+ <span class="viet">  Như vậy, này các Tỷ-kheo, được gọi là hạng người hành khổ người, chuyên tâm hành khổ người. </span>  <span class="english"> Thus, monks, this is called the kind of person who inflicts suffering on others, who is devoted to inflicting suffering on others.</span> </p>
+<p> <span class="viet"> Và này các Tỷ-kheo, thế nào là hạng người vừa tự hành khổ mình, chuyên tâm tự hành khổ mình, vừa hành khổ người, chuyên tâm hành khổ người? </span>  <span class="english"> And, monks, what is the kind of person who inflicts suffering on himself, devoted to inflicting suffering on himself, and also inflicts suffering on others, devoted to inflicting suffering on others?</span>
+ <span class="viet">  Ở đây, này các Tỷ-kheo, có người làm vua, thuộc giai cấp Sát-đế-lị, đã làm lễ quán đảnh, hay một Bà-la-môn triệu phú. </span>  <span class="english"> Here, monks, there is a king, a Kshatriya, who has undergone the consecration ceremony, or a wealthy Brahmin.</span>
+ <span class="viet">  Vị này cho xây dựng một giảng đường mới về phía Ðông thành phố, cạo bỏ râu tóc, đắp áo da thô, toàn thân bôi thục tô và dầu, gãi lưng với một sừng nai, đi vào giảng đường với người vợ chính và một Bà-la-môn tế tự. </span>  <span class="english"> This man had a new amphitheater built to the east of the city, shaved off his beard and hair, put on a coarse animal skin cloak, smeared his whole body with talcum powder and oil, scratched his back with a deer antler, and entered the amphitheater with his principal wife and a Brahmin priest.</span>
+ <span class="viet">  Rồi vị ấy nằm xuống dưới đất trống trơn chỉ có lát cỏ. </span>  <span class="english"> Then he lay down on the bare ground covered only with grass.</span>
+ <span class="viet">  Vị vua sống với sữa từ vú một con bò cái, có con bò con cùng một mầu sắc; </span>  <span class="english"> The king lived on milk from the udder of a cow, which had a calf of the same color;</span>
+ <span class="viet">  bà vợ chính sống với sữa từ vú thứ hai; </span>  <span class="english"> his principal wife lived on milk from the second udder;</span>
+ <span class="viet">  và vị Bà-la-môn tế tự sống với sữa từ vú thứ ba. </span>  <span class="english"> and the Brahmin priest lived on milk from the third udder.</span>
+ <span class="viet">  Sữa từ vú thứ tư dùng để tế lửa. </span>  <span class="english"> The milk from the fourth udder was used for fire offerings.</span>
+ <span class="viet">  Còn con nghé con thì sống với đồ còn lại. </span>  <span class="english"> And the calf lived on the rest. </span>
+ <span class="viet">  Vị vua nói như sau: </span>  <span class="english"> The king said the following:</span>
+ <span class="viet">  "Hãy giết một số bò đực để tế lễ, hãy giết một số nghé đực để tế lễ, hãy giết một số nghé cái để tế lễ, hãy giết một số dê để tế lễ, hãy giết một số cừu để tế lễ, hãy chặt một số cây để làm cột tế lễ, hãy thâu lượm một số cỏ dabbha để làm chỗ tế lễ. </span>  <span class="english"> "Slaughter some bulls for sacrifice, slaughter some male calves for sacrifice, slaughter some female calves for sacrifice, slaughter some goats for sacrifice, slaughter some sheep for sacrifice, cut down some trees to make sacrificial posts, gather some dabbha grass to make the sacrificial place.</span>
+ <span class="viet">  Và những người nô tỳ, những người phục vụ, những người làm công, những người này vì sợ đòn gậy, vì sợ nguy hiểm, với mặt tràn đầy nước mắt, khóc lóc làm các công việc. </span>  <span class="english"> And the slaves, the servants, the laborers, these people, because of fear of beatings, because of fear of danger, with faces full of tears, weeping, do the work.</span>
+ <span class="viet">  Như vậy, này các Tỷ-kheo, được gọi là hạng người vừa tự hành khổ mình, chuyên tâm tự hành khổ mình, vừa hành khổ người, chuyên tâm hành khổ người. </span>  <span class="english"> Thus, O monks, this is called the kind of person who both inflicts suffering upon himself, wholeheartedly inflicts suffering upon himself, and inflicts suffering upon others, wholeheartedly inflicts suffering upon others.</span> </p>
+<p> <span class="viet"> Và này các Tỷ-kheo, thế nào là hạng người vừa không tự hành khổ mình, không chuyên tâm tự hành khổ mình, vừa không hành khổ người, không chuyên tâm hành khổ người, hạng người này không tự hành khổ mình, không hành khổ người, hiện tại sống không tham dục, tịch tịnh, cảm thấy mát lạnh, cảm thấy lạc thọ, tự ngã trú vào Phạm thể? </span>  <span class="english">And now, monks, what is the kind of person who neither inflicts suffering upon himself nor is intent on inflicting suffering upon himself, nor inflicts suffering upon others, nor is intent on inflicting suffering upon others? This person neither inflicts suffering upon himself nor upon others, lives in the present without desire, is tranquil, feels coolness, feels pleasure, and his self dwells in the Brahma-nature?</span> </p>
+<p> <span class="viet"> Ở đây, này các Tỷ-kheo, Như Lai xuất hiện ở đời là bậc A-la-hán, Chánh Biến Tri, Minh Hạnh Túc, Thiện Thệ, Thế Gian Giải, Vô Thượng Sĩ, Ðiều Ngự Trượng Phu, Thiên Nhân Sư, Phật, Thế Tôn. </span>  <span class="english">Here, monks, the Tathagata appears in the world as an Arhat, a Perfectly Enlightened One, endowed with perfect knowledge and conduct, a Well-Gone One, a Knower of the World, a Supreme Being, a Tamer of Men, a Teacher of Gods and Men, a Buddha, a Blessed One.</span>
+ <span class="viet">  Như Lai sau khi riêng tự chứng ngộ với thượng trí, thế giới này là Thiên giới, Ma giới, Phạm thiên giới, gồm cả thế giới này với Sa-môn, Bà-la-môn, Thiên, Nhơn, lại tuyên bố điều Ngài đã chứng ngộ. </span>  <span class="english">After the Tathagata has attained enlightenment by himself with supreme wisdom, this world is the heavenly realm, the demonic realm, the Brahma realm, including this world with ascetics, Brahmins, gods, and humans, and he proclaims what he has realized.</span>
+ <span class="viet">  Ngài thuyết pháp sơ thiện, trung thiện, hậu thiện, đầy đủ văn nghĩa, Ngài truyền dạy Phạm hạnh hoàn toàn đầy đủ thanh tịnh. </span>  <span class="english"> He preached the Dharma, teaching the initial, intermediate, and final virtues, complete in meaning and style. He taught the Brahma-vihara (pure and virtuous conduct) in a completely pure and complete manner.</span> </p>
+<p> <span class="viet"> Người gia trưởng hay con người gia trưởng, hay một người sanh ở giai cấp (hạ tiện) nghe pháp ấy, sau khi nghe pháp, người ấy sanh lòng tín ngưỡng Như Lai. </span>  <span class="english"> A householder, or a person born into a lower class, upon hearing this Dharma, develops faith in the Tathagata.</span>
+ <span class="viet">  Khi có lòng tín ngưỡng ấy, người ấy suy nghĩ: </span>  <span class="english"> When that faith is present, that person reflects:</span>
+ <span class="viet">  "Ðời sống gia đình đầy những triền phược, con đường đầy những bụi đời. </span>  <span class="english"> "Family life is full of entanglements, the path is full of worldly dust.</span>
+ <span class="viet">  Ðời sống xuất gia phóng khoáng như hư không. </span>  <span class="english"> The monastic life is as free and expansive as the void.</span>
+ <span class="viet">  Thật không dễ gì cho một người sống ở gia đình có thể sống theo Phạm hạnh hoàn toàn đầy đủ, hoàn toàn thanh tịnh, trắng bạch như vỏ ốc. </span>  <span class="english"> It is not easy for a person living in a family to live a Brahma-vihara in a completely pure and complete manner, as white as a seashell. </span>
+ <span class="viet">  Vậy ta nên cạo bỏ râu tóc, đắp áo cà-sa, xuất gia, từ bỏ gia đình, sống không gia đình". </span>  <span class="english">Therefore, one should shave off one's beard and hair, put on a saffron robe, renounce the family, and live without a family.</span>
+ <span class="viet">  Một thời gian sau, người ấy bỏ tài sản nhỏ, hay bỏ tài sản lớn, bỏ bà con quyến thuộc nhỏ, hay bỏ bà con quyến thuộc lớn, cạo bỏ râu tóc, đắp áo cà-sa, và xuất gia, từ bỏ gia đình, sống không gia đình. </span>  <span class="english">After some time, that person abandons small possessions, or large possessions, small relatives, or large relatives, shaves off one's beard and hair, puts on a saffron robe, and renounces the family, living without a family.</span> </p>
+<p> <span class="viet"> Vị ấy xuất gia như vậy, hành trì các học giới và hạnh sống các Tỷ-kheo, từ bỏ sát sanh, tránh xa sát sanh, bỏ trượng, bỏ kiếm, biết xấu hổ, sợ hãi, có lòng từ, sống thương xót đến hạnh phúc tất cả chúng sanh và loài hữu tình. </span>  <span class="english">That person thus renounces the world, observes the precepts and the life of a monk, refrains from killing, avoids killing, abandons the staff and sword, knows shame and fear, has compassion, and lives with compassion for the happiness of all beings and sentient creatures.</span>
+ <span class="viet">  Vị ấy từ bỏ lấy của không cho, tránh xa lấy của không cho, chỉ mong những vật đã cho, tự sống thanh tịnh, không có trộm cướp. </span>  <span class="english">That person refrains from taking what is not given, avoids taking what is not given, only desires what has been given, lives a pure life, and does not steal or rob.</span>
+ <span class="viet">  Vị ấy từ bỏ đời sống không Phạm hạnh, sống theo Phạm hạnh, sống đời sống viễn ly, tránh xa dâm dục hạ liệt. </span>  <span class="english"> He abandoned a life of non-virtue, lived a life of purity, lived a life of detachment, and avoided base lusts.</span> </p>
+<p> <span class="viet"> Vị ấy từ bỏ nói láo, nói những lời chân thật, liên hệ đến sự thật, chắc chắn, đáng tin cậy, không lường gạt đời. </span>  <span class="english"> He abandoned lying, spoke truthful words, words related to the truth, certain, reliable, and not deceiving the world.</span>
+ <span class="viet">  Vị ấy từ bỏ nói hai lưỡi, tránh xa nói hai lưỡi, nghe điều gì ở chỗ này, không đến chỗ kia nói để sanh chia rẽ ở những người này; </span>  <span class="english"> He abandoned divisive speech, avoided divisive speech, heard something here, did not go to another place to speak it and cause division among these people;</span>
+ <span class="viet">  nghe điều gì ở chỗ kia, không đi nói với những người này để sanh chuyện chia rẽ ở những người kia. </span>  <span class="english"> heard something there, did not go to these people to cause division among those people.</span>
+ <span class="viet">  Như vậy, vị ấy sống hòa hợp những kẻ ly gián, khuyến khích những kẻ hòa hợp, hoan hỷ trong hòa hợp, thích thú trong hòa hợp, hân hoan trong hòa hợp, nói những lời đưa đến hòa hợp. </span>  <span class="english"> Thus, he lived in harmony with those who were divisive, encouraged those who were harmonious, rejoiced in harmony, took pleasure in harmony, was joyful in harmony, and spoke words that brought harmony.</span>
+ <span class="viet">  Vị ấy từ bỏ nói độc ác, tránh xa lời nói độc ác, nói những lời nói dịu hiền, đẹp tai, dễ thương, thông cảm đến tâm, tao nhã, đẹp lòng nhiều người; </span>  <span class="english"> He He abandoned cruel speech, avoided cruel words, and spoke gentle, pleasant, lovely, compassionate, elegant, and pleasing words that pleased many people; </span>
+ <span class="viet">  vị ấy nói những lời nói như vậy. </span>  <span class="english"> He spoke such words. </span>
+ <span class="viet">  Vị ấy từ bỏ lời nói phù phiếm, tránh xa lời nói phù phiếm, nói đúng thời, nói chân thật, nói có ý nghĩa, nói pháp, nói luật, nói những lời đáng được gìn giữ, những lời hợp thời, hợp lý, có mạch lạc hệ thống, có ích lợi. </span>  <span class="english"> He abandons frivolous speech, avoids frivolous speech, speaks at the right time, speaks truthfully, speaks meaningfully, speaks the Dharma, speaks the law, speaks words worthy of preservation, words that are timely, reasonable, coherent, systematic, and beneficial.</span> </p>
+<p> <span class="viet"> Vị ấy từ bỏ không làm hại đến các hạt giống và các loại cây cỏ, dùng một ngày một bữa, không ăn ban đêm; </span>  <span class="english"> He abandons harming seeds and plants, eats only one meal a day, and does not eat at night;</span>
+ <span class="viet">  từ bỏ các món ăn phi thời; </span>  <span class="english"> He abandons eating at inappropriate times;</span>
+ <span class="viet">  từ bỏ không đi xem múa, hát, nhạc, các cuộc trình diễn; </span>  <span class="english"> He abandons attending dances, songs, music, and performances;</span>
+ <span class="viet">  từ bỏ không dùng vòng hoa, hương liệu, dầu thoa, trang sức, và các thời trang; </span>  <span class="english"> He abandons using garlands, perfumes, oils, jewelry, and fashionable clothing;</span>
+ <span class="viet">  từ bỏ không dùng giường cao và giường lớn; </span>  <span class="english"> He abandons using high beds and large beds;</span>
+ <span class="viet">  từ bỏ không nhận vàng và bạc; </span>  <span class="english"> He abandons accepting gold and silver; </span>
+ <span class="viet">  từ bỏ không nhận các hạt giống; </span>  <span class="english"> renounce receiving seeds; </span>
+ <span class="viet">  từ bỏ không nhận thịt sống, từ bỏ không nhận đàn bà con gái; </span>  <span class="english"> renounce receiving raw meat, renounce receiving women and girls; </span>
+ <span class="viet">  từ bỏ không nhận nô tỳ gái và trai; </span>  <span class="english"> renounce receiving female and male slaves; </span>
+ <span class="viet">  từ bỏ không nhận cừu và dê; </span>  <span class="english"> renounce receiving sheep and goats; </span>
+ <span class="viet">  từ bỏ không nhận gia cầm và heo; </span>  <span class="english"> renounce receiving poultry and pigs; </span>
+ <span class="viet">  từ bỏ không nhận voi, bò, ngựa và ngựa cái; </span>  <span class="english"> renounce receiving elephants, cattle, horses and mares; </span>
+ <span class="viet">  từ bỏ không nhận ruộng nương đất đai; </span>  <span class="english"> renounce receiving fields and land; </span>
+ <span class="viet">  từ bỏ không dùng người làm môi giới hoặc tự mình làm môi giới; </span>  <span class="english"> renounce using intermediaries or acting as an intermediary oneself; </span>
+ <span class="viet">  từ bỏ không buôn bán; </span>  <span class="english"> renounce trading; </span>
+ <span class="viet">  từ bỏ các sự gian lận bằng cân, tiền bạc và đo lường; </span>  <span class="english"> He abandons all fraudulent practices involving scales, money, and measurements; </span>
+ <span class="viet">  từ bỏ các tà hạnh như hối lộ, gian trá, lừa đảo; </span>  <span class="english"> He abandons evil deeds such as bribery, deceit, and fraud; </span>
+ <span class="viet">  từ bỏ không làm thương tổn, sát hại, câu thúc, bức đoạt, trộm cắp, cướp phá. </span>  <span class="english"> He abandons harming, killing, restraining, coercing, stealing, and plundering. </span> </p>
+<p> <span class="viet"> Vị ấy sống biết đủ, bằng lòng với tấm y để che thân với đồ ăn khất thực để nuôi bụng, đi tại chỗ nào cũng mang theo (y và bình bát). </span>  <span class="english"> He lives contentedly, satisfied with his robe to cover his body and alms food to nourish his stomach, carrying it with him wherever he goes (robe and alms bowl). </span>
+ <span class="viet">  Như con chim bay đến chỗ nào cũng mang theo hai cánh, cũng vậy, Tỷ-kheo bằng lòng với tấm y để che thân, với đồ ăn khất thực để nuôi bụng, đi tại chỗ nào cũng mang theo. </span>  <span class="english"> Just as a bird carries its wings wherever it goes, so too, a monk is content with his robe to cover his body and alms food to nourish his stomach, carrying it with him wherever he goes. </span>
+ <span class="viet">  Vị ấy thành tựu Thánh giới uẩn này, nội tâm hưởng lạc thọ không khuyết phạm. </span>  <span class="english"> He achieves this noble precept, and his mind enjoys blissful sensations without fault. </span> </p>
+<p> <span class="viet"> Khi mắt thấy sắc, vị ấy không nắm giữ tướng chung, không nắm giữ tướng riêng. </span>  <span class="english"> When the eye sees form, he does not grasp the general characteristics, nor does he grasp the specific characteristics.</span>
+ <span class="viet">  Những nguyên nhân gì, vì con mắt không được chế ngự, khiến tham ái, ưu bi, các ác, bất thiện pháp khởi lên, vị ấy tự chế ngự các nguyên nhân ấy, hộ trì con mắt, thực hành sự hộ trì con mắt. </span>  <span class="english"> Whatever causes, because the eye is not controlled, give rise to craving, sorrow, evil, and unwholesome states, he controls those causes himself, protects the eye, and practices protecting the eye. </span>
+ <span class="viet">  Khi tai nghe tiếng... </span>  <span class="english"> When the ear hears sounds... </span>
+ <span class="viet">  mũi ngửi hương... </span>  <span class="english"> when the nose smells fragrances... </span>
+ <span class="viet">  lưỡi nếm vị... </span>  <span class="english"> when the tongue tastes flavors... </span>
+ <span class="viet">  thân cảm xúc... </span>  <span class="english"> when the body feels sensations... </span>
+ <span class="viet">  ý nhận thức các pháp, vị ấy không nắm giữ tướng chung, không nắm giữ tướng riêng, những nguyên nhân gì, vì ý căn không được chế ngự, khiến tham ái, ưu bi, các ác bất thiện pháp khởi lên, vị ấy chế ngự nguyên nhân ấy, hộ trì ý căn, thực hành sự hộ trì ý căn. </span>  <span class="english"> when the mind perceives phenomena, he does not grasp at general characteristics, nor does he grasp at specific characteristics. Whatever causes arise from the uncontrolled mind, leading to craving, sorrow, and other unwholesome states, he controls those causes, protects the mind, and practices the protection of the mind. </span>
+ <span class="viet">  Vị ấy thành tựu Thánh hộ trì các căn này, nội tâm hưởng lạc thọ không uế nhiễm. </span>  <span class="english"> He achieves the sacred protection of these senses, and his inner mind enjoys pure and undefiled pleasures. </span> </p>
+<p> <span class="viet"> Vị ấy khi đi tới, khi đi lui đều tỉnh giác; </span>  <span class="english"> He is mindful when walking forward and backward; </span>
+ <span class="viet">  khi nhìn thẳng, khi nhìn quanh đều tỉnh giác; </span>  <span class="english"> when looking straight ahead and looking around; </span>
+ <span class="viet">  khi co tay, khi duỗi tay đều tỉnh giác; </span>  <span class="english"> He is mindful when bending his arms and when extending them; </span>
+ <span class="viet">  khi mang y kép, bình bát, thượng y đều tỉnh giác; </span>  <span class="english"> He is mindful when wearing his double robe, alms bowl, and upper robe; </span>
+ <span class="viet">  khi ăn, uống, nhai, nuốt đều tỉnh giác; </span>  <span class="english"> He is mindful when eating, drinking, chewing, and swallowing; </span>
+ <span class="viet">  khi đi đại tiện, tiểu tiện đều tỉnh giác; </span>  <span class="english"> He is mindful when defecating and urinating; </span>
+ <span class="viet">  khi đi, đứng, ngồi, nằm, thức, nói, yên lặng đều tỉnh giác. </span>  <span class="english"> He is mindful when walking, standing, sitting, lying down, awake, speaking, and silent. </span> </p>
+<p> <span class="viet"> Vị ấy thành tựu Thánh giới uẩn này, thành tựu Thánh hộ trì các căn này, thành tựu Thánh chánh niệm tỉnh giác này, lựa một trú xứ thanh vắng, như khu rừng, gốc cây, khe núi, hang đá, bãi tha ma, lùm cây ngoài trời, đống rơm. </span>  <span class="english"> He has attained this sacred aggregate of precepts, attained this sacred protection of the senses, attained this sacred mindfulness and awareness, and chooses a secluded dwelling place, such as a forest, a tree stump, a ravine, a cave, a graveyard, an open grove, or a haystack. </span> </p>
+<p> <span class="viet"> Sau khi ăn xong và đi khất thực trở về, vị ấy ngồi kiết-già, lưng thẳng tại chỗ nói trên, và an trú chánh niệm trước mặt. </span>  <span class="english"> After eating and returning from alms-gathering, he sits cross-legged, his back straight, in the aforementioned place, and abides in mindfulness before him. </span>
+ <span class="viet">  Vị ấy từ bỏ dục tham ở đời, sống với tâm thoát ly dục tham, gột rửa tâm hết dục tham. </span>  <span class="english"> He abandons worldly desires, lives with a mind free from desires, and purifies his mind of all desires. </span>
+ <span class="viet">  Từ bỏ sân hận, vị ấy sống với tâm không sân hận, lòng từ mẫn thương xót tất cả chúng sanh hữu tình, gột rửa tâm hết sân hận. </span>  <span class="english"> He abandons anger, lives with a mind free from anger, with compassion and loving-kindness towards all sentient beings, and purifies his mind of all anger. </span>
+ <span class="viet">  Từ bỏ hôn trầm thụy miên, vị ấy sống thoát ly hôn trầm thụy miên, với tâm tưởng hướng về ánh sáng chánh niệm tỉnh giác, gột rửa tâm hết hôn trầm thụy miên. </span>  <span class="english"> He abandons drowsiness and lethargy, lives free from drowsiness and lethargy, with his mind directed towards the light of mindful awareness, and purifies his mind of all drowsiness and lethargy. </span>
+ <span class="viet">  Từ bỏ trạo cử, hối quá, vị ấy sống không trạo cử, nội tâm trầm lặng, gột rửa tâm hết trạo cử, hối quá. </span>  <span class="english"> He abandons restlessness and remorse, lives without restlessness, his mind is calm, and purifies his mind of all restlessness and remorse. </span>
+ <span class="viet">  Từ bỏ nghi ngờ, vị ấy sống thoát khỏi nghi ngờ, không phân vân lưỡng lự, gột rửa tâm hết nghi ngờ đối với thiện pháp. </span>  <span class="english"> By abandoning doubt, he lives free from doubt, without hesitation or wavering, cleansing his mind of all doubt regarding virtuous deeds.</span> </p>
+<p> <span class="viet"> Vị ấy sau khi từ bỏ năm triền cái này, các pháp làm tâm cấu uế, làm trí tuệ trở thành yếu ớt, vị ấy ly dục, ly pháp bất thiện, chứng và trú Thiền thứ nhất, một trạng thái hỷ lạc do dục sanh, với tầm với tứ. </span>  <span class="english"> After abandoning these five hindrances, the defilements that defile the mind and weaken wisdom, he is free from desire and unwholesome states, and attains and abides in the first Jhana, a state of joy and bliss arising from desire, with initial and sustained thought.</span> </p>
+<p> <span class="viet"> Vị ấy diệt tầm và tứ, chứng và trú Thiền thứ hai, một trạng thái hỷ lạc do định sanh, không tầm không tứ, nội tĩnh nhất tâm. </span>  <span class="english"> He eliminates initial and sustained thought, and attains and abides in the second Jhana, a state of joy and bliss arising from concentration, without initial or sustained thought, with inner tranquility and one-pointedness of mind.</span> </p>
+<p> <span class="viet"> Vị ấy ly hỷ trú xả, chánh niệm tỉnh giác, thân cảm sự lạc thọ mà các bậc Thánh gọi là xả niệm lạc trú, chứng và an trú Thiền thứ ba. </span>  <span class="english"> He is free from joy and abides in equanimity, with mindful awareness, experiencing the pleasant sensations of the body that the Noble Ones call equanimity and bliss, and attains and abides in the third Jhana.</span> </p>
+<p> <span class="viet"> Vị ấy xả lạc, xả khổ, diệt hỷ ưu đã cảm thọ trước, chứng và trú Thiền thứ tư, không khổ, không lạc, xả niệm thanh tịnh. </span>  <span class="english"> He is free from pleasure and pain, and eliminates the joy and sorrow he had previously experienced, and attains and abides in the fourth Jhana, without pain or pleasure, with pure equanimity. </span> </p>
+<p> <span class="viet"> Với tâm định tĩnh, thanh tịnh, trong sáng, không cấu nhiễm, không phiền não, nhu nhuyến, dễ sử dụng, vững chắc, bất động như vậy, vị ấy hướng tâm đến túc mạng trí. </span>  <span class="english"> With a mind that is calm, pure, clear, undefiled, unperturbed, pliable, pliable, firm, and unmoving, he directs his mind toward the knowledge of past lives.</span>
+ <span class="viet">  Vị ấy nhớ đến các đời sống quá khứ, như một đời, hai đời, ba đời, bốn đời, năm đời, hai mươi đời, bốn mươi đời, năm mươi đời, một trăm đời, một ngàn đời, một trăm ngàn đời, nhiều hoại kiếp, nhiều thành kiếp. </span>  <span class="english"> He remembers past lives, such as one life, two lives, three lives, four lives, five lives, twenty lives, forty lives, fifty lives, one hundred lives, one thousand lives, one hundred thousand lives, many periods of destruction, many periods of creation. </span>
+ <span class="viet">  Vị ấy nhớ rằng: </span>  <span class="english"> He remembers:</span>
+ <span class="viet">  "Tại chỗ kia, ta có tên như thế này, dòng họ như thế này, giai cấp như thế này, ăn uống như thế này, thọ khổ lạc như thế này, tuổi thọ đến mức như thế này. </span>  <span class="english"> "In that place, I had this name, this family, this social class, this kind of food and drink, this kind of suffering and pleasure, and this kind of lifespan.</span>
+ <span class="viet">  Sau khi tại chỗ kia, ta được sanh ra tại chỗ nọ. </span>  <span class="english"> After being in that place, I was born in this place.</span>
+ <span class="viet">  Tại chỗ ấy, ta có tên như thế này, dòng họ như thế này, giai cấp như thế này, ăn uống như thế này, thọ khổ lạc như thế này, tuổi thọ đến mức như thế này. </span>  <span class="english"> In that place, I had this name, this family, this social class, this kind of food and drink, this kind of suffering and pleasure, and this kind of lifespan.</span>
+ <span class="viet">  Sau khi chết tại chỗ nọ, ta được sanh ra ở đây". </span>  <span class="english"> After dying in that place, I was born here.</span>
+ <span class="viet">  Như vậy, vị ấy nhớ đến những đời sống quá khứ, cùng với các nét đại cương và các chi tiết. </span>  <span class="english"> Thus, he remembers his past lives, along with their general characteristics and details. </span> </p>
+<p> <span class="viet"> Với tâm định tĩnh, thanh tịnh, trong sáng, không cấu nhiễm, không phiền não, nhu nhuyến, dễ sử dụng, vững chắc, bất động như vậy, vị ấy hướng tâm đến sanh tử trí của chúng sanh. </span>  <span class="english"> With a mind that is calm, pure, clear, undefiled, free from afflictions, pliable, easy to use, firm, and unwavering, he directs his mind towards the knowledge of birth and death of sentient beings.</span>
+ <span class="viet">  Vị ấy với thiên nhãn thuần tịnh, siêu nhân, thấy sự sống và chết của chúng sanh. </span>  <span class="english"> With pure, superhuman divine vision, he sees the life and death of sentient beings.</span>
+ <span class="viet">  Vị ấy tuệ tri rõ rằng chúng sanh người hạ liệt kẻ cao sang, người đẹp đẽ kẻ thô xấu, người may mắn kẻ bất hạnh đều do hạnh nghiệp của họ. </span>  <span class="english"> He clearly understands that sentient beings, whether lowly or noble, beautiful or ugly, fortunate or unfortunate, are all subject to their actions and karma. </span>
+ <span class="viet">  Vị ấy nghĩ rằng: </span>  <span class="english"> He thought:</span>
+ <span class="viet">  "Thật sự những vị chúng sanh này thành tựu những ác hạnh về thân, thành tựu những ác hạnh về lời nói, thành tựu những ác hạnh về ý, phỉ báng các bậc Thánh, theo tà kiến, tạo các nghiệp theo tà kiến. </span>  <span class="english"> "Indeed, these beings have accomplished evil deeds with their bodies, evil deeds with their speech, evil deeds with their minds, slandered the Saints, followed wrong views, and created karma according to wrong views.</span>
+ <span class="viet">  Những người này, sau khi thân hoại mạng chung, phải sanh vào cõi dữ, ác thú, đọa xứ, địa ngục. </span>  <span class="english">These people, after their bodies perish and their lives end, will be reborn in evil realms, evil places, places of suffering, hell.</span>
+ <span class="viet">  Còn những vị chúng sanh này thành tựu những thiện hạnh về thân, thành tựu những thiện hạnh về lời nói, thành tựu những thiện hạnh về ý, không phỉ báng các bậc Thánh, theo chánh kiến, tạo các nghiệp theo chánh kiến, những người này, sau khi thân hoại mạng chung, được sanh lên các thiện thú, Thiên giới, trên đời này". </span>  <span class="english">But these beings have accomplished good deeds with their bodies, good deeds with their speech, good deeds with their minds, do not slander the Saints, follow right views, and create karma according to right views. These people, after their bodies perish and their lives end, will be reborn in good realms, heavenly realms, in this world." </span>
+ <span class="viet">  Như vậy, vị ấy với thiên nhãn thuần tịnh, siêu nhân, thấy sự sống chết của chúng sanh. </span>  <span class="english">Thus, with pure, superhuman divine vision, he sees the life and death of all beings.</span>
+ <span class="viet">  Vị ấy tuệ tri rõ rằng chúng sanh, người hạ liệt kẻ cao sang, người đẹp đẽ kẻ thô xấu, người may mắn kẻ bất hạnh đều do hạnh nghiệp của họ. </span>  <span class="english">He clearly understands that all beings, whether lowly or noble, beautiful or ugly, fortunate or unfortunate, are all subject to their karma.</span> </p>
+<p> <span class="viet"> Với tâm định tĩnh, thanh tịnh, trong sáng, không cấu nhiễm, không phiền não, nhu nhuyến, dễ sử dụng, vững chắc, bất động như vậy, vị ấy hướng tâm đến lậu tận trí. </span>  <span class="english">With such a calm, pure, clear, undefiled, unperturbed, pliable, pliable, firm, and unmoving mind, he directs his mind toward the knowledge of the cessation of defilements. </span>
+ <span class="viet">  Vị ấy tuệ tri như thật: </span>  <span class="english"> He truly understands:</span>
+ <span class="viet">  "Ðây là Khổ", tuệ tri như thật: </span>  <span class="english"> "This is Suffering", truly understands:</span>
+ <span class="viet">  "Ðây là Khổ tập", tuệ tri như thật: </span>  <span class="english"> "This is the Origin of Suffering", truly understands:</span>
+ <span class="viet">  "Ðây là Khổ diệt", tuệ tri như thật: </span>  <span class="english"> "This is the Cessation of Suffering", truly understands:</span>
+ <span class="viet">  "Ðây là Con Ðường đưa đến khổ diệt" tuệ tri như thật: </span>  <span class="english"> "This is the Path leading to the Cessation of Suffering", truly understands:</span>
+ <span class="viet">  "Ðây là những lậu hoặc", tuệ tri như thật: </span>  <span class="english"> "These are the Defilements", truly understands:</span>
+ <span class="viet">  "Ðây là nguyên nhân của các lậu hoặc", tuệ tri như thật: </span>  <span class="english"> "This is the Cause of the Defilements", truly understands:</span>
+ <span class="viet">  "Ðây là sự diệt trừ các lậu hoặc", tuệ tri như thật: </span>  <span class="english"> "This is the Cessation of the Defilements", truly understands:</span>
+ <span class="viet">  "Ðây là Con Ðường đưa đến sự diệt trừ các lậu hoặc". </span>  <span class="english"> "This is the Path leading to the Cessation of Suffering" truly understands:</span> The path leading to the eradication of defilements." </p>
+<p> <span class="viet"> Nhờ biết như vậy, thấy như vậy, tâm vị ấy thoát khỏi dục lậu, thoát khỏi hữu lậu, thoát khỏi vô minh lậu. </span>  <span class="english"> By knowing and seeing thus, his mind is freed from the defilement of desire, freed from the defilement of existence, freed from the defilement of ignorance.</span>
+ <span class="viet">  Ðối với tự thân đã giải thoát như vậy khởi lên sự hiểu biết: </span>  <span class="english"> With regard to himself, having thus liberated, the understanding arises:</span>
+ <span class="viet">  "Ta đã giải thoát". </span>  <span class="english"> "I am liberated."</span>
+ <span class="viet">  Vị ấy tuệ tri: </span>  <span class="english"> He knows:</span>
+ <span class="viet">  "Sanh đã tận, phạm hạnh đã thành, việc cần làm đã làm; </span>  <span class="english"> "Birth has ceased, the holy life has been accomplished, what needed to be done has been done;</span>
+ <span class="viet">  sau đời hiện tại, không có trở lui đời sống này nữa". </span>  <span class="english">after this present life, there is no return to this life."</span> </p>
+<p> <span class="viet"> Như vậy, này các Tỷ-kheo, được gọi là hạng người vừa không tự hành khổ mình, không chuyên tâm tự hành khổ mình, vừa không hành khổ người, không chuyên tâm hành khổ người. </span>  <span class="english">Thus, monks, this is called the kind of person who neither inflicts suffering upon himself nor is intent on inflicting suffering upon himself, nor inflicts suffering upon others nor is intent on inflicting suffering upon others.</span>
+ <span class="viet">  Vị ấy không tự hành khổ mình, không hành khổ người, ngay trong hiện tại không tham dục, tịch tịnh, cảm thấy mát lạnh, cảm thấy lạc thọ, tự ngã trú vào Phạm thể. </span>  <span class="english">That person neither inflicts suffering upon himself nor upon others, in the present moment is free from desire, tranquil, feels coolness, feels pleasure, and his self dwells in the Brahma-nature.</span> </p>
+<p> <span class="viet"> Thế Tôn thuyết giảng như vậy. </span>  <span class="english">The Blessed One taught thus.</span>
+ <span class="viet">  Các Tỷ-kheo ấy hoan hỷ, tín thọ lời Thế Tôn dạy. </span>  <span class="english">Those monks rejoiced and accepted the Blessed One's teachings.</span> </p>
+<p> <span class="viet"> Hòa thượng Thích Minh Châu dịch Việt </span> <span class="english">Translated into Vietnamese by Venerable Thich Minh Chau</span> </p>
+
+<a href="./kinhTrungBo50.html">Prev</a>
+<a href="./kinhTrungBo52.html">Next</a>
+</body>
+<script>
+const showVietOnly = document.querySelector("#showviet")
+const viet = document.querySelectorAll(".viet")
+const english = document.querySelectorAll(".english")
+showVietOnly.checked = false
+showVietOnly.addEventListener("change", () => {
+	if (showVietOnly.checked ){
+		english.forEach(v => v.style.display = "none")
+	} else {
+		english.forEach(v => v.style.display = "inline")
+	}
+})
+
+
+function readEV(startOver = true) {
+   speechSynthesis.cancel();
+   if (startOver) {
+      // when user click stop button two array length may not equal
+      // continue reading should remove extra first element
+      if (vietReadArr.length > englishReadArr.length){
+         vietReadArr.shift()
+      } else if (vietReadArr.length < englishReadArr.length){
+         englishReadArr.shift()
+      }
+      speakMinutes_viet()
+   } else {
+      refreshPage(true)
+   }
+}
+function refreshPage(forceReload = false) {
+   try {
+         // forceReload = true will reload from the server, bypassing cache
+         location.reload(forceReload);
+   } catch (error) {
+         console.error("Error reloading page:", error);
+   }
+}
+let vietReadArr = []
+viet.forEach(e => vietReadArr.push(e.textContent))
+let englishReadArr = []
+english.forEach(e => englishReadArr.push(e.textContent))
+
+let cnt = 0
+
+function speakMinutes_viet() {
+   if (vietReadArr.length > 0){
+      let txt = vietReadArr.shift(); // extract first item
+      
+      let utterance = new SpeechSynthesisUtterance(txt);
+
+      utterance.onstart = () => {
+         viet[cnt].style.backgroundColor = "yellow"
+      }
+      // When the current utterance ends, speak the next one
+      utterance.onend = function (event) {
+         viet[cnt].style.backgroundColor = "white"
+      speakMinutes_eng(); // Recursively call the function for the next item
+      };
+
+      // Handle potential errors
+      utterance.onerror = function (event) {
+         console.error('Speech synthesis error: ' + event.error);
+      };
+      utterance.lang = 'vi-VN'
+
+      let txt1 = '<span style="color:red"> '+englishReadArr[0].trim()+' </span>'
+      speechSynthesis.speak(utterance);
+   }
+}
+function speakMinutes_eng() {
+
+   if (englishReadArr.length > 0) {
+      let txt = englishReadArr.shift() // extract first item
+      let utterance = new SpeechSynthesisUtterance(txt);
+      utterance.onstart = () => {
+         english[cnt].style.backgroundColor = "yellow"
+      }
+      // When the current utterance ends, speak the next one
+      utterance.onend = function (event) {
+         english[cnt].style.backgroundColor = "white"
+         cnt++
+      console.log('Speech ended, starting next minute.');
+      document.querySelector(".viet").remove()
+      document.querySelector(".english").remove()
+      speakMinutes_viet(); // Recursively call the function for the next item
+      };
+
+      // Handle potential errors
+      utterance.onerror = function (event) {
+         console.error('Speech synthesis error: ' + event.error);
+      };
+      utterance.lang = 'en-US'
+      speechSynthesis.speak(utterance);
+   }
+}
+const speakButton = document.querySelector('#speak');
+const stopButton = document.querySelector('#stop');
+
+speakButton.addEventListener('click', readEV);
+stopButton.addEventListener('click', readEV.bind(null, false));
+</script>
+</html>

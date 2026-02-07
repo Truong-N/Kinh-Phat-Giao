@@ -1,178 +1,145 @@
 const selectTag = document.querySelector(".select-element");
-const elementContent = document.querySelector(".element-content")
-const textareaEnglish = document.querySelector(".textarea-eng");
-const textareaViet = document.querySelector(".textarea-viet");
-const htmlContent = document.querySelector(".html-content")
-
-let ctr = 0
-if (typeof (Storage) !== "undefined") {
-    if (localStorage.lineNum) {
-        document.querySelector(".start").value = Number(localStorage.lineNum)
-    } else {
-        document.querySelector(".start").value = 0
-    }
-}
+const rawTA = document.querySelector(".raw-ta")
+const sourceTA = document.querySelector(".source-ta");
+const translateTA = document.querySelector(".translate-ta");
+const htmlTA = document.querySelector(".html-ta")
+const removeEmptyLinesTranslateTABtn = document.querySelector("#remove-empty-lines-translate-ta-btn")
 const result = document.querySelector(".result");
-// let selectedTag;
-// selectTag.addEventListener("change", (event) => {
-//     selectedTag = event.target.value
-//     if (selectedTag === "img") {
-//         textareaEnglish.value += '<img src="" alt="" />\n'
+
+// do not delete
+// let ctr = 0
+// if (typeof (Storage) !== "undefined") {
+//     if (localStorage.lineNum) {
+//         document.querySelector(".start").value = Number(localStorage.lineNum)
+//     } else {
+//         document.querySelector(".start").value = 0
 //     }
-// });
+// }
 
-function handleCopyTextAreaEnglish() {
-    let txt = textareaEnglish.value.trim()
-    textareaEnglish.value = txt
-    textareaEnglish.select();
-    navigator.clipboard.writeText(textareaEnglish.value)
+function getRawTAValue() {
+    return rawTA.value.replaceAll("<", "&lt;").trim()
 }
 
-function handleCopyTextAreaHTMLContent() {
-    htmlContent.select();
-    let txt = htmlContent.value.trim()
-    htmlContent.value = txt
-    navigator.clipboard.writeText(htmlContent.value)
-}
-const textareaVietBtn = document.querySelector("#textarea-viet-btn")
-const translateTA = document.querySelector(".textarea-viet")
-textareaVietBtn.addEventListener("click", () => {
-    let txt = translateTA.value
-    let arr = txt.split('\n')
-    let arr1 = arr.filter(e => e.length > 0)
-    let txt1 = arr1.join('\n')
-    translateTA.value = txt1
-})
-function handleHTMLContent() {
-    ctr = Number(document.querySelector(".start").value)
-    if (!selectTag.value) { alert("choose an html element"); return }
-    switch (selectTag.value) {
-        case "h1":
-        case "h2":
-        case "h3":
-        case "h4":
-            processHTMLHeader();
-            break;
-        case "p":
-            handleMultiParagraphs();
-            break;
-        case "ul":
-            handleUl();
-            break;
-        case "pre":
-            handlePre();
-            break;
-        default:
-            break;
-    }
-    document.getElementById("sel")[0].selected = true;
-}
-
-function handlePre() {
-    textareaEnglish.value += "<pre class='english'>\n";
-    textareaEnglish.value += elementContent.value.replaceAll("<", "&lt;");
-    textareaEnglish.value += "\n</pre>\n";
-    elementContent.value = "";
-}
-
-function getElementContentValue() {
-    return elementContent.value.replaceAll("<", "&lt;").trim()
-}
-
-function increaseLineNo() {
-    ctr++;
-    document.querySelector(".start").value = ctr;
-    localStorage.setItem("lineNum", ctr)
-    elementContent.value = ""
-}
+// function increaseLineNo() {
+//     ctr++;
+//     document.querySelector(".start").value = ctr;
+//     localStorage.setItem("lineNum", ctr)
+//     rawTA.value = ""
+// }
 
 function handleH1() {
-    ctr = Number(document.querySelector(".start").value)
+   // ctr = Number(document.querySelector(".start").value)
 
-    const elCt = getElementContentValue()
-    if (elCt.length > 0) {
-        // textareaEnglish.value += `<h1> <span class="viet ${ctr}"> ${elCt} </span>\n`;
-        textareaEnglish.value += `<h1> <span class="viet"> ${elCt} </span>\n`;
-        increaseLineNo()
-    } else {
-        alert("Textarea above is empty!")
-    }
+   const rawText = getRawTAValue()
+   if (rawText.length > 0) {
+      // sourceTA.value += `<h1> <span class="source ${ctr}"> ${rawText} </span>\n`;
+      sourceTA.value += `<h1> <span class="source"> ${rawText} </span>\n`;
+      // increaseLineNo()
+   } else {
+      alert("Textarea above is empty!")
+   }
+   rawTA.value = ""
 }
 
 function handleH2() {
-    ctr = Number(document.querySelector(".start").value)
+   // ctr = Number(document.querySelector(".start").value)
 
-    const elCt = getElementContentValue()
-    if (elCt.length > 0) {
-        // textareaEnglish.value += `<h2> <span class="viet ${ctr}"> ${elCt} </span>\n`;
-        textareaEnglish.value += `<h2> <span class="viet"> ${elCt} </span>\n`;
-        increaseLineNo()
-    } else {
-        alert("Textarea above is empty!")
-    }
+   const rawText = getRawTAValue()
+   if (rawText.length > 0) {
+      // sourceTA.value += `<h2> <span class="source ${ctr}"> ${rawText} </span>\n`;
+      sourceTA.value += `<h2> <span class="source"> ${rawText} </span>\n`;
+      // increaseLineNo()
+   } else {
+      alert("Textarea above is empty!")
+   }
+   rawTA.value = ""
 }
 
 function handleH3() {
-    ctr = Number(document.querySelector(".start").value)
+   // ctr = Number(document.querySelector(".start").value)
 
-    const elCt = getElementContentValue()
-    if (elCt.length > 0) {
-        // textareaEnglish.value += `<h3> <span class="viet ${ctr}"> ${elCt} </span>\n`;
-        textareaEnglish.value += `<h3> <span class="viet"> ${elCt} </span>\n`;
-        increaseLineNo()
-    } else {
-        alert("Textarea above is empty!")
-    }
+   const rawText = getRawTAValue()
+   if (rawText.length > 0) {
+      // sourceTA.value += `<h3> <span class="source ${ctr}"> ${rawText} </span>\n`;
+      sourceTA.value += `<h3> <span class="source"> ${rawText} </span>\n`;
+      // increaseLineNo()
+   } else {
+      alert("Textarea above is empty!")
+   }
+   rawTA.value = ""
 }
 
 function handleH4() {
-    ctr = Number(document.querySelector(".start").value)
+   // ctr = Number(document.querySelector(".start").value)
 
-    const elCt = getElementContentValue()
-    if (elCt.length > 0) {
-        // textareaEnglish.value += `<h4> <span class="viet ${ctr}"> ${elCt} </span>\n`;
-        textareaEnglish.value += `<h4> <span class="viet"> ${elCt} </span>\n`;
-        increaseLineNo()
-    } else {
-        alert("Textarea above is empty!")
-    }
+   const rawText = getRawTAValue()
+   if (rawText.length > 0) {
+      // sourceTA.value += `<h4> <span class="source ${ctr}"> ${rawText} </span>\n`;
+      sourceTA.value += `<h4> <span class="source"> ${rawText} </span>\n`;
+      // increaseLineNo()
+   } else {
+      alert("Textarea above is empty!")
+   }
+   rawTA.value = ""
 }
 
 function handleImg() {
-    const elCt = getElementContentValue()
-    if (elCt.length > 0) {
-        textareaEnglish.value += `<img src="./images/${elCt}.png" alt="${elCt}">\n`;
-        // increaseLineNo()
-    } else {
-        alert("Textarea above is empty!")
-    }
+   const rawText = getRawTAValue()
+   if (rawText.length > 0) {
+      sourceTA.value += `<img src="./images/${rawText}.png" alt="${rawText}">\n`;
+      // increaseLineNo()
+   } else {
+      alert("Textarea above is empty!")
+   }
+   rawTA.value = ""
 }
 
 function handleVideo() {
-    const elCt = getElementContentValue()
-    if (elCt.length > 0) {
-        textareaEnglish.value += `<video width="600" controls> <source scr="./images/${elCt}.mp4" type="video/mp4"> </video>\n`;
-        // increaseLineNo()
-    } else {
-        alert("Textarea above is empty!")
-    }
+   const rawText = getRawTAValue()
+   if (rawText.length > 0) {
+      sourceTA.value += `<video width="600" controls> <source scr="./images/${rawText}.mp4" type="video/mp4"> </video>\n`;
+      // increaseLineNo()
+   } else {
+      alert("Textarea above is empty!")
+   }
+   rawTA.value = ""
 }
 
-function processHTMLHeader() {
-    console.log(elementContent.value)
-    // textareaEnglish.value += `<${selectedTag}> <span class="viet ${ctr}"> ${elementContent.value.replaceAll("<", "&lt;").trim()} </span>\n`;
-    textareaEnglish.value += `<${selectedTag}> <span class="viet"> ${elementContent.value.replaceAll("<", "&lt;").trim()} </span>\n`;
-    ctr++;
-    document.querySelector(".start").value = ctr;
-    localStorage.setItem("lineNum", ctr)
-    elementContent.value = ""
+function handleUl() {
+   const rawTextArr = rawTA.value.split("\n")
+   rawTextArr.forEach((liText) => {
+      if (liText.length > 1) {
+         // sourceTA.value += `<li> <span class="source ${ctr}"> ${liText} </span>\n`;
+         sourceTA.value += `<li> <span class="source"> ${liText} </span>\n`;
+         // increaseLineNo()
+      }
+   })
+   // increaseLineNo()
+   rawTA.value = ""
 }
+
+function handlePre() {
+   sourceTA.value += "<pre class='english'>\n";
+   sourceTA.value += rawTA.value.replaceAll("<", "&lt;");
+   sourceTA.value += "\n</pre>\n";
+   rawTA.value = "";
+}
+
+// function processHTMLHeader() {
+//     console.log(rawTA.value)
+//     // sourceTA.value += `<${selectedTag}> <span class="source ${ctr}"> ${rawTA.value.replaceAll("<", "&lt;").trim()} </span>\n`;
+//     sourceTA.value += `<${selectedTag}> <span class="source"> ${rawTA.value.replaceAll("<", "&lt;").trim()} </span>\n`;
+//     ctr++;
+//     document.querySelector(".start").value = ctr;
+//     localStorage.setItem("lineNum", ctr)
+//     rawTA.value = ""
+// }
 
 function processParagraph(paragraph) {
 
-    console.log(paragraph)
+   //  console.log(paragraph)
     // use '~' to seperate
-    const arrayLines = paragraph
+    const paragraphArr = paragraph
         .replaceAll("ñ", "n")
         .replaceAll("û", "u")
         .replaceAll("? ", "?~ ")
@@ -196,18 +163,18 @@ function processParagraph(paragraph) {
         .replaceAll(". ", ".~ ")
         .split("~")
         .map(item => {
-            // let txt = `<span class="viet ${ctr}"> ${item} </span>\n`;
-            let txt = `<span class="viet"> ${item} </span>\n`;
-            increaseLineNo()
-            // return `<span class="viet"> ${item} </span>\n`;
+            // let txt = `<span class="source ${ctr}"> ${item} </span>\n`;
+            let txt = `<span class="source"> ${item} </span>\n`;
+            // increaseLineNo()
+            // return `<span class="source"> ${item} </span>\n`;
             return txt
         })
-    textareaEnglish.value += arrayLines
+    sourceTA.value += paragraphArr
         .map((item, index) => {
             if (index === 0) {
                 return "<p> " + item;
             }
-            else if (index === arrayLines.length - 1) {
+            else if (index === paragraphArr.length - 1) {
                 return "<pend> " + item
             }
             else {
@@ -217,120 +184,197 @@ function processParagraph(paragraph) {
         .join("")
 
 }
+
 function handleMultiParagraphs() {
-    ctr = Number(document.querySelector(".start").value)
+   // ctr = Number(document.querySelector(".start").value)
 
-    // handle multi paragraphs
-    const arrayParagraphs = elementContent.value.replaceAll("<", "&lt;").split("\n")
+   // handle multi paragraphs
+   const paragraphs = rawTA.value.replaceAll("<", "&lt;").split("\n")
 
-    arrayParagraphs.forEach((paragraph) => {
-        if (paragraph.length > 1) {
-            processParagraph(paragraph)
-        }
-    })
-    increaseLineNo()
+   paragraphs.forEach((paragraph) => {
+      if (paragraph.length > 1) {
+         processParagraph(paragraph)
+      }
+   })
+   // increaseLineNo()
+   rawTA.value = ""
 }
 
-function handleUl() {
-    const arrayLi = elementContent.value.split("\n")
-    arrayLi.forEach((liItem) => {
-        if (liItem.length > 1) {
-            // textareaEnglish.value += `<li> <span class="viet ${ctr}"> ${liItem} </span>\n`;
-            textareaEnglish.value += `<li> <span class="viet"> ${liItem} </span>\n`;
-            ctr++;
-        }
-    })
-    increaseLineNo()
+function handleCopySource2Clipboard() {
+    let txt = sourceTA.value.trim()
+    sourceTA.value = txt
+    sourceTA.select();
+    navigator.clipboard.writeText(sourceTA.value)
 }
+const divideSourceTABtn = document.querySelector("#divide-source-ta-btn")
+const divideBtnGroup = document.querySelector("#divide-btn-group")
+divideSourceTABtn.addEventListener("click", () => {
+   let txt = sourceTA.value.trim()
+   let arr = txt.split('\n')
+   // start with line number i = 0
+   // get each line length, add to total length
+   // if total length > 5000, save line number (i) to divide array (divideArr)
+   // set total length = line (i) length
+   let totalLength = 0
+   let divideArr = [0]
+   let i = 0
+   let groupNum = 0
+   do {
+      totalLength += arr[i].length
+      if (totalLength > 5000){
+         divideArr.push(i)
+         totalLength = arr[i].length
+         addBtn2DivideBtnGroup(arr, divideArr[divideArr.length-2], divideArr[divideArr.length-1], groupNum)
+         groupNum++
+         // console.log("total length: ", totalLength)
+      }
+      // console.log("total length: ", totalLength)
+      i++
+   } while( i < arr.length)
+   divideArr.push(arr.length)
+   addBtn2DivideBtnGroup(arr, divideArr[divideArr.length-2], divideArr[divideArr.length-1], groupNum)
+   console.log("arr length: ", arr.length)
+   console.log("divide array: ", divideArr)
+})
+let divideBtnGroupArr = []
+function addBtn2DivideBtnGroup(arr, startIndex, endIndex, groupNum){
+   divideBtnGroupArr.push([])
+   divideBtnGroupArr[groupNum] = document.createElement("button")
+   divideBtnGroup.appendChild(divideBtnGroupArr[groupNum])
+   divideBtnGroupArr[groupNum].textContent = "Group " + groupNum
+   
+   divideBtnGroupArr[groupNum].addEventListener("click", () => {
+      let arr1 = arr.slice(startIndex,endIndex)
+      let txt1 = arr1.join('\n')
+      navigator.clipboard.writeText(txt1)
+      // console.log(txt1)
+      divideBtnGroupArr[groupNum].style.display = "none"
+   })
+   console.log("startIndex: ", startIndex)
+   console.log("endIndex: ", endIndex)
+   console.log("groupNum: ", groupNum)
+}
+
+const paste2TranslateBtn = document.querySelector("#paste2translate-btn")
+paste2TranslateBtn.addEventListener("click", async ()=>{
+   if (!navigator.clipboard || !navigator.clipboard.readText) {
+      alert("clipboard API not support in this browser")
+   } else {
+      try {
+         // request clipboard text
+         let text = await navigator.clipboard.readText();
+         translateTA.value += '\n' + text
+      } catch (err) {
+         alert("unable to access clipboard");
+      }
+      translateTA.focus()
+      removeEmptyLinesTranslateTABtn.click()
+   }
+})
+function handleCopyHTMLTA2Clipboard() {
+    htmlTA.select();
+    let txt = htmlTA.value.trim()
+    htmlTA.value = txt
+    navigator.clipboard.writeText(htmlTA.value)
+}
+
+removeEmptyLinesTranslateTABtn.addEventListener("click", () => {
+    let txt = translateTA.value
+    let arr = txt.split('\n')
+    let arr1 = arr.filter(e => e.length > 0)
+    let txt1 = arr1.join('\n')
+    translateTA.value = txt1
+})
+
 
 function handleCombine() {
-    const textEng = document.querySelector(".textarea-eng")
-    const textViet = document.querySelector(".textarea-viet")
-    const arrEng = textEng.value.split("\n")
-    const arrViet = textViet.value.split("\n")
-    document.querySelector(".arrayenglish-len").textContent = arrEng.length
-    document.querySelector(".arrayviet-len").textContent = arrViet.length
+   //  const sourceTA = document.querySelector(".source-ta")
+   //  const translateTA = document.querySelector(".translate-ta")
+    const sourceArr = sourceTA.value.split("\n")
+    const translateArr = translateTA.value.split("\n")
+    document.querySelector(".arrayenglish-len").textContent = sourceArr.length
+    document.querySelector(".arrayviet-len").textContent = translateArr.length
 
-    if (arrEng.length === arrViet.length) {
+    if (sourceArr.length === translateArr.length) {
         let str1 = ""
-        for (let i = 0; i < arrEng.length; i++) {
-            arrViet[i] = arrViet[i].replace( "viet","english")
-            // arrViet[i] = arrViet[i].replace('">', ' hide">')
+        for (let i = 0; i < sourceArr.length; i++) {
+            translateArr[i] = translateArr[i].replace( "source","translate")
+            // translateArr[i] = translateArr[i].replace('">', ' hide">')
 
-            if (arrEng[i].includes("<pre")) {
-                str1 += `${arrEng[i]}\n`;
+            if (sourceArr[i].includes("<pre")) {
+                str1 += `${sourceArr[i]}\n`;
                 i++;
                 do {
-                    console.log(arrEng[i])
-                    str1 += `${arrEng[i]}\n`;
+                  //   console.log(sourceArr[i])
+                    str1 += `${sourceArr[i]}\n`;
                     i++;
-                } while (arrEng[i] !== "</pre>")
-                str1 += `${arrEng[i]}\n`;
-            } else if (arrEng[i].includes("<p>") && i === arrEng.length - 1) {
-                str1 += `${arrEng[i]}${arrViet[i].slice(3)} </p>\n`
-            } else if (arrEng[i].includes("<p>") && i < arrEng.length - 1) {
-                if (arrEng[i + 1].includes("<pmid>") || arrEng[i + 1].includes("<pend>")) {
-                    str1 += `${arrEng[i]} ${arrViet[i].slice(3)}\n`
+                } while (sourceArr[i] !== "</pre>")
+                str1 += `${sourceArr[i]}\n`;
+            } else if (sourceArr[i].includes("<p>") && i === sourceArr.length - 1) {
+                str1 += `${sourceArr[i]}${translateArr[i].slice(3)} </p>\n`
+            } else if (sourceArr[i].includes("<p>") && i < sourceArr.length - 1) {
+                if (sourceArr[i + 1].includes("<pmid>") || sourceArr[i + 1].includes("<pend>")) {
+                    str1 += `${sourceArr[i]} ${translateArr[i].slice(3)}\n`
                 } else {
-                    str1 += `${arrEng[i]} ${arrViet[i].slice(3)} </p>\n`
+                    str1 += `${sourceArr[i]} ${translateArr[i].slice(3)} </p>\n`
                 }
             } else {
-                console.log(arrEng[i].slice(0, 4) + "--------------")
-                switch (arrEng[i].slice(0, 4)) {
+               //  console.log(sourceArr[i].slice(0, 4) + "--------------")
+                switch (sourceArr[i].slice(0, 4)) {
                     case "<img":
                     case "<vid":
-                        str1 += `${arrEng[i]}\n`
+                        str1 += `${sourceArr[i]}\n`
                         break;
                     case "<h1>":
-                        str1 += `${arrEng[i]} ${arrViet[i].slice(4)} </h1>\n`
+                        str1 += `${sourceArr[i]} ${translateArr[i].slice(4)} </h1>\n`
                         break;
                     case "<h2>":
-                        str1 += `${arrEng[i]} ${arrViet[i].slice(4)} </h2>\n`
+                        str1 += `${sourceArr[i]} ${translateArr[i].slice(4)} </h2>\n`
                         break;
                     case "<h3>":
-                        str1 += `${arrEng[i]} ${arrViet[i].slice(4)} </h3>\n`
+                        str1 += `${sourceArr[i]} ${translateArr[i].slice(4)} </h3>\n`
                         break;
                     case "<h4>":
-                        str1 += `${arrEng[i]} ${arrViet[i].slice(4)} </h4>\n`
+                        str1 += `${sourceArr[i]} ${translateArr[i].slice(4)} </h4>\n`
                         break;
                     case "<li>":
-                        str1 += `${arrEng[i]} ${arrViet[i].slice(4)} </li>\n`
+                        str1 += `${sourceArr[i]} ${translateArr[i].slice(4)} </li>\n`
                         break;
                     case "<pmi":
-                        str1 += `${arrEng[i].slice(6)} ${arrViet[i].slice(6)}\n`
+                        str1 += `${sourceArr[i].slice(6)} ${translateArr[i].slice(6)}\n`
                         break;
                     case "<pen":
-                        str1 += `${arrEng[i].slice(6)} ${arrViet[i].slice(6)} </p>\n`
+                        str1 += `${sourceArr[i].slice(6)} ${translateArr[i].slice(6)} </p>\n`
                         break;
                 }
             }
         }
 
         result.innerHTML = str1
-        const allEnglishElement = document.querySelectorAll(".english");
-        const allVietElement = document.querySelectorAll(".viet");
+      //   const allEnglishElement = document.querySelectorAll(".english");
+      //   const allVietElement = document.querySelectorAll(".viet");
 
-        allEnglishElement.forEach((item, index) => {
-            item.addEventListener("click", (event) => handleClick(event))
-        })
+      //   allEnglishElement.forEach((item, index) => {
+      //       item.addEventListener("click", (event) => handleClick(event))
+      //   })
 
-        function handleClick(event) {
-            if (event.target.classList.length > 1) {
-                const index = Number(event.target.classList[1])
-                allVietElement.forEach(e => {
-                    if (e.classList[1] === event.target.classList[1]) {
-                        e.classList.contains("hide")
-                            ? e.classList.remove("hide")
-                            : e.classList.add("hide")
-                    }
-                })
-            }
-        }
+      //   function handleClick(event) {
+      //       if (event.target.classList.length > 1) {
+      //           const index = Number(event.target.classList[1])
+      //           allVietElement.forEach(e => {
+      //               if (e.classList[1] === event.target.classList[1]) {
+      //                   e.classList.contains("hide")
+      //                       ? e.classList.remove("hide")
+      //                       : e.classList.add("hide")
+      //               }
+      //           })
+      //       }
+      //   }
     }
 }
 function handleCombine1() {
     handleCombine()
-    htmlContent.textContent = `
+    htmlTA.textContent = `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -369,8 +413,8 @@ img { width: 75%;}
 </body>
 <script>
 const showVietOnly = document.querySelector("#showviet")
-const viet = document.querySelectorAll(".viet")
-const english = document.querySelectorAll(".english")
+const viet = document.querySelectorAll(".souce")
+const english = document.querySelectorAll(".translate")
 showVietOnly.checked = false
 showVietOnly.addEventListener("change", () => {
 	if (showVietOnly.checked ){
@@ -392,7 +436,16 @@ function readEV(startOver = true) {
          englishReadArr.shift()
       }
       speakMinutes_viet()
-      
+   }else {
+      refreshPage(true)
+   }
+}
+function refreshPage(forceReload = false) {
+   try {
+         // forceReload = true will reload from the server, bypassing cache
+         location.reload(forceReload);
+   } catch (error) {
+         console.error("Error reloading page:", error);
    }
 }
 let vietReadArr = []
@@ -439,6 +492,8 @@ function speakMinutes_eng() {
          english[cnt].style.backgroundColor = "white"
          cnt++
       console.log('Speech ended, starting next minute.');
+      document.querySelector(".viet").remove()
+      document.querySelector(".english").remove()
       speakMinutes_viet(); // Recursively call the function for the next item
       };
 
@@ -462,6 +517,6 @@ stopButton.addEventListener('click', readEV.bind(null, false));
 
 function handleCombine2() {
     handleCombine()
-    htmlContent.textContent = `${result.innerHTML} `
+    htmlTA.textContent = `${result.innerHTML} `
 
 }
