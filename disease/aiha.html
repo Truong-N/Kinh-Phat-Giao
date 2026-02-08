@@ -27,8 +27,9 @@ img { width: 75%;}
 <div>
        <button id="stop">Stop!</button>
        <button id="speak">Speak</button>
-      <label> <input type="checkbox" id="showviet" name="pencil" >show Vietnamese</label>
-      'control +' to enlarge font size, bấm 2 key Control và + cho chữ lớn.
+      <button id="pause">Pause</button>
+      <label> <input type="checkbox" id="show-source-only" name="pencil" >show source only</label>
+      'control +' to enlarge font size, bấm 2 keys Control và + cho chữ lớn.
 </div>
 <h2> <span class="source"> Autoimmune Hemolytic Anemia: Symptoms, Causes, Treatment </span>  <span class="translate"> Thiếu máu tán huyết tự miễn: Triệu chứng, Nguyên nhân, Điều trị </span> </h2>
 <p> <span class="source"> Written by Hallie LevineMedically Reviewed by Laura J. Martin, MD on May 26, 2025 </span>  <span class="translate"> Bài viết của Hallie Levine, được Laura J. Martin, MD xem xét y khoa vào ngày 26 tháng 5 năm 2025 </span> </p>
@@ -337,22 +338,26 @@ img { width: 75%;}
 <br>source: https://www.webmd.com/a-to-z-guides/autoimmune-hemolytic-anemia and Google translate
 <a href="./">Index</a>
 <a href="./">Next</a>
-</body>
 <script>
-const showVietOnly = document.querySelector("#showviet")
+const readSourceLang = 'en-US'
+const readTranslateLang = 'vi-VN'
+
+const showSourceOnly = document.querySelector("#show-source-only")
 const source = document.querySelectorAll(".source")
 const translate = document.querySelectorAll(".translate")
-showVietOnly.checked = false
-showVietOnly.addEventListener("change", () => {
-	if (showVietOnly.checked ){
+showSourceOnly.checked = false
+showSourceOnly.addEventListener("change", () => {
+	if (showSourceOnly.checked ){
 		translate.forEach(v => v.style.display = "none")
 	} else {
 		translate.forEach(v => v.style.display = "inline")
 	}
 })
 
+const readPage = () => {
 
-function readEV(startOver = true) {
+}
+function readSourceTranslate(startOver = true) {
    speechSynthesis.cancel();
    if (startOver) {
       // when user click stop button two array length may not equal
@@ -384,60 +389,71 @@ translate.forEach(e => translateReadArr.push(e.textContent))
 
 let cnt = 0
 function speakMinutes_source() {
+  isPause = false
    if (sourceReadArr.length > 0){
-      let txt = sourceReadArr.shift(); // extract first item
+      let txt = sourceReadArr[cnt]//.shift(); // extract first item
       
       let utterance = new SpeechSynthesisUtterance(txt);
 
       utterance.onstart = () => {
          source[cnt].style.backgroundColor = "yellow"
+        //  source[cnt].style.fontSize = "large"
       }
       // When the current utterance ends, speak the next one
       utterance.onend = function (event) {
          source[cnt].style.backgroundColor = "white"
-      speakMinutes_eng(); // Recursively call the function for the next item
+        //  source[cnt].style.fontSize = "medium"
+      speakMinutes_translate(); // Recursively call the function for the next item
       };
 
       // Handle potential errors
       utterance.onerror = function (event) {
          console.error('Speech synthesis error: ' + event.error);
       };
-      utterance.lang = 'en-US' //'vi-VN'
+      utterance.lang = readSourceLang
 
       let txt1 = '<span style="color:red"> '+translateReadArr[0].trim()+' </span>'
       speechSynthesis.speak(utterance);
    }
 }
-function speakMinutes_eng() {
+function speakMinutes_translate() {
 
    if (translateReadArr.length > 0) {
-      let txt = translateReadArr.shift() // extract first item
+      let txt = translateReadArr[cnt]//.shift() // extract first item
       let utterance = new SpeechSynthesisUtterance(txt);
       utterance.onstart = () => {
          translate[cnt].style.backgroundColor = "yellow"
+        //  translate[cnt].style.fontSize = "large"
       }
       // When the current utterance ends, speak the next one
       utterance.onend = function (event) {
          translate[cnt].style.backgroundColor = "white"
+        //  translate[cnt].style.fontSize = "medium"
          cnt++
       console.log('Speech ended, starting next minute.');
-      document.querySelector(".source").remove()
-      document.querySelector(".translate").remove()
-      speakMinutes_source(); // Recursively call the function for the next item
+      // document.querySelector(".source").remove()
+      // document.querySelector(".translate").remove()
+
+      isPause ? '' : speakMinutes_source(); // Recursively call the function for the next item
       };
 
       // Handle potential errors
       utterance.onerror = function (event) {
          console.error('Speech synthesis error: ' + event.error);
       };
-      utterance.lang = 'vi-VN' // 'en-US'
+      utterance.lang = readTranslateLang
       speechSynthesis.speak(utterance);
    }
 }
-const speakButton = document.querySelector('#speak');
-const stopButton = document.querySelector('#stop');
+const speakBtn = document.querySelector('#speak');
+const pauseBtn = document.querySelector('#pause');
+const stopBtn = document.querySelector('#stop');
+let isPause = true
 
-speakButton.addEventListener('click', readEV);
-stopButton.addEventListener('click', readEV.bind(null, false));
-</script>
+// speakBtn.addEventListener('click', readSourceTranslate);
+speakBtn.addEventListener('click', speakMinutes_source);
+stopBtn.addEventListener('click', refreshPage.bind(null, true));
+pauseBtn.addEventListener("click", () => isPause = true)
+      </script>
+   </body>
 </html>

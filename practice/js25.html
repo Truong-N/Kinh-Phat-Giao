@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js25</title>
+</head>
+<style>
+* {
+    cursor: pointer;
+}
+
+.translate {
+    color: blue;
+}
+img { width: 75%;}
+.floating-checkbox {
+      position: fixed; /* Keeps it fixed to the viewport */
+      top: 20px; /* Distance from the top of the viewport */
+      right: 20px; /* Distance from the right of the viewport */
+      z-index: 1000; /* Ensures it stays above other elements */
+    }
+/* 1 */
+[role="tablist"] {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  gap: 0.25rem;
+  font-family: system-ui, sans-serif;
+}
+
+[role="tab"] {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #444;
+  border-radius: 4px 4px 0 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+[role="tab"]:hover {
+  background-color: #f3f3f3;
+}
+
+[role="tab"][aria-selected="true"] {
+  background-color: #fff;
+  color: #0078d4;
+  border: 2px solid #0078d4;
+  border-bottom: 2px solid #fff; 
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+[role="tab"]:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+/* 2 */
+[role="button"] {
+  display: inline-block;
+  background-color: #0078d4;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
+}
+
+[role="button"]:not([aria-disabled="true"]):hover {
+  background-color: #005fa3;
+}
+
+[role="button"]:not([aria-disabled="true"]):focus {
+  outline: 2px solid #005fa3;
+  outline-offset: 2px;
+}
+
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: scale(0.97);
+}
+
+[role="button"][aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #b0b0b0;
+  color: #f2f2f2;
+}
+/* 3 */
+#menubutton {
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative;
+}
+
+#menubutton:hover,
+#menubutton:focus {
+  background-color: #005ea2;
+  outline: none;
+}
+
+#filemenu {
+  list-style: none;
+  padding: 4px 0;
+  margin: 4px 0 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 160px;
+  position: absolute;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#filemenu[hidden] {
+  display: none;
+}
+
+#filemenu [role="menuitem"] {
+  display: block;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+#filemenu [role="menuitem"]:hover,
+#filemenu [role="menuitem"]:focus {
+  background-color: #e5f1fb;
+  outline: none;
+}
+
+#filemenu [role="menuitem"]:focus-visible {
+  box-shadow: inset 0 0 0 2px #0078d4;
+}
+/* 4 */
+#name-label {
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+[role="textbox"] {
+  display: block;
+  width: 100%;
+  min-height: 2rem;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  color: #222;
+  background-color: #fff;
+  line-height: 1.4;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+[role="textbox"]:hover {
+  border-color: #999;
+}
+
+[role="textbox"]:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.25);
+}
+
+[role="textbox"]:empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+}
+
+[role="textbox"][aria-required="true"] {
+  border-left: 3px solid #e81123;
+  padding-left: calc(0.75rem - 3px);
+}
+/* 5 */
+[role="checkbox"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  color: #222;
+}
+
+[role="checkbox"]::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #666;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+[role="checkbox"]:hover::before {
+  border-color: #0078d4;
+}
+
+[role="checkbox"]:focus::before {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+[role="checkbox"][aria-checked="true"]::before {
+  background-color: #0078d4;
+  border-color: #0078d4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'><path fill='white' d='M5.2 10.4L2 7.2l1.1-1.1 2.1 2.1L10.9 2.5 12 3.6z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+[role="checkbox"][aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+</style>
+<body>
+<div>
+       <button id="stop">Stop!</button>
+       <button id="speak">Speak</button>
+      <button id="pause">Pause</button>
+      <label> <input type="checkbox" id="show-source-only" name="pencil" >show source only</label>
+      
+      'control +' to enlarge font size, bấm 2 keys Control và + cho chữ lớn.
+</div>
+    <h2> <span class="source"> What Are Some Common ARIA States Used on Custom Control Elements? </span> <span class="translate"> Một số trạng thái ARIA phổ biến được sử dụng trên các phần tử điều khiển tùy chỉnh là gì?</span> </h2>
+<p> <span class="source"> Semantic form control elements like input, select, textarea, button, and fieldset have built-in states that are conveyed to assistive technologies. </span> <span class="translate"> Các phần tử điều khiển biểu mẫu ngữ nghĩa như input, select, textarea, button và fieldset có các trạng thái tích hợp được truyền đạt đến các công nghệ hỗ trợ.</span> </p>
+<p> <span class="source"> For example, you could use the disabled attribute to disable a button or the checked attribute to indicate that a checkbox is checked. </span> <span class="translate"> Ví dụ, bạn có thể sử dụng thuộc tính disabled để vô hiệu hóa một nút hoặc thuộc tính checked để cho biết hộp kiểm đã được chọn.</span> </p>
+<p> <span class="source"> But if you are creating a custom control element, you need to use ARIA attributes to convey the state of the control to assistive technologies. </span> <span class="translate"> Nhưng nếu bạn đang tạo một phần tử điều khiển tùy chỉnh, bạn cần sử dụng các thuộc tính ARIA để truyền đạt trạng thái của điều khiển đến các công nghệ hỗ trợ.</span> </p>
+<p> <span class="source"> In this lesson, we will discuss a few common ARIA states that you can use on custom control elements. </span> <span class="translate"> Trong bài học này, chúng ta sẽ thảo luận về một vài trạng thái ARIA phổ biến mà bạn có thể sử dụng trên các phần tử điều khiển tùy chỉnh.</span> </p>
+<p> <span class="source"> The first ARIA state we will discuss is aria-selected. </span> <span class="translate"> Trạng thái ARIA đầu tiên mà chúng ta sẽ thảo luận là aria-selected.</span>
+ <span class="source">  This state is used to indicate that an element is selected. </span> <span class="translate"> Trạng thái này được sử dụng để cho biết một phần tử đã được chọn. </span>
+ <span class="source">  You can use this state on custom controls like a tabbed interface, a listbox, or a grid. </span> <span class="translate"> Bạn có thể sử dụng trạng thái này trên các điều khiển tùy chỉnh như giao diện tab, hộp danh sách hoặc lưới. </span> </p>
+<p> <span class="source"> Here is an example of how you can use aria-selected on a custom tab control: </span> <span class="translate"> Đây là một ví dụ về cách bạn có thể sử dụng aria-selected trên điều khiển tab tùy chỉnh: </span> </p>
+<pre class="source">
+&lt;link rel="stylesheet" href="styles.css">
+&lt;div role="tablist">
+  &lt;button role="tab" aria-selected="true">Tab 1&lt;/button>
+  &lt;button role="tab" aria-selected="false">Tab 2&lt;/button>
+  &lt;button role="tab" aria-selected="false">Tab 3&lt;/button>
+&lt;/div>
+&lt;script src="index.js">&lt;/script>
+[role="tablist"] {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  gap: 0.25rem;
+  font-family: system-ui, sans-serif;
+}
+
+[role="tab"] {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #444;
+  border-radius: 4px 4px 0 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+[role="tab"]:hover {
+  background-color: #f3f3f3;
+}
+
+[role="tab"][aria-selected="true"] {
+  background-color: #fff;
+  color: #0078d4;
+  border: 2px solid #0078d4;
+  border-bottom: 2px solid #fff; 
+  font-weight: 600;
+  position: relative;
+  z-index: 1;
+}
+
+[role="tab"]:focus {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+document.addEventListener("click", (event) => {
+  const clickedTab = event.target.closest('[role="tab"]');
+  if (!clickedTab) return;
+
+  const tablist = clickedTab.closest('[role="tablist"]');
+  const tabs = tablist.querySelectorAll('[role="tab"]');
+
+  tabs.forEach((tab) => {
+    const isSelected = tab === clickedTab;
+    tab.setAttribute("aria-selected", isSelected);
+    tab.tabIndex = isSelected ? 0 : -1;
+  });
+});
+
+document.addEventListener("keydown", (event) => {
+  const activeTab = document.activeElement;
+  if (activeTab.getAttribute("role") !== "tab") return;
+
+  const tablist = activeTab.closest('[role="tablist"]');
+  const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+  const index = tabs.indexOf(activeTab);
+
+  let newIndex = index;
+  if (event.key === "ArrowRight") newIndex = (index + 1) % tabs.length;
+  if (event.key === "ArrowLeft") newIndex = (index - 1 + tabs.length) % tabs.length;
+
+  if (newIndex !== index) {
+    tabs[newIndex].focus();
+    tabs[newIndex].click();
+  }
+});
+</pre>
+<div>
+   <div role="tablist">
+      <button role="tab" aria-selected="true">Tab 1</button>
+      <button role="tab" aria-selected="false">Tab 2</button>
+      <button role="tab" aria-selected="false">Tab 3</button>
+   </div>
+   <script>
+      document.addEventListener("click", (event) => {
+      const clickedTab = event.target.closest('[role="tab"]');
+      if (!clickedTab) return;
+
+      const tablist = clickedTab.closest('[role="tablist"]');
+      const tabs = tablist.querySelectorAll('[role="tab"]');
+
+      tabs.forEach((tab) => {
+         const isSelected = tab === clickedTab;
+         tab.setAttribute("aria-selected", isSelected);
+         tab.tabIndex = isSelected ? 0 : -1;
+      });
+      });
+
+      document.addEventListener("keydown", (event) => {
+      const activeTab = document.activeElement;
+      if (activeTab.getAttribute("role") !== "tab") return;
+
+      const tablist = activeTab.closest('[role="tablist"]');
+      const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+      const index = tabs.indexOf(activeTab);
+
+      let newIndex = index;
+      if (event.key === "ArrowRight") newIndex = (index + 1) % tabs.length;
+      if (event.key === "ArrowLeft") newIndex = (index - 1 + tabs.length) % tabs.length;
+
+      if (newIndex !== index) {
+         tabs[newIndex].focus();
+         tabs[newIndex].click();
+      }
+      });
+
+   </script>
+</div>
+<p> <span class="source"> Tabs are used to display multiple panels of content in a limited space. </span> <span class="translate"> Các tab được sử dụng để hiển thị nhiều bảng nội dung trong một không gian hạn chế. </span>
+ <span class="source">  The aria-selected state is used to indicate which tab is currently selected. </span> <span class="translate"> Trạng thái aria-selected được sử dụng để cho biết tab nào hiện đang được chọn. </span> </p>
+<p> <span class="source"> When the user selects a tab, the aria-selected state of the selected tab is set to true, and the aria-selected state of the other tabs is set to false. </span> <span class="translate"> Khi người dùng chọn một tab, trạng thái aria-selected của tab được chọn sẽ được đặt thành true và trạng thái aria-selected của các tab khác sẽ được đặt thành false. </span> </p>
+<p> <span class="source"> Another common ARIA state is aria-disabled. </span> <span class="translate"> Một trạng thái ARIA phổ biến khác là aria-disabled. </span>
+ <span class="source">  This state is used to indicate that an element is disabled only to people using assistive technologies, such as screen readers. </span>  <span class="translate"> Trạng thái này được sử dụng để chỉ ra rằng một phần tử chỉ bị vô hiệu hóa đối với những người sử dụng công nghệ hỗ trợ, chẳng hạn như trình đọc màn hình. </span>
+ <span class="source">  It is important to note that aria-disabled does not actually disable the element. </span>  <span class="translate"> Điều quan trọng cần lưu ý là aria-disabled thực sự không vô hiệu hóa phần tử. </span>
+ <span class="source">  It is up to you, the developer, to make it look and act like a disabled element. </span>  <span class="translate"> Việc làm cho nó trông và hoạt động giống như một phần tử bị vô hiệu hóa là tùy thuộc vào bạn, nhà phát triển. </span>
+ <span class="source">  This attribute is also commonly used on native HTML elements in place of the disabled attribute. </span>  <span class="translate"> Thuộc tính này cũng thường được sử dụng trên các phần tử HTML gốc thay cho thuộc tính disabled. </span>
+ <span class="source">  Which one you choose will depend on the context the button is being used. </span>  <span class="translate"> Việc bạn chọn thuộc tính nào sẽ phụ thuộc vào ngữ cảnh mà nút đang được sử dụng. </span> </p>
+<p> <span class="source"> Here is an example of how you can use aria-disabled on a custom edit button: </span> <span class="translate"> Đây là một ví dụ về cách bạn có thể sử dụng aria-disabled trên nút chỉnh sửa tùy chỉnh: </span> </p>
+<pre class="source">
+&lt;link rel="stylesheet" href="styles.css">
+&lt;div role="button" tabindex="-1" aria-disabled="true">Edit&lt;/div>
+[role="button"] {
+  display: inline-block;
+  background-color: #0078d4;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
+}
+
+[role="button"]:not([aria-disabled="true"]):hover {
+  background-color: #005fa3;
+}
+
+[role="button"]:not([aria-disabled="true"]):focus {
+  outline: 2px solid #005fa3;
+  outline-offset: 2px;
+}
+
+[role="button"]:not([aria-disabled="true"]):active {
+  transform: scale(0.97);
+}
+
+[role="button"][aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #b0b0b0;
+  color: #f2f2f2;
+}
+</pre>
+<div>
+<div role="button" tabindex="-1" aria-disabled="true">Edit</div>
+
+</div>
+<p> <span class="source"> The aria-disabled attribute is used to tell screen reader users that the edit button is disabled and cannot be interacted with. </span> <span class="translate"> Thuộc tính aria-disabled được sử dụng để thông báo cho người dùng trình đọc màn hình rằng nút chỉnh sửa đã bị vô hiệu hóa và không thể tương tác được. </span>
+ <span class="source">  Again, it does not actually disable the button. </span> <span class="translate"> Một lần nữa, nó không thực sự vô hiệu hóa nút. </span>
+ <span class="source">  When using aria-disabled,you will need to apply styling and JavaScript to make the control look and behave like a disabled button. </span> <span class="translate"> Khi sử dụng aria-disabled, bạn sẽ cần áp dụng kiểu dáng và JavaScript để làm cho điều khiển trông và hoạt động giống như một nút bị vô hiệu hóa. </span> </p>
+<p> <span class="source"> In most cases, you will probably use the native button element, but there are cases where you might need to use a custom control. </span> <span class="translate"> Trong hầu hết các trường hợp, bạn có thể sẽ sử dụng phần tử nút gốc, nhưng có những trường hợp bạn có thể cần sử dụng một điều khiển tùy chỉnh. </span>
+ <span class="source">  So, it is essential to know how to convey the state of the control to assistive technologies. </span> <span class="translate"> Vì vậy, điều cần thiết là phải biết cách truyền đạt trạng thái của điều khiển cho các công nghệ hỗ trợ. </span> </p>
+<p> <span class="source"> The next ARIA state we will discuss is aria-haspopup. </span> <span class="translate"> Trạng thái ARIA tiếp theo mà chúng ta sẽ thảo luận là aria-haspopup. </span>
+ <span class="source">  This state is used to indicate that an interactive element will trigger a popup element when activated. </span> <span class="translate"> Trạng thái này được sử dụng để chỉ ra rằng một phần tử tương tác sẽ kích hoạt một phần tử cửa sổ bật lên khi được kích hoạt. </span>
+ <span class="source">  You can only use the aria-haspopup attribute when the popup has one of the following roles: </span> <span class="translate"> Bạn chỉ có thể sử dụng thuộc tính aria-haspopup khi cửa sổ bật lên có một trong các vai trò sau: </span>
+ <span class="source">  menu, listbox, tree, grid, or dialog. </span> <span class="translate"> menu, listbox, tree, grid hoặc dialog. </span>
+ <span class="source">  The value of aria-haspopup must be either one of these roles or true, which defaults to the menu role. </span> <span class="translate"> Giá trị của aria-haspopup phải là một trong các vai trò này hoặc true, mặc định là vai trò menu. </span> </p>
+<p> <span class="source"> Here is an example of a file editor menu that uses aria-haspopup: </span> <span class="translate"> Đây là một ví dụ về menu trình chỉnh sửa tệp sử dụng aria-haspopup: </span> </p>
+<pre class="source">
+&lt;link rel="stylesheet" href="styles.css">
+&lt;button id="menubutton" aria-haspopup="menu" aria-controls="filemenu" aria-expanded="false">File&lt;/button>
+&lt;ul id="filemenu" role="menu" aria-labelledby="menubutton" hidden>
+  &lt;li role="menuitem" tabindex="-1">Open&lt;/li>
+  &lt;li role="menuitem" tabindex="-1">New&lt;/li>
+  &lt;li role="menuitem" tabindex="-1">Save&lt;/li>
+  &lt;li role="menuitem" tabindex="-1">Delete&lt;/li>
+&lt;/ul>
+#menubutton {
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  position: relative;
+}
+
+#menubutton:hover,
+#menubutton:focus {
+  background-color: #005ea2;
+  outline: none;
+}
+
+#filemenu {
+  list-style: none;
+  padding: 4px 0;
+  margin: 4px 0 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  width: 160px;
+  position: absolute;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#filemenu[hidden] {
+  display: none;
+}
+
+#filemenu [role="menuitem"] {
+  display: block;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+#filemenu [role="menuitem"]:hover,
+#filemenu [role="menuitem"]:focus {
+  background-color: #e5f1fb;
+  outline: none;
+}
+
+#filemenu [role="menuitem"]:focus-visible {
+  box-shadow: inset 0 0 0 2px #0078d4;
+}
+
+</pre>
+<div>
+   <button id="menubutton" aria-haspopup="menu" aria-controls="filemenu" aria-expanded="false">File</button>
+   <ul id="filemenu" role="menu" aria-labelledby="menubutton" hidden>
+      <li role="menuitem" tabindex="-1">Open</li>
+      <li role="menuitem" tabindex="-1">New</li>
+      <li role="menuitem" tabindex="-1">Save</li>
+      <li role="menuitem" tabindex="-1">Delete</li>
+   </ul>
+</div>
+<p> <span class="source"> The aria-haspopup state is used to indicate that the File menu button will open a popup menu when activated. </span> <span class="translate"> Trạng thái aria-haspopup được sử dụng để chỉ ra rằng nút menu Tệp sẽ mở một menu bật lên khi được kích hoạt. </span>
+ <span class="source">  Screen reader users may hear this additional information when they navigate to the button. </span> <span class="translate"> Người dùng trình đọc màn hình có thể nghe thấy thông tin bổ sung này khi họ điều hướng đến nút. </span> </p>
+<p> <span class="source"> You will need to use JavaScript to show and hide the popup menu, and to implement proper keyboard support for interacting with the menu. </span> <span class="translate"> Bạn sẽ cần sử dụng JavaScript để hiển thị và ẩn menu bật lên, và để triển khai hỗ trợ bàn phím phù hợp để tương tác với menu. </span>
+ <span class="source">  Also, please note that the ARIA menu role refers to a very specific type of menu. </span> <span class="translate"> Ngoài ra, xin lưu ý rằng vai trò menu ARIA đề cập đến một loại menu rất cụ thể. </span>
+ <span class="source">  It generally refers to a list of actions that the user can invoke, similar to a menu on a desktop application. </span> <span class="translate"> Nó thường đề cập đến một danh sách các hành động mà người dùng có thể gọi, tương tự như menu trên ứng dụng máy tính để bàn. </span>
+ <span class="source">  It does not include more common uses of what we typically refer to as "menus", such as navigation menus. </span> <span class="translate"> Nó không bao gồm các cách sử dụng phổ biến hơn của những gì chúng ta thường gọi là "menu", chẳng hạn như menu điều hướng. </span>
+ <span class="source">  Realistically, most "menus" you create on the web will not be ARIA menus and you will not use aria-haspopup with them. </span> <span class="translate"> Trên thực tế, hầu hết các "menu" bạn tạo trên web sẽ không phải là menu ARIA và bạn sẽ không sử dụng aria-haspopup với chúng. </span> </p>
+<p> <span class="source"> The next ARIA state we will discuss is aria-required. </span> <span class="translate"> Trạng thái ARIA tiếp theo mà chúng ta sẽ thảo luận là aria-required. </span>
+ <span class="source">  The aria-required attribute is used to indicate that a field needs to be filled out before the form is submitted. </span> <span class="translate"> Thuộc tính aria-required được sử dụng để chỉ ra rằng một trường cần phải được điền trước khi biểu mẫu được gửi. </span> </p>
+<p> <span class="source"> Here is an example of working with the aria-required attribute for a custom form control. </span> <span class="translate"> Đây là một ví dụ về cách làm việc với thuộc tính aria-required cho một điều khiển biểu mẫu tùy chỉnh. </span> </p>
+<pre class="source">
+&lt;link rel="stylesheet" href="styles.css">
+&lt;div id="name-label">Full Name*&lt;/div>
+&lt;div role="textbox" contenteditable aria-labelledby="name-label" aria-required="true" id="name">&lt;/div>
+#name-label {
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+[role="textbox"] {
+  display: block;
+  width: 100%;
+  min-height: 2rem;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  color: #222;
+  background-color: #fff;
+  line-height: 1.4;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+[role="textbox"]:hover {
+  border-color: #999;
+}
+
+[role="textbox"]:focus {
+  outline: none;
+  border-color: #0078d4;
+  box-shadow: 0 0 0 3px rgba(0, 120, 212, 0.25);
+}
+
+[role="textbox"]:empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+}
+
+[role="textbox"][aria-required="true"] {
+  border-left: 3px solid #e81123;
+  padding-left: calc(0.75rem - 3px);
+}
+</pre>
+<div>
+   <div id="name-label">Full Name*</div>
+<div role="textbox" contenteditable aria-labelledby="name-label" aria-required="true" id="name"></div>
+
+</div>
+<p> <span class="source"> We need to use the contenteditable attribute so users can type in their input. </span> <span class="translate"> Chúng ta cần sử dụng thuộc tính contenteditable để người dùng có thể nhập dữ liệu. </span>
+ <span class="source">  We are also using the aria-required attribute set to true to indicate that this custom form control is required. </span> <span class="translate"> Chúng ta cũng đang sử dụng thuộc tính aria-required được đặt thành true để chỉ ra rằng điều khiển biểu mẫu tùy chỉnh này là bắt buộc. </span> </p>
+<p> <span class="source"> To make the form control look like a normal form control, you would need to add CSS. </span> <span class="translate"> Để làm cho điều khiển biểu mẫu trông giống như một điều khiển biểu mẫu thông thường, bạn cần thêm CSS. </span>
+ <span class="source">  You would also need to add JavaScript to prevent the form from being submitted without content. </span> <span class="translate"> Bạn cũng cần thêm JavaScript để ngăn biểu mẫu được gửi đi mà không có nội dung. </span> </p>
+<p> <span class="source"> If the label already has the word required, then you should omit the aria-required attribute. </span> <span class="translate"> Nếu nhãn đã có từ "bắt buộc", thì bạn nên bỏ qua thuộc tính aria-required. </span>
+ <span class="source">  This ensures that screen readers only announce the word required once. </span> <span class="translate"> Điều này đảm bảo rằng trình đọc màn hình chỉ thông báo từ "bắt buộc" một lần. </span> </p>
+<p> <span class="source"> In most cases, you will probably use the native label and form elements with the required attribute. </span> <span class="translate"> Trong hầu hết các trường hợp, bạn có thể sẽ sử dụng các phần tử nhãn và biểu mẫu gốc với thuộc tính bắt buộc. </span>
+ <span class="source">  But if you need to create a custom form control, then it is important to add the aria-required attribute when necessary. </span> <span class="translate"> Nhưng nếu bạn cần tạo một điều khiển biểu mẫu tùy chỉnh, thì điều quan trọng là phải thêm thuộc tính aria-required khi cần thiết. </span> </p>
+<p> <span class="source"> Additionally, the aria-required attribute can also be used on native form inputs, such as the input, textarea, and select elements. </span> <span class="translate"> Ngoài ra, thuộc tính aria-required cũng có thể được sử dụng trên các trường nhập liệu gốc của biểu mẫu, chẳng hạn như các phần tử input, textarea và select. </span>
+ <span class="source">  This is often preferred to the native required attribute, since the required attribute may have potential usability and accessibility concerns, particularly with the default error handling provided by the browser. </span> <span class="translate"> Điều này thường được ưu tiên hơn so với thuộc tính required gốc, vì thuộc tính required có thể gây ra các vấn đề về khả năng sử dụng và khả năng truy cập, đặc biệt là với cơ chế xử lý lỗi mặc định do trình duyệt cung cấp. </span>
+ <span class="source">  Ultimately, you will need to test in order to determine which attribute is best for your situation. </span> <span class="translate"> Cuối cùng, bạn cần phải kiểm tra để xác định thuộc tính nào là tốt nhất cho trường hợp của mình. </span> </p>
+<p> <span class="source"> The last ARIA state we will discuss is aria-checked. </span> <span class="translate"> Trạng thái ARIA cuối cùng mà chúng ta sẽ thảo luận là aria-checked. </span>
+ <span class="source">  This attribute is used to indicate whether an element is in the checked state. </span> <span class="translate"> Thuộc tính này được sử dụng để chỉ ra liệu một phần tử có ở trạng thái được chọn hay không. </span>
+ <span class="source">  It is most commonly used when creating custom checkboxes, radio buttons, switches, and listboxes. </span> <span class="translate"> Nó thường được sử dụng nhất khi tạo các hộp kiểm, nút radio, công tắc và hộp danh sách tùy chỉnh. </span> </p>
+<p> <span class="source"> Here is an example of how you can use aria-checked on a custom checkbox control: </span> <span class="translate"> Đây là một ví dụ về cách bạn có thể sử dụng aria-checked trên một điều khiển hộp kiểm tùy chỉnh: </span> </p>
+<pre class="source">
+&lt;link rel="stylesheet" href="styles.css">
+&lt;div role="checkbox" aria-checked="true" tabindex="0">Checkbox&lt;/div>
+[role="checkbox"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  color: #222;
+}
+
+[role="checkbox"]::before {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #666;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+[role="checkbox"]:hover::before {
+  border-color: #0078d4;
+}
+
+[role="checkbox"]:focus::before {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+[role="checkbox"][aria-checked="true"]::before {
+  background-color: #0078d4;
+  border-color: #0078d4;
+  background-image: url("data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'>&lt;path fill='white' d='M5.2 10.4L2 7.2l1.1-1.1 2.1 2.1L10.9 2.5 12 3.6z'/>&lt;/svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+[role="checkbox"][aria-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+</pre>
+<div>
+<div role="checkbox" aria-checked="true" tabindex="0">Checkbox</div>
+</div>
+<p> <span class="source"> Native checkbox elements have a built-in checked state that is conveyed to assistive technologies. </span> <span class="translate"> Các phần tử hộp kiểm gốc có trạng thái được chọn tích hợp sẵn được truyền đạt đến các công nghệ hỗ trợ. </span>
+ <span class="source">  But if you are creating a custom checkbox control, you will need to use the aria-checked attribute to indicate its state. </span> <span class="translate"> Nhưng nếu bạn đang tạo một điều khiển hộp kiểm tùy chỉnh, bạn sẽ cần sử dụng thuộc tính aria-checked để chỉ ra trạng thái của nó. </span> </p>
+<p> <span class="source"> When the user interacts with the custom checkbox control, you will need to use the aria-checked state to reflect the new state of the checkbox. </span> <span class="translate"> Khi người dùng tương tác với điều khiển hộp kiểm tùy chỉnh, bạn sẽ cần sử dụng trạng thái aria-checked để phản ánh trạng thái mới của hộp kiểm. </span>
+ <span class="source">  When the checkbox is checked, the aria-checked attribute is set to true. </span> <span class="translate"> Khi hộp kiểm được chọn, thuộc tính aria-checked được đặt thành true. </span>
+ <span class="source">  When it is unchecked, it is set to false. </span> <span class="translate"> Khi nó không được chọn, nó được đặt thành false. </span> </p>
+<p> <span class="source"> Native elements typically have better support and built-in accessibility features. </span> <span class="translate"> Các phần tử gốc thường có khả năng hỗ trợ tốt hơn và các tính năng trợ năng tích hợp sẵn. </span> </p>
+<p> <span class="source"> However, if you must create custom controls, using ARIA attributes is essential to convey the state of these controls to assistive technologies effectively. </span> <span class="translate"> Tuy nhiên, nếu bạn phải tạo các điều khiển tùy chỉnh, việc sử dụng thuộc tính ARIA là điều cần thiết để truyền đạt trạng thái của các điều khiển này cho các công nghệ hỗ trợ một cách hiệu quả. </span> </p>
+<p> <span class="source"> As always, test your work to ensure that ARIA attributes are applied correctly and that the custom control functions in a way that is both accessible and user-friendly. </span> <span class="translate"> Như mọi khi, hãy kiểm tra công việc của bạn để đảm bảo rằng các thuộc tính ARIA được áp dụng chính xác và điều khiển tùy chỉnh hoạt động theo cách vừa dễ truy cập vừa thân thiện với người dùng. </span> </p>
+<p> <span class="source"> Questions </span> <span class="translate"> Câu hỏi </span> </p>
+<li> <span class="source"> What ARIA state would you use to indicate that a tab is currently selected? </span> <span class="translate"> Bạn sẽ sử dụng trạng thái ARIA nào để cho biết rằng một tab hiện đang được chọn? </span> </li>
+<li> <span class="source"> aria-disabled </span>  <span class="translate">  </span> </li>
+<li> <span class="source"> aria-selected </span>  <span class="translate"> x </span> </li>
+<li> <span class="source"> aria-haspopup </span>  <span class="translate">  </span> </li>
+<li> <span class="source"> aria-checked </span>  <span class="translate">  </span> </li><br>
+<li> <span class="source"> In the context of custom controls, which ARIA state is used to indicate that an element is currently disabled? </span>  <span class="translate"> Trong ngữ cảnh của các điều khiển tùy chỉnh, trạng thái ARIA nào được sử dụng để chỉ ra rằng một phần tử hiện đang bị vô hiệu hóa? </span> </li>
+<li> <span class="source"> aria-checked </span>  <span class="translate">  </span> </li>
+<li> <span class="source"> aria-disabled </span>  <span class="translate"> x </span> </li>
+<li> <span class="source"> aria-selected </span>  <span class="translate">  </span> </li>
+<li> <span class="source"> aria-haspopup </span>  <span class="translate">  </span> </li><br>
+<li> <span class="source"> When you want to indicate that a menu item has a submenu, which ARIA state should be used? </span>  <span class="translate"> Khi bạn muốn chỉ ra rằng một mục menu có menu con, nên sử dụng trạng thái ARIA nào? </span> </li>
+<li> <span class="source"> aria-checked </span>  <span class="translate">  </span> </li>
+<li> <span class="source"> aria-disabled </span>  <span class="translate">  </span> </li>
+<li> <span class="source"> aria-haspopup </span>  <span class="translate"> x </span> </li>
+<li> <span class="source"> aria-selected </span>  <span class="translate">  </span> </li>
+
+<a href="./js24.html">Prev</a>
+<a href="./js26.html">Next</a>
+<script>
+const readSourceLang = 'en-US'
+const readTranslateLang = 'vi-VN'
+
+const showSourceOnly = document.querySelector("#show-source-only")
+const source = document.querySelectorAll(".source")
+const translate = document.querySelectorAll(".translate")
+showSourceOnly.checked = false
+showSourceOnly.addEventListener("change", () => {
+	if (showSourceOnly.checked ){
+		translate.forEach(v => v.style.display = "none")
+	} else {
+		translate.forEach(v => v.style.display = "inline")
+	}
+})
+
+const readPage = () => {
+
+}
+function readSourceTranslate(startOver = true) {
+   speechSynthesis.cancel();
+   if (startOver) {
+      // when user click stop button two array length may not equal
+      // continue reading should remove extra first element
+      if (sourceReadArr.length > translateReadArr.length){
+         alert(`source: ${sourceReadArr.length}, translate: ${translateReadArr.length}`)
+         sourceReadArr.pop()
+      } else if (sourceReadArr.length < translateReadArr.length){
+         alert(`source: ${sourceReadArr.length}, translate: ${translateReadArr.length}`)
+         translateReadArr.pop()
+      }
+      speakMinutes_source()
+   }else {
+      refreshPage(true)
+   }
+}
+function refreshPage(forceReload = false) {
+   try {
+         // forceReload = true will reload from the server, bypassing cache
+         location.reload(forceReload);
+   } catch (error) {
+         console.error("Error reloading page:", error);
+   }
+}
+let sourceReadArr = []
+source.forEach(e => sourceReadArr.push(e.textContent))
+let translateReadArr = []
+translate.forEach(e => translateReadArr.push(e.textContent))
+
+let cnt = 0
+function speakMinutes_source() {
+  isPause = false
+   if (sourceReadArr.length > 0){
+      let txt = sourceReadArr[cnt]//.shift(); // extract first item
+      
+      let utterance = new SpeechSynthesisUtterance(txt);
+
+      utterance.onstart = () => {
+         source[cnt].style.backgroundColor = "yellow"
+        //  source[cnt].style.fontSize = "large"
+      }
+      // When the current utterance ends, speak the next one
+      utterance.onend = function (event) {
+         source[cnt].style.backgroundColor = "white"
+        //  source[cnt].style.fontSize = "medium"
+      speakMinutes_translate(); // Recursively call the function for the next item
+      };
+
+      // Handle potential errors
+      utterance.onerror = function (event) {
+         console.error('Speech synthesis error: ' + event.error);
+      };
+      utterance.lang = readSourceLang
+
+      let txt1 = '<span style="color:red"> '+translateReadArr[0].trim()+' </span>'
+      speechSynthesis.speak(utterance);
+   }
+}
+function speakMinutes_translate() {
+
+   if (translateReadArr.length > 0) {
+      let txt = translateReadArr[cnt]//.shift() // extract first item
+      let utterance = new SpeechSynthesisUtterance(txt);
+      utterance.onstart = () => {
+         translate[cnt].style.backgroundColor = "yellow"
+        //  translate[cnt].style.fontSize = "large"
+      }
+      // When the current utterance ends, speak the next one
+      utterance.onend = function (event) {
+         translate[cnt].style.backgroundColor = "white"
+        //  translate[cnt].style.fontSize = "medium"
+         cnt++
+      console.log('Speech ended, starting next minute.');
+      // document.querySelector(".source").remove()
+      // document.querySelector(".translate").remove()
+
+      isPause ? '' : speakMinutes_source(); // Recursively call the function for the next item
+      };
+
+      // Handle potential errors
+      utterance.onerror = function (event) {
+         console.error('Speech synthesis error: ' + event.error);
+      };
+      utterance.lang = readTranslateLang
+      speechSynthesis.speak(utterance);
+   }
+}
+const speakBtn = document.querySelector('#speak');
+const pauseBtn = document.querySelector('#pause');
+const stopBtn = document.querySelector('#stop');
+let isPause = true
+
+// speakBtn.addEventListener('click', readSourceTranslate);
+speakBtn.addEventListener('click', speakMinutes_source);
+stopBtn.addEventListener('click', refreshPage.bind(null, true));
+pauseBtn.addEventListener("click", () => isPause = true)
+      </script>
+   </body>
+</html>

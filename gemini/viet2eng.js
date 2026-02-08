@@ -119,7 +119,7 @@ function handleUl() {
 }
 
 function handlePre() {
-   sourceTA.value += "<pre class='english'>\n";
+   sourceTA.value += '<pre>\n';
    sourceTA.value += rawTA.value.replaceAll("<", "&lt;");
    sourceTA.value += "\n</pre>\n";
    rawTA.value = "";
@@ -221,7 +221,7 @@ divideSourceTABtn.addEventListener("click", () => {
    let groupNum = 0
    do {
       totalLength += arr[i].length
-      if (totalLength > 5000){
+      if (totalLength > 4800){
          divideArr.push(i)
          totalLength = arr[i].length
          addBtn2DivideBtnGroup(arr, divideArr[divideArr.length-2], divideArr[divideArr.length-1], groupNum)
@@ -381,14 +381,14 @@ function handleCombine1() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemini</title>
+    <title>Document</title>
 </head>
 <style>
 * {
     cursor: pointer;
 }
 
-.english {
+.translate {
     color: blue;
 }
 img { width: 75%;}
@@ -404,42 +404,29 @@ img { width: 75%;}
 <div>
        <button id="stop">Stop!</button>
        <button id="speak">Speak</button>
-      <label> <input type="checkbox" id="showviet" name="pencil" >show Vietnamese</label>
-      'control +' to enlarge font size, bấm 2 key Control và + cho chữ lớn.
+      <button id="pause">Pause</button>
+      <label> <input type="checkbox" id="show-source-only" name="pencil" >show source only</label>
+      'control +' to enlarge font size, bấm 2 keys Control và + cho chữ lớn.
 </div>
     ${result.innerHTML}
-<a href="./index.htm">Index</a>
+<a href="./">Prev</a>
 <a href="./">Next</a>
-</body>
 <script>
-const showVietOnly = document.querySelector("#showviet")
-const viet = document.querySelectorAll(".souce")
-const english = document.querySelectorAll(".translate")
-showVietOnly.checked = false
-showVietOnly.addEventListener("change", () => {
-	if (showVietOnly.checked ){
-		english.forEach(v => v.style.display = "none")
+const readSourceLang = 'en-US'
+const readTranslateLang = 'vi-VN'
+
+const showSourceOnly = document.querySelector("#show-source-only")
+const source = document.querySelectorAll(".source")
+const translate = document.querySelectorAll(".translate")
+showSourceOnly.checked = false
+showSourceOnly.addEventListener("change", () => {
+	if (showSourceOnly.checked ){
+		translate.forEach(v => v.style.display = "none")
 	} else {
-		english.forEach(v => v.style.display = "inline")
+		translate.forEach(v => v.style.display = "inline")
 	}
 })
 
-
-function readEV(startOver = true) {
-   speechSynthesis.cancel();
-   if (startOver) {
-      // when user click stop button two array length may not equal
-      // continue reading should remove extra first element
-      if (vietReadArr.length > englishReadArr.length){
-         vietReadArr.shift()
-      } else if (vietReadArr.length < englishReadArr.length){
-         englishReadArr.shift()
-      }
-      speakMinutes_viet()
-   }else {
-      refreshPage(true)
-   }
-}
 function refreshPage(forceReload = false) {
    try {
          // forceReload = true will reload from the server, bypassing cache
@@ -448,71 +435,76 @@ function refreshPage(forceReload = false) {
          console.error("Error reloading page:", error);
    }
 }
-let vietReadArr = []
-viet.forEach(e => vietReadArr.push(e.textContent))
-let englishReadArr = []
-english.forEach(e => englishReadArr.push(e.textContent))
+let sourceReadArr = []
+source.forEach(e => sourceReadArr.push(e.textContent))
+let translateReadArr = []
+translate.forEach(e => translateReadArr.push(e.textContent))
 
 let cnt = 0
-function speakMinutes_viet() {
-   if (vietReadArr.length > 0){
-      let txt = vietReadArr.shift(); // extract first item
+function speakMinutes_source() {
+  isPause = false
+   if (sourceReadArr.length > 0){
+      let txt = sourceReadArr[cnt]//.shift(); // extract first item
       
       let utterance = new SpeechSynthesisUtterance(txt);
 
       utterance.onstart = () => {
-         viet[cnt].style.backgroundColor = "yellow"
+         source[cnt].style.backgroundColor = "yellow"
       }
       // When the current utterance ends, speak the next one
       utterance.onend = function (event) {
-         viet[cnt].style.backgroundColor = "white"
-      speakMinutes_eng(); // Recursively call the function for the next item
+         source[cnt].style.backgroundColor = "white"
+      speakMinutes_translate(); // Recursively call the function for the next item
       };
 
       // Handle potential errors
       utterance.onerror = function (event) {
          console.error('Speech synthesis error: ' + event.error);
       };
-      utterance.lang = 'vi-VN'
+      utterance.lang = readSourceLang
 
-      let txt1 = '<span style="color:red"> '+englishReadArr[0].trim()+' </span>'
+      let txt1 = '<span style="color:red"> '+translateReadArr[0].trim()+' </span>'
       speechSynthesis.speak(utterance);
    }
 }
-function speakMinutes_eng() {
+function speakMinutes_translate() {
 
-   if (englishReadArr.length > 0) {
-      let txt = englishReadArr.shift() // extract first item
+   if (translateReadArr.length > 0) {
+      let txt = translateReadArr[cnt]//.shift() // extract first item
       let utterance = new SpeechSynthesisUtterance(txt);
       utterance.onstart = () => {
-         english[cnt].style.backgroundColor = "yellow"
+         translate[cnt].style.backgroundColor = "yellow"
       }
       // When the current utterance ends, speak the next one
       utterance.onend = function (event) {
-         english[cnt].style.backgroundColor = "white"
+         translate[cnt].style.backgroundColor = "white"
          cnt++
       console.log('Speech ended, starting next minute.');
-      document.querySelector(".viet").remove()
-      document.querySelector(".english").remove()
-      speakMinutes_viet(); // Recursively call the function for the next item
+      // document.querySelector(".source").remove()
+      // document.querySelector(".translate").remove()
+
+      isPause ? '' : speakMinutes_source(); // Recursively call the function for the next item
       };
 
       // Handle potential errors
       utterance.onerror = function (event) {
          console.error('Speech synthesis error: ' + event.error);
       };
-      utterance.lang = 'en-US'
+      utterance.lang = readTranslateLang
       speechSynthesis.speak(utterance);
    }
 }
-const speakButton = document.querySelector('#speak');
-const stopButton = document.querySelector('#stop');
+const speakBtn = document.querySelector('#speak');
+const pauseBtn = document.querySelector('#pause');
+const stopBtn = document.querySelector('#stop');
+let isPause = true
 
-speakButton.addEventListener('click', readEV);
-stopButton.addEventListener('click', readEV.bind(null, false));
-</script>
-</html>
-`
+speakBtn.addEventListener('click', speakMinutes_source);
+stopBtn.addEventListener('click', refreshPage.bind(null, true));
+pauseBtn.addEventListener("click", () => isPause = true)
+      </script>
+   </body>
+</html>`
 }
 
 function handleCombine2() {

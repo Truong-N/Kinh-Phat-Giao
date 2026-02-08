@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>j26</title>
+</head>
+<style>
+* {
+    cursor: pointer;
+
+}
+
+.translate {
+    color: blue;
+}
+img { width: 75%;}
+.floating-checkbox {
+      position: fixed; /* Keeps it fixed to the viewport */
+      top: 20px; /* Distance from the top of the viewport */
+      right: 20px; /* Distance from the right of the viewport */
+      z-index: 1000; /* Ensures it stays above other elements */
+    }
+/* 1 */
+[role="tablist"] {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 1em;
+  gap: 4px;
+}
+
+[role="tab"] {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.2s, color 0.2s;
+}
+
+[role="tab"]:hover,
+[role="tab"]:focus {
+  background: #e8f0fe;
+  outline: none;
+}
+
+[role="tab"][aria-selected="true"] {
+  background: #fff;
+  border-color: #ccc;
+  border-bottom: 2px solid #fff;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+  top: 1px; 
+}
+
+[role="tab"]:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+/* 2 */
+[role="tablist"] {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 1em;
+  gap: 4px;
+  background: #fafafa;
+  padding: 0.25em;
+}
+
+[role="tab"] {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.2s, color 0.2s;
+}
+
+[role="tab"]:hover,
+[role="tab"]:focus {
+  background: #e8f0fe;
+  outline: none;
+}
+
+[role="tab"][aria-selected="true"] {
+  background: #fff;
+  border-color: #ccc;
+  border-bottom: 2px solid #fff;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+  top: 1px;
+}
+
+[role="tab"]:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+[role="tabpanel"] {
+  border: 1px solid #ccc;
+  border-radius: 0 4px 4px 4px;
+  padding: 16px;
+  background-color: #fff;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+[role="tabpanel"][hidden] {
+  display: none;
+}
+</style>
+<body>
+<div>
+       <button id="stop">Stop!</button>
+       <button id="speak">Speak</button>
+       <button id="pause">Pause</button>
+      <label> <input type="checkbox" id="show-source-only" name="pencil" >show source only</label>
+      
+      'control +' to enlarge font size, bấm 2 keys Control và + cho chữ lớn.
+</div>
+    <h2> <span class="source"> What Is the aria-controls Attribute, and How Does It Work? </span>  <span class="translate"> Thuộc tính aria-controls là gì và hoạt động như thế nào? </span> </h2>
+<p> <span class="source"> The aria-controls attribute is used to create a programmatic relationship between an element that controls the presence of another element on the page, and the element it controls. </span>  <span class="translate"> Thuộc tính aria-controls được sử dụng để tạo mối quan hệ lập trình giữa một phần tử điều khiển sự hiện diện của một phần tử khác trên trang và phần tử mà nó điều khiển. </span>
+ <span class="source">  This relationship can help screen reader users better understand how the control works. </span>  <span class="translate"> Mối quan hệ này có thể giúp người dùng trình đọc màn hình hiểu rõ hơn cách hoạt động của điều khiển. </span>
+ <span class="source">  Common uses include a set of tabs that control the visibility of different sections of content, or a button that toggles the visibility of a menu. </span>  <span class="translate"> Các trường hợp sử dụng phổ biến bao gồm một tập hợp các tab điều khiển khả năng hiển thị của các phần nội dung khác nhau hoặc một nút chuyển đổi khả năng hiển thị của menu. </span> </p>
+<p> <span class="source"> Let's take a look at an example to see how this works. </span>  <span class="translate"> Hãy cùng xem một ví dụ để hiểu cách hoạt động của nó. </span>
+ <span class="source">  In this example of a tabbed interface, we have a div element with a set of three buttons: </span>  <span class="translate"> Trong ví dụ về giao diện dạng tab này, chúng ta có một phần tử div với một tập hợp ba nút: </span> </p>
+<pre>
+&lt;link rel="stylesheet" href="styles.css">
+&lt;div role="tablist">
+  &lt;button role="tab" id="tab1" aria-controls="section1" aria-selected="true">
+    Tab 1
+  &lt;/button>
+  &lt;button role="tab" id="tab2" aria-controls="section2" aria-selected="false">
+    Tab 2
+  &lt;/button>
+  &lt;button role="tab" id="tab3" aria-controls="section3" aria-selected="false">
+    Tab 3
+  &lt;/button>
+&lt;/div>
+[role="tablist"] {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 1em;
+  gap: 4px;
+}
+
+[role="tab"] {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.2s, color 0.2s;
+}
+
+[role="tab"]:hover,
+[role="tab"]:focus {
+  background: #e8f0fe;
+  outline: none;
+}
+
+[role="tab"][aria-selected="true"] {
+  background: #fff;
+  border-color: #ccc;
+  border-bottom: 2px solid #fff;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+  top: 1px; 
+}
+
+[role="tab"]:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+</pre>
+<div>Output:<br>
+   <div role="tablist">
+  <button role="tab" id="tab1" aria-controls="section1" aria-selected="true">
+    Tab 1
+  </button>
+  <button role="tab" id="tab2" aria-controls="section2" aria-selected="false">
+    Tab 2
+  </button>
+  <button role="tab" id="tab3" aria-controls="section3" aria-selected="false">
+    Tab 3
+  </button>
+</div>
+</div>
+<p> <span class="source"> The div uses role="tablist" to indicate that it serves as a container element for a group of tabs. </span>  <span class="translate"> Phần tử div sử dụng role="tablist" để chỉ ra rằng nó đóng vai trò là phần tử chứa cho một nhóm các tab. </span> </p>
+<p> <span class="source"> Each button represents a tab and has a role attribute set to tab. </span>  <span class="translate"> Mỗi nút đại diện cho một tab và có thuộc tính role được đặt thành tab. </span>
+ <span class="source">  In most tabbed interfaces, the first tab panel is visible by default, so the first tab button has an aria-selected attribute set to true to indicate that its associated section of content is currently visible. </span>  <span class="translate"> Trong hầu hết các giao diện dạng tab, bảng tab đầu tiên được hiển thị theo mặc định, vì vậy nút tab đầu tiên có thuộc tính aria-selected được đặt thành true để chỉ ra rằng phần nội dung liên quan của nó hiện đang hiển thị. </span>
+ <span class="source">  The aria-controls attribute is used to associate each button with the section of content that it controls. </span>  <span class="translate"> Thuộc tính aria-controls được sử dụng để liên kết mỗi nút với phần nội dung mà nó điều khiển. </span> </p>
+<p> <span class="source"> Here are the three sections of content that correspond to the tabs: </span> <span class="translate"> Đây là ba phần nội dung tương ứng với các tab: </span> </p>
+<pre>
+&lt;link rel="stylesheet" href="styles.css">
+&lt;div role="tablist">
+  &lt;button role="tab" id="tab1" aria-controls="section1" aria-selected="true">
+    Tab 1
+  &lt;/button>
+  &lt;button role="tab" id="tab2" aria-controls="section2" aria-selected="false">
+    Tab 2
+  &lt;/button>
+  &lt;button role="tab" id="tab3" aria-controls="section3" aria-selected="false">
+    Tab 3
+  &lt;/button>
+&lt;/div>
+
+&lt;div id="section1" role="tabpanel" aria-labelledby="tab1">
+  Section 1 content
+&lt;/div>
+
+&lt;div id="section2" role="tabpanel" aria-labelledby="tab2" hidden>
+  Section 2 content
+&lt;/div>
+
+&lt;div id="section3" role="tabpanel" aria-labelledby="tab3" hidden>
+  Section 3 content
+&lt;/div>
+&lt;script src="index.js">&lt;/script>
+[role="tablist"] {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 1em;
+  gap: 4px;
+  background: #fafafa;
+  padding: 0.25em;
+}
+
+[role="tab"] {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.2s, color 0.2s;
+}
+
+[role="tab"]:hover,
+[role="tab"]:focus {
+  background: #e8f0fe;
+  outline: none;
+}
+
+[role="tab"][aria-selected="true"] {
+  background: #fff;
+  border-color: #ccc;
+  border-bottom: 2px solid #fff;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+  top: 1px;
+}
+
+[role="tab"]:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+[role="tabpanel"] {
+  border: 1px solid #ccc;
+  border-radius: 0 4px 4px 4px;
+  padding: 16px;
+  background-color: #fff;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+[role="tabpanel"][hidden] {
+  display: none;
+}
+
+const tabs = document.querySelectorAll('[role="tab"]');
+const tabList = document.querySelector('[role="tablist"]');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    activateTab(tab);
+  });
+
+  tab.addEventListener('keydown', (e) => {
+    const key = e.key;
+    const currentIndex = Array.from(tabs).indexOf(tab);
+    let newIndex = null;
+
+    if (key === 'ArrowRight') {
+      newIndex = (currentIndex + 1) % tabs.length;
+    } else if (key === 'ArrowLeft') {
+      newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    } else if (key === 'Home') {
+      newIndex = 0;
+    } else if (key === 'End') {
+      newIndex = tabs.length - 1;
+    }
+
+    if (newIndex !== null) {
+      tabs[newIndex].focus();
+      activateTab(tabs[newIndex]);
+    }
+  });
+});
+
+function activateTab(tab) {
+  const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+  tabs.forEach(t => {
+    t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
+  });
+
+  tabPanels.forEach(panel => panel.hidden = true);
+
+  tab.setAttribute('aria-selected', 'true');
+  tab.removeAttribute('tabindex');
+
+  const panelId = tab.getAttribute('aria-controls');
+  const panel = document.getElementById(panelId);
+  panel.hidden = false;
+  tab.focus();
+}
+
+</pre>
+<div>
+  
+<div role="tablist">
+  <button role="tab" id="tab1" aria-controls="section1" aria-selected="true">
+    Tab 1
+  </button>
+  <button role="tab" id="tab2" aria-controls="section2" aria-selected="false">
+    Tab 2
+  </button>
+  <button role="tab" id="tab3" aria-controls="section3" aria-selected="false">
+    Tab 3
+  </button>
+</div>
+
+<div id="section1" role="tabpanel" aria-labelledby="tab1">
+  Section 1 content
+</div>
+
+<div id="section2" role="tabpanel" aria-labelledby="tab2" hidden>
+  Section 2 content
+</div>
+
+<div id="section3" role="tabpanel" aria-labelledby="tab3" hidden>
+  Section 3 content
+</div>
+<script>
+const tabs = document.querySelectorAll('[role="tab"]');
+const tabList = document.querySelector('[role="tablist"]');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    activateTab(tab);
+  });
+
+  tab.addEventListener('keydown', (e) => {
+    const key = e.key;
+    const currentIndex = Array.from(tabs).indexOf(tab);
+    let newIndex = null;
+
+    if (key === 'ArrowRight') {
+      newIndex = (currentIndex + 1) % tabs.length;
+    } else if (key === 'ArrowLeft') {
+      newIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+    } else if (key === 'Home') {
+      newIndex = 0;
+    } else if (key === 'End') {
+      newIndex = tabs.length - 1;
+    }
+
+    if (newIndex !== null) {
+      tabs[newIndex].focus();
+      activateTab(tabs[newIndex]);
+    }
+  });
+});
+
+function activateTab(tab) {
+  const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+  tabs.forEach(t => {
+    t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
+  });
+
+  tabPanels.forEach(panel => panel.hidden = true);
+
+  tab.setAttribute('aria-selected', 'true');
+  tab.removeAttribute('tabindex');
+
+  const panelId = tab.getAttribute('aria-controls');
+  const panel = document.getElementById(panelId);
+  panel.hidden = false;
+  tab.focus();
+}
+</script>
+</div>
+<p> <span class="source"> Each section of content has a role attribute set to tabpanel and an aria-labelledby attribute that points to the corresponding tab to give the panel an accessible name. </span> <span class="translate"> Mỗi phần nội dung có thuộc tính role được đặt thành tabpanel và thuộc tính aria-labelledby trỏ đến tab tương ứng để đặt tên dễ truy cập cho bảng điều khiển. </span>
+ <span class="source">  The hidden attribute is used to hide the sections of content that are not currently selected. </span> <span class="translate"> Thuộc tính hidden được sử dụng để ẩn các phần nội dung hiện không được chọn. </span>
+ <span class="source">  Each section ID matches the value of the aria-controls attribute on the corresponding button. </span> <span class="translate"> Mỗi ID phần khớp với giá trị của thuộc tính aria-controls trên nút tương ứng. </span>
+ <span class="source">  The section1 ID matches the aria-controls attribute on the first button, section2 matches the aria-controls attribute on the second button, and section3 matches the aria-controls attribute on the third button. </span> <span class="translate"> ID phần 1 khớp với thuộc tính aria-controls trên nút đầu tiên, phần 2 khớp với thuộc tính aria-controls trên nút thứ hai và phần 3 khớp với thuộc tính aria-controls trên nút thứ ba. </span>
+ <span class="source">  This is how the association between the tabs and their sections of content is established. </span> <span class="translate"> Đây là cách thiết lập mối liên hệ giữa các tab và các phần nội dung của chúng. </span> </p>
+<p> <span class="source"> To switch between the different sections you will need to use JavaScript to update the hidden attribute on the section and the aria-selected attribute on the button based on which section is currently visible. </span> <span class="translate"> Để chuyển đổi giữa các phần khác nhau, bạn cần sử dụng JavaScript để cập nhật thuộc tính hidden trên phần và thuộc tính aria-selected trên nút dựa trên phần nào hiện đang hiển thị. </span>
+ <span class="source">  Only one section can be visible at a time and it should not have the hidden attribute and aria-selected should be set to true on its button. </span> <span class="translate"> Chỉ một phần có thể hiển thị tại một thời điểm và phần đó không nên có thuộc tính hidden và thuộc tính aria-selected nên được đặt thành true trên nút của nó. </span>
+ <span class="source">  The remaining hidden sections should all have the hidden attribute and aria-selected should be set to false on their buttons. </span> <span class="translate"> Các phần ẩn còn lại đều nên có thuộc tính hidden và thuộc tính aria-selected nên được đặt thành false trên các nút của chúng. </span> </p>
+<p> <span class="source"> Tabs are a common use case for the aria-controls attribute, but it can be used in other scenarios where one element controls the visibility or behavior of another element. </span> <span class="translate"> Tab là một trường hợp sử dụng phổ biến cho thuộc tính aria-controls, nhưng nó có thể được sử dụng trong các trường hợp khác, nơi một phần tử kiểm soát khả năng hiển thị hoặc hành vi của một phần tử khác. </span>
+ <span class="source">  Other examples include accordions, dropdown menus, and modals. </span>  <span class="translate"> Các ví dụ khác bao gồm accordion, menu thả xuống và modal. </span> </p>
+<p> <span class="source"> The next time you design a user interface that involves controlling the visibility of elements, consider using the aria-controls attribute to establish the relationship between the controlling element and the controlled element. </span>  <span class="translate"> Lần tới khi bạn thiết kế giao diện người dùng liên quan đến việc kiểm soát khả năng hiển thị của các phần tử, hãy cân nhắc sử dụng thuộc tính aria-controls để thiết lập mối quan hệ giữa phần tử điều khiển và phần tử được điều khiển. </span> </p>
+<p> <span class="source"> Questions </span>  <span class="translate"> Câu hỏi </span> </p>
+<li> <span class="source"> What is the purpose of the aria-controls attribute in the context of tabs? </span>  <span class="translate"> Mục đích của thuộc tính aria-controls trong ngữ cảnh của các tab là gì? </span> </li>
+<li> <span class="source"> - To specify which tab is currently active. </span>  <span class="translate"> Để chỉ định tab nào hiện đang hoạt động. </span> </li>
+<li> <span class="source"> - To hide or show sections of content. </span>  <span class="translate"> Để ẩn hoặc hiển thị các phần nội dung. </span> </li>
+<li> <span class="source"> - To associate a tab with the section it controls. </span>  <span class="translate"> Để liên kết một tab với phần mà nó điều khiển. x</span> </li>
+<li> <span class="source"> - To set the role of the element. </span>  <span class="translate"> Để đặt vai trò của phần tử. </span> </li><br>
+<li> <span class="source"> How does the aria-controls attribute affect the content sections in the example? </span>  <span class="translate"> Thuộc tính aria-controls ảnh hưởng đến các phần nội dung trong ví dụ như thế nào? </span> </li>
+<li> <span class="source"> - It automatically updates the content based on user input. </span>  <span class="translate"> Nó tự động cập nhật nội dung dựa trên đầu vào của người dùng. </span> </li>
+<li> <span class="source"> - It hides or shows sections based on which tab is selected. </span>  <span class="translate"> Nó ẩn hoặc hiển thị các phần dựa trên tab nào được chọn. x</span> </li>
+<li> <span class="source"> - It changes the tab's style to indicate it is selected. </span>  <span class="translate"> Nó thay đổi kiểu của tab để cho biết tab đó đã được chọn. </span> </li>
+<li> <span class="source"> - It defines the visual appearance of the tab. </span>  <span class="translate"> Nó xác định giao diện trực quan của tab. </span> </li><br>
+<li> <span class="source"> In the provided example, how is the aria-labelledby attribute used? </span>  <span class="translate"> Trong ví dụ được cung cấp, thuộc tính aria-labelledby được sử dụng như thế nào? </span> </li>
+<li> <span class="source"> - To specify which tab controls which content section. </span>  <span class="translate"> Để chỉ định tab nào điều khiển phần nội dung nào. </span> </li>
+<li> <span class="source"> - To identify the content section that a tab controls. </span>  <span class="translate"> Để xác định phần nội dung mà một tab điều khiển. x</span> </li>
+<li> <span class="source"> - To define the role of the tab and content sections. </span>  <span class="translate"> Để xác định vai trò của tab và các phần nội dung. </span> </li>
+<li> <span class="source"> - To automatically switch between content sections when a tab is clicked. </span>  <span class="translate"> Để tự động chuyển đổi giữa các phần nội dung khi nhấp vào một tab. </span> </li>
+
+<a href="./js25.html">Prev</a>
+<a href="./js27.html">Next</a>
+<script>
+const readSourceLang = 'en-US'
+const readTranslateLang = 'vi-VN'
+
+const showSourceOnly = document.querySelector("#show-source-only")
+const source = document.querySelectorAll(".source")
+const translate = document.querySelectorAll(".translate")
+showSourceOnly.checked = false
+showSourceOnly.addEventListener("change", () => {
+	if (showSourceOnly.checked ){
+		translate.forEach(v => v.style.display = "none")
+	} else {
+		translate.forEach(v => v.style.display = "inline")
+	}
+})
+
+const readPage = () => {
+
+}
+function readSourceTranslate(startOver = true) {
+   speechSynthesis.cancel();
+   if (startOver) {
+      // when user click stop button two array length may not equal
+      // continue reading should remove extra first element
+      if (sourceReadArr.length > translateReadArr.length){
+         alert(`source: ${sourceReadArr.length}, translate: ${translateReadArr.length}`)
+         sourceReadArr.pop()
+      } else if (sourceReadArr.length < translateReadArr.length){
+         alert(`source: ${sourceReadArr.length}, translate: ${translateReadArr.length}`)
+         translateReadArr.pop()
+      }
+      speakMinutes_source()
+   }else {
+      refreshPage(true)
+   }
+}
+function refreshPage(forceReload = false) {
+   try {
+         // forceReload = true will reload from the server, bypassing cache
+         location.reload(forceReload);
+   } catch (error) {
+         console.error("Error reloading page:", error);
+   }
+}
+let sourceReadArr = []
+source.forEach(e => sourceReadArr.push(e.textContent))
+let translateReadArr = []
+translate.forEach(e => translateReadArr.push(e.textContent))
+
+let cnt = 0
+function speakMinutes_source() {
+  isPause = false
+   if (sourceReadArr.length > 0){
+      let txt = sourceReadArr[cnt]//.shift(); // extract first item
+      
+      let utterance = new SpeechSynthesisUtterance(txt);
+
+      utterance.onstart = () => {
+         source[cnt].style.backgroundColor = "yellow"
+        //  source[cnt].style.fontSize = "large"
+      }
+      // When the current utterance ends, speak the next one
+      utterance.onend = function (event) {
+         source[cnt].style.backgroundColor = "white"
+        //  source[cnt].style.fontSize = "medium"
+      speakMinutes_translate(); // Recursively call the function for the next item
+      };
+
+      // Handle potential errors
+      utterance.onerror = function (event) {
+         console.error('Speech synthesis error: ' + event.error);
+      };
+      utterance.lang = readSourceLang
+
+      let txt1 = '<span style="color:red"> '+translateReadArr[0].trim()+' </span>'
+      speechSynthesis.speak(utterance);
+   }
+}
+function speakMinutes_translate() {
+
+   if (translateReadArr.length > 0) {
+      let txt = translateReadArr[cnt]//.shift() // extract first item
+      let utterance = new SpeechSynthesisUtterance(txt);
+      utterance.onstart = () => {
+         translate[cnt].style.backgroundColor = "yellow"
+        //  translate[cnt].style.fontSize = "large"
+      }
+      // When the current utterance ends, speak the next one
+      utterance.onend = function (event) {
+         translate[cnt].style.backgroundColor = "white"
+        //  translate[cnt].style.fontSize = "medium"
+         cnt++
+      console.log('Speech ended, starting next minute.');
+      // document.querySelector(".source").remove()
+      // document.querySelector(".translate").remove()
+
+      isPause ? '' : speakMinutes_source(); // Recursively call the function for the next item
+      };
+
+      // Handle potential errors
+      utterance.onerror = function (event) {
+         console.error('Speech synthesis error: ' + event.error);
+      };
+      utterance.lang = readTranslateLang
+      speechSynthesis.speak(utterance);
+   }
+}
+const speakBtn = document.querySelector('#speak');
+const pauseBtn = document.querySelector('#pause');
+const stopBtn = document.querySelector('#stop');
+let isPause = true
+
+// speakBtn.addEventListener('click', readSourceTranslate);
+speakBtn.addEventListener('click', speakMinutes_source);
+stopBtn.addEventListener('click', refreshPage.bind(null, true));
+pauseBtn.addEventListener("click", () => isPause = true)
+      </script>
+   </body>
+</html>
